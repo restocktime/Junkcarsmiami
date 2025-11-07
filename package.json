@@ -1,0 +1,28 @@
+{
+  "name": "miami-junk-car-buyers",
+  "version": "1.0.0",
+  "description": "Professional Miami junk car buying service website - bilingual, mobile-responsive, SEO-optimized",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 server.py",
+    "dev": "python3 server.py",
+    "backend": "cd backend && npm install && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/restocktime/Junkcarsmiami.git"
+  },
+  "keywords": [
+    "miami",
+    "junk-cars",
+    "car-buyers",
+    "cash-for-cars",
+    "auto-salvage",
+    "florida",
+    "bilingual",
+    "spanish"
+  ],
+  "author": "Miami Junk Car Buyers",
+  "license": "MIT",
+  "homepage": "https://buyjunkcarmiami.com"
+}
