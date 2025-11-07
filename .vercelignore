@@ -1,0 +1,10 @@
+README.md
+SEO-OPTIMIZATION-SUMMARY.md
+README-LOCAL-TESTING.md
+budget.json
+*.backup
+.DS_Store
+backend/
+server.py
+start-server.sh
+*.log
