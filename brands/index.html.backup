@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Brands We Buy - Miami Junk Car Buyers | All Makes & Models</title>
+    <meta name="description" content="We buy all car brands in Miami: Honda, Toyota, Ford, Chevrolet, Nissan, BMW, Mercedes and more. Any condition, running or not.">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">📞 (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/">Locations</a></li>
+                    <li><a href="/brands/" class="active">Car Brands</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>We Buy All Car Brands in Miami</h1>
+                <p>From economy cars to luxury vehicles - we purchase all makes and models</p>
+                <a href="tel:+13055345991" class="btn btn-primary btn-large">Get Brand Quote</a>
+            </div>
+        </section>
+
+        <section class="brands-grid-section">
+            <div class="container">
+                <h2>🌟 Most Popular Brands in Miami</h2>
+                <p class="section-intro">We specialize in these high-demand brands that are common throughout South Florida:</p>
+                
+                <div class="brands-grid popular-brands">
+                    <div class="brand-card featured">
+                        <h3><a href="/brands/honda/">🥇 Honda</a></h3>
+                        <p><strong>Top Models:</strong> Civic, Accord, CR-V, Pilot, HR-V, Fit, Ridgeline</p>
+                        <p class="brand-note">Miami's #1 choice - Excellent resale value</p>
+                        <a href="/brands/honda/" class="btn btn-secondary">Honda Specialist</a>
+                    </div>
+                    
+                    <div class="brand-card featured">
+                        <h3>🥈 Toyota</h3>
+                        <p><strong>Top Models:</strong> Camry, Corolla, RAV4, Prius, Highlander, 4Runner, Tacoma</p>
+                        <p class="brand-note">Legendary reliability - High demand</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Get Toyota Quote</a>
+                    </div>
+                    
+                    <div class="brand-card featured">
+                        <h3>🥉 Ford</h3>
+                        <p><strong>Top Models:</strong> F-150, Focus, Escape, Explorer, Mustang, Edge, Fusion</p>
+                        <p class="brand-note">America's truck leader - Strong parts demand</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Get Ford Quote</a>
+                    </div>
+                    
+                    <div class="brand-card">
+                        <h3>Chevrolet</h3>
+                        <p><strong>Top Models:</strong> Silverado, Malibu, Impala, Equinox, Tahoe, Cruze</p>
+                        <p class="brand-note">American muscle - Popular in Miami</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Get Chevy Quote</a>
+                    </div>
+                    
+                    <div class="brand-card">
+                        <h3>Nissan</h3>
+                        <p><strong>Top Models:</strong> Altima, Sentra, Rogue, Pathfinder, Maxima, Titan</p>
+                        <p class="brand-note">Affordable & reliable - High Miami volume</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Get Nissan Quote</a>
+                    </div>
+                    
+                    <div class="brand-card">
+                        <h3>Hyundai</h3>
+                        <p><strong>Top Models:</strong> Elantra, Sonata, Tucson, Santa Fe, Accent</p>
+                        <p class="brand-note">Great warranty - Growing popularity</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Get Hyundai Quote</a>
+                    </div>
+                </div>
+                
+                <h2>🏆 Luxury & Premium Brands</h2>
+                <p class="section-intro">High-value luxury vehicles with premium parts and materials:</p>
+                
+                <div class="brands-grid luxury-brands">
+                    <div class="brand-card luxury">
+                        <h3>BMW</h3>
+                        <p><strong>Models:</strong> 3 Series, 5 Series, X3, X5, X1, 7 Series, Z4</p>
+                        <p class="brand-note">German engineering - Premium parts value</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Luxury Quote</a>
+                    </div>
+                    
+                    <div class="brand-card luxury">
+                        <h3>Mercedes-Benz</h3>
+                        <p><strong>Models:</strong> C-Class, E-Class, S-Class, GLE, GLC, CLA, ML</p>
+                        <p class="brand-note">Luxury leader - High-value components</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Mercedes Quote</a>
+                    </div>
+                    
+                    <div class="brand-card luxury">
+                        <h3>Audi</h3>
+                        <p><strong>Models:</strong> A3, A4, A6, Q3, Q5, Q7, A8, TT</p>
+                        <p class="brand-note">Quattro technology - Premium materials</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Audi Quote</a>
+                    </div>
+                    
+                    <div class="brand-card luxury">
+                        <h3>Lexus</h3>
+                        <p><strong>Models:</strong> ES, RX, NX, GX, IS, LS, LX</p>
+                        <p class="brand-note">Toyota luxury - Excellent reliability</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Lexus Quote</a>
+                    </div>
+                    
+                    <div class="brand-card luxury">
+                        <h3>Cadillac</h3>
+                        <p><strong>Models:</strong> Escalade, XT5, CTS, SRX, XTS, ATS</p>
+                        <p class="brand-note">American luxury - Strong Miami presence</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Cadillac Quote</a>
+                    </div>
+                    
+                    <div class="brand-card luxury">
+                        <h3>Lincoln</h3>
+                        <p><strong>Models:</strong> Navigator, MKZ, MKX, Continental, MKC</p>
+                        <p class="brand-note">Ford luxury division - Quality materials</p>
+                        <a href="tel:+13055345991" class="btn btn-secondary">Lincoln Quote</a>
+                    </div>
+                </div>
+                
+                <h2>🚗 All Domestic & Import Brands</h2>
+                <p class="section-intro">We purchase every make and model - here's our complete list:</p>
+                
+                <div class="all-brands-comprehensive">
+                    <div class="brand-categories">
+                        <div class="brand-category">
+                            <h3>🇺🇸 American Brands</h3>
+                            <div class="brand-list">
+                                <div class="brand-item">
+                                    <h4>Buick</h4>
+                                    <p>LaCrosse, Enclave, Encore, Regal, Verano</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Chrysler</h4>
+                                    <p>300, Pacifica, Town & Country, 200, Sebring</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Dodge</h4>
+                                    <p>Charger, Challenger, Durango, Journey, Ram, Caravan</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>GMC</h4>
+                                    <p>Sierra, Terrain, Acadia, Yukon, Canyon, Savana</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Jeep</h4>
+                                    <p>Wrangler, Grand Cherokee, Cherokee, Compass, Renegade</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Pontiac</h4>
+                                    <p>Grand Prix, G6, Solstice, Vibe, Grand Am</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Saturn</h4>
+                                    <p>Vue, Ion, Sky, Aura, Outlook</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="brand-category">
+                            <h3>🇯🇵 Japanese Brands</h3>
+                            <div class="brand-list">
+                                <div class="brand-item">
+                                    <h4>Acura</h4>
+                                    <p>MDX, RDX, TLX, ILX, TSX, RSX, Integra</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Infiniti</h4>
+                                    <p>Q50, Q60, QX60, QX80, G35, G37, FX35</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Mazda</h4>
+                                    <p>Mazda3, Mazda6, CX-5, CX-9, Miata, CX-3</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Mitsubishi</h4>
+                                    <p>Outlander, Eclipse, Lancer, Galant, Montero</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Subaru</h4>
+                                    <p>Outback, Forester, Impreza, Legacy, Crosstrek, WRX</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Suzuki</h4>
+                                    <p>Grand Vitara, SX4, Kizashi, Swift, Samurai</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Isuzu</h4>
+                                    <p>Rodeo, Trooper, Ascender, i-290, i-370</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="brand-category">
+                            <h3>🇰🇷 Korean Brands</h3>
+                            <div class="brand-list">
+                                <div class="brand-item">
+                                    <h4>Kia</h4>
+                                    <p>Sorento, Sportage, Optima, Soul, Rio, Forte, Stinger</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Genesis</h4>
+                                    <p>G90, G80, GV70, GV80 (Hyundai luxury division)</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Daewoo</h4>
+                                    <p>Leganza, Nubira, Lanos (discontinued brand)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="brand-category">
+                            <h3>🇩🇪 German Brands</h3>
+                            <div class="brand-list">
+                                <div class="brand-item">
+                                    <h4>Volkswagen</h4>
+                                    <p>Jetta, Passat, Tiguan, Atlas, Golf, Beetle, CC</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Porsche</h4>
+                                    <p>911, Cayenne, Macan, Panamera, Boxster, Cayman</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Mini</h4>
+                                    <p>Cooper, Countryman, Clubman, Paceman</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="brand-category">
+                            <h3>🇪🇺 European Brands</h3>
+                            <div class="brand-list">
+                                <div class="brand-item">
+                                    <h4>Volvo</h4>
+                                    <p>XC90, XC60, S60, S80, V70, XC70</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Saab</h4>
+                                    <p>9-3, 9-5, 9-7X (discontinued brand)</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Land Rover</h4>
+                                    <p>Range Rover, Discovery, Defender, Evoque</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Jaguar</h4>
+                                    <p>XF, XE, F-PACE, XJ, F-TYPE</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Fiat</h4>
+                                    <p>500, 500X, 500L, Panda</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Alfa Romeo</h4>
+                                    <p>Giulia, Stelvio, 4C, Spider</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="brand-category">
+                            <h3>⚡ Electric & Hybrid Specialists</h3>
+                            <div class="brand-list">
+                                <div class="brand-item">
+                                    <h4>Tesla</h4>
+                                    <p>Model S, Model 3, Model X, Model Y, Cybertruck</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Toyota Hybrids</h4>
+                                    <p>Prius, Camry Hybrid, RAV4 Hybrid, Highlander Hybrid</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Honda Hybrids</h4>
+                                    <p>Accord Hybrid, CR-V Hybrid, Insight</p>
+                                </div>
+                                <div class="brand-item">
+                                    <h4>Nissan Electric</h4>
+                                    <p>Leaf, Ariya (electric vehicles)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="guarantee-section">
+                    <h2>💯 Our Brand Guarantee</h2>
+                    <div class="guarantee-points">
+                        <div class="guarantee-point">
+                            <h3>🎯 Every Brand Accepted</h3>
+                            <p>From economy to exotic - we buy every make and model, regardless of age or condition.</p>
+                        </div>
+                        <div class="guarantee-point">
+                            <h3>📊 Market-Based Pricing</h3>
+                            <p>Our offers reflect current market demand for your specific brand and model.</p>
+                        </div>
+                        <div class="guarantee-point">
+                            <h3>🔧 Parts & Scrap Value</h3>
+                            <p>We maximize value by considering both usable parts and scrap metal worth.</p>
+                        </div>
+                        <div class="guarantee-point">
+                            <h3>⚡ Same-Day Service</h3>
+                            <p>Get quoted, scheduled, and paid the same day for any brand we buy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Miami Junk Car Buyers</p>
+        </div>
+    </footer>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

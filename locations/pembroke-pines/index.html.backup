@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembroke Pines Junk Car Removal - Cash for Cars | Buy Junk Car Miami</title>
+    <meta name="description" content="Professional junk car removal in Pembroke Pines, FL. Cash for family vehicles, suburban service specialists. Call (305) 534-5991.">
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">=Þ (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/" class="active">Locations</a></li>
+                    <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Pembroke Pines Family Car Removal</h1>
+                <p>Pembroke Pines suburban family service. We understand family vehicles, minivans, and the needs of Broward County's family-focused community.</p>
+                <a href="tel:+13055345991" class="btn btn-primary btn-large">=Þ Call Pembroke Pines: (305) 534-5991</a>
+            </div>
+        </section>
+        <section class="location-info">
+            <div class="container">
+                <h2>Pembroke Pines Family Vehicle Specialists</h2>
+                <p>Serving Pembroke Pines families with honest, reliable junk car removal. From minivans to family sedans, we provide fair value for your vehicles.</p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Buy Junk Car Miami - Pembroke Pines Family Service</p>
+        </div>
+    </footer>
+    <script src="../../js/app.js"></script>
+</body>
+</html>

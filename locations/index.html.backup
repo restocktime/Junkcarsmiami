@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Locations - Miami Junk Car Buyers | All Miami-Dade & Broward</title>
+    <meta name="description" content="We buy junk cars throughout Miami-Dade and Broward County. See all service areas: Miami, Hialeah, Coral Gables, Fort Lauderdale, and more.">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">📞 (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/" class="active">Locations</a></li>
+                    <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero locations-hero">
+            <div class="container">
+                <h1>Complete South Florida Coverage - All Cities Served</h1>
+                <p>Professional junk car removal throughout Miami-Dade and Broward County with same-day pickup. Serving all major South Florida cities.</p>
+                <a href="tel:+13055345991" class="btn btn-primary btn-large">📞 Call Now: (305) 534-5991</a>
+            </div>
+        </section>
+
+        <section class="locations-grid-section">
+            <div class="container">
+                <h2>Miami-Dade County Locations</h2>
+                <div class="locations-grid">
+                    <div class="location-card featured">
+                        <h3><a href="/locations/miami/">Miami</a></h3>
+                        <p>Downtown, Brickell, Wynwood, Little Haiti - Urban specialists</p>
+                        <a href="/locations/miami/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/hialeah/">Hialeah</a></h3>
+                        <p>Largest city service, bilingual team, family-focused</p>
+                        <a href="/locations/hialeah/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/miami-beach/">Miami Beach</a></h3>
+                        <p>South Beach luxury cars, Art Deco district, VIP service</p>
+                        <a href="/locations/miami-beach/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/coral-gables/">Coral Gables</a></h3>
+                        <p>The City Beautiful, University area, luxury vehicles</p>
+                        <a href="/locations/coral-gables/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/kendall/">Kendall</a></h3>
+                        <p>Family suburbs, SUV specialists, school district service</p>
+                        <a href="/locations/kendall/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/homestead/">Homestead</a></h3>
+                        <p>Agricultural vehicles, farm trucks, hurricane recovery</p>
+                        <a href="/locations/homestead/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/doral/">Doral</a></h3>
+                        <p>Business district, corporate fleets, airport area service</p>
+                        <a href="/locations/doral/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/aventura/">Aventura</a></h3>
+                        <p>Luxury community, mall area, waterfront condominiums</p>
+                        <a href="/locations/aventura/" class="btn btn-secondary">View Details</a>
+                    </div>
+                </div>
+                
+                <h2>Broward County Locations</h2>
+                <div class="locations-grid">
+                    <div class="location-card featured">
+                        <h3><a href="/locations/fort-lauderdale/">Fort Lauderdale</a></h3>
+                        <p>Beach city specialists, marine damage, luxury vehicles</p>
+                        <a href="/locations/fort-lauderdale/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/hollywood/">Hollywood</a></h3>
+                        <p>Entertainment district, Broadwalk area, beach damage</p>
+                        <a href="/locations/hollywood/" class="btn btn-secondary">View Details</a>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3><a href="/locations/pembroke-pines/">Pembroke Pines</a></h3>
+                        <p>Family community, suburban service, reliable vehicles</p>
+                        <a href="/locations/pembroke-pines/" class="btn btn-secondary">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="service-area-note">
+                    <h3>Complete South Florida Coverage</h3>
+                    <p>We serve all cities throughout Miami-Dade and Broward County, including surrounding communities and neighborhoods. If you don't see your specific city listed, we likely serve your area. Call us at <strong>(305) 534-5991</strong> to confirm service availability.</p>
+                    
+                    <div class="coverage-highlights">
+                        <div class="highlight">
+                            <h4>🌊 Coastal Specialists</h4>
+                            <p>Salt water damage, hurricane recovery, marine environment expertise</p>
+                        </div>
+                        <div class="highlight">
+                            <h4>🏢 Business Districts</h4>
+                            <p>Corporate fleets, commercial vehicles, business property access</p>
+                        </div>
+                        <div class="highlight">
+                            <h4>🏘️ Residential Communities</h4>
+                            <p>Family vehicles, suburban service, HOA coordination</p>
+                        </div>
+                        <div class="highlight">
+                            <h4>🎭 Entertainment Areas</h4>
+                            <p>Valet damage, event vehicles, tourist area expertise</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Miami Junk Car Buyers</p>
+        </div>
+    </footer>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

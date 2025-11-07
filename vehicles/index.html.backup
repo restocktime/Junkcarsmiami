@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junk Vehicle Types Miami FL - Cars, Trucks, SUVs, Vans | We Buy All</title>
+    <meta name="description" content="We buy all vehicle types in Miami! Cars, trucks, SUVs, vans, motorcycles. Any condition, running or not. Free towing. Call (305) 534-5991 for quote.">
+    
+    <link rel="canonical" href="https://buyjunkcarmiami.com/vehicles/">
+    <link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/vehiculos/">
+    
+    <meta property="og:title" content="Junk Vehicle Types Miami FL - Cars, Trucks, SUVs, Vans">
+    <meta property="og:description" content="We buy all vehicle types in Miami! Cars, trucks, SUVs, vans, motorcycles. Any condition, running or not. Free towing.">
+    <meta property="og:url" content="https://buyjunkcarmiami.com/vehicles/">
+    
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">📞 (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/"><img src="../images/logo.png" alt="Miami Junk Car Buyers" width="200" height="60"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/">Locations</a></li>
+                    <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <a href="/">Home</a> > <span>Vehicle Types</span>
+                </nav>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div class="container">
+                <h1>All Vehicle Types We Buy in Miami</h1>
+                <p class="hero-subtitle">From compact cars to heavy trucks - we purchase all vehicle types throughout Miami-Dade and Broward County!</p>
+            </div>
+        </section>
+
+        <section class="vehicle-types">
+            <div class="container">
+                <div class="vehicle-grid">
+                    <div class="vehicle-type-card">
+                        <h2>🚗 <a href="/vehicles/cars/">Junk Cars</a></h2>
+                        <p>Sedans, coupes, hatchbacks, and compact cars</p>
+                    </div>
+                    
+                    <div class="vehicle-type-card">
+                        <h2>🚙 <a href="/vehicles/suvs/">Junk SUVs</a></h2>
+                        <p>Family SUVs, crossovers, and luxury SUVs</p>
+                    </div>
+                    
+                    <div class="vehicle-type-card">
+                        <h2>🚛 <a href="/vehicles/trucks/">Junk Trucks</a></h2>
+                        <p>Pickup trucks, work trucks, and commercial vehicles</p>
+                    </div>
+                    
+                    <div class="vehicle-type-card">
+                        <h2>🚐 <a href="/vehicles/vans/">Junk Vans</a></h2>
+                        <p>Cargo vans, passenger vans, and minivans</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Miami Vehicle Specialists</h3>
+                    <p>Professional junk vehicle removal for all types throughout Miami-Dade and Broward County.</p>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2024 Buy Junk Car Miami - Licensed Vehicle Removal</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

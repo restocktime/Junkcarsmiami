@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Miami Junk Car Website</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body class="admin-body">
+    <div class="admin-login" id="loginScreen">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>🔐 Admin Portal</h1>
+                <p>Buy Junk Car Miami Website Management</p>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-field-group">
+                    <label class="form-field-label">Username</label>
+                    <input type="text" id="username" placeholder="Enter admin username" required>
+                </div>
+                <div class="form-field-group">
+                    <label class="form-field-label">Password</label>
+                    <input type="password" id="password" placeholder="Enter admin password" required>
+                </div>
+                <button type="submit" class="admin-btn primary">🚀 Access Admin Portal</button>
+                <p class="login-help">Contact developer if you've forgotten credentials</p>
+            </form>
+        </div>
+    </div>
+
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <header class="admin-header">
+            <div class="admin-nav">
+                <h1>🏢 Buy Junk Car Miami Admin</h1>
+                <nav class="admin-menu">
+                    <button class="admin-nav-btn active" data-section="dashboard">📊 Dashboard</button>
+                    <button class="admin-nav-btn" data-section="pages">📄 Pages</button>
+                    <button class="admin-nav-btn" data-section="blog">✍️ Blog</button>
+                    <button class="admin-nav-btn" data-section="content">📝 Content</button>
+                    <button class="admin-nav-btn" data-section="backlinks">🔗 Backlinks</button>
+                    <button class="admin-nav-btn" data-section="seo">🎯 SEO</button>
+                </nav>
+                <button class="admin-logout" onclick="logout()">🚪 Logout</button>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section class="admin-section active" id="dashboard">
+                <div class="admin-section-header">
+                    <h2>📊 Dashboard Overview</h2>
+                    <p>Quick overview of your Buy Junk Car Miami website</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>📄 Total Pages</h3>
+                        <div class="dashboard-number">47</div>
+                        <p>Active pages on site</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>✍️ Blog Posts</h3>
+                        <div class="dashboard-number">5</div>
+                        <p>Published articles</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>🔗 Backlinks</h3>
+                        <div class="dashboard-number">23</div>
+                        <p>Internal link connections</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>🎯 SEO Score</h3>
+                        <div class="dashboard-number">94%</div>
+                        <p>Overall optimization</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-recent">
+                    <h3>🕒 Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <span class="activity-icon">✅</span>
+                            <span>Updated Nissan quote form design</span>
+                            <span class="activity-time">2 minutes ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">🔧</span>
+                            <span>Fixed Browse by Category links</span>
+                            <span class="activity-time">5 minutes ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">🎨</span>
+                            <span>Enhanced hero text visibility</span>
+                            <span class="activity-time">15 minutes ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pages Section -->
+            <section class="admin-section" id="pages">
+                <div class="admin-section-header">
+                    <h2>📄 Page Management</h2>
+                    <button class="admin-btn primary" onclick="createNewPage()">➕ Create New Page</button>
+                </div>
+                
+                <div class="page-list">
+                    <div class="page-item">
+                        <div class="page-info">
+                            <h4>🏠 Home Page</h4>
+                            <p>/index.html - Main landing page with hero video</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="admin-btn secondary" onclick="editPage('/')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPage('/')">👁️ View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="page-item">
+                        <div class="page-info">
+                            <h4>🔧 Services Page</h4>
+                            <p>/services/index.html - Service offerings and details</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="admin-btn secondary" onclick="editPage('/services/')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPage('/services/')">👁️ View</button>
+                        </div>
+                    </div>
+
+                    <div class="page-item">
+                        <div class="page-info">
+                            <h4>📍 Locations Page</h4>
+                            <p>/locations/index.html - Miami-Dade coverage areas</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="admin-btn secondary" onclick="editPage('/locations/')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPage('/locations/')">👁️ View</button>
+                        </div>
+                    </div>
+
+                    <div class="page-item">
+                        <div class="page-info">
+                            <h4>🚗 Car Brands</h4>
+                            <p>/brands/index.html - Brand-specific pages</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="admin-btn secondary" onclick="editPage('/brands/')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPage('/brands/')">👁️ View</button>
+                        </div>
+                    </div>
+
+                    <div class="page-item">
+                        <div class="page-info">
+                            <h4>📞 Contact Page</h4>
+                            <p>/contact/index.html - Contact information and forms</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="admin-btn secondary" onclick="editPage('/contact/')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPage('/contact/')">👁️ View</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section class="admin-section" id="blog">
+                <div class="admin-section-header">
+                    <h2>✍️ Blog Management</h2>
+                    <button class="admin-btn primary" onclick="createNewPost()">➕ Create New Post</button>
+                </div>
+                
+                <div class="blog-list">
+                    <div class="blog-item">
+                        <div class="blog-info">
+                            <h4>⚖️ Florida Car Title Laws</h4>
+                            <p>Legal guide for Miami car owners dealing with title issues</p>
+                            <span class="blog-status published">✅ Published</span>
+                        </div>
+                        <div class="blog-actions">
+                            <button class="admin-btn secondary" onclick="editPost('florida-car-title-laws')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPost('florida-car-title-laws')">👁️ View</button>
+                        </div>
+                    </div>
+
+                    <div class="blog-item">
+                        <div class="blog-info">
+                            <h4>🌪️ Hurricane Season Car Damage Guide</h4>
+                            <p>Complete guide for hurricane and flood damage assessment</p>
+                            <span class="blog-status published">✅ Published</span>
+                        </div>
+                        <div class="blog-actions">
+                            <button class="admin-btn secondary" onclick="editPost('hurricane-season-car-damage-guide')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPost('hurricane-season-car-damage-guide')">👁️ View</button>
+                        </div>
+                    </div>
+
+                    <div class="blog-item">
+                        <div class="blog-info">
+                            <h4>🚗 Honda CVT Transmission Problems</h4>
+                            <p>Miami owner's guide to Honda CVT issues and solutions</p>
+                            <span class="blog-status published">✅ Published</span>
+                        </div>
+                        <div class="blog-actions">
+                            <button class="admin-btn secondary" onclick="editPost('honda-cvt-transmission-problems')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPost('honda-cvt-transmission-problems')">👁️ View</button>
+                        </div>
+                    </div>
+
+                    <div class="blog-item">
+                        <div class="blog-info">
+                            <h4>💰 Scrap Metal Prices Miami 2024</h4>
+                            <p>Market update on scrap metal prices affecting junk car values</p>
+                            <span class="blog-status published">✅ Published</span>
+                        </div>
+                        <div class="blog-actions">
+                            <button class="admin-btn secondary" onclick="editPost('scrap-metal-prices-miami-2024')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPost('scrap-metal-prices-miami-2024')">👁️ View</button>
+                        </div>
+                    </div>
+
+                    <div class="blog-item">
+                        <div class="blog-info">
+                            <h4>📋 How to Sell Car Without Title Florida</h4>
+                            <p>Legal step-by-step process for selling cars without titles</p>
+                            <span class="blog-status published">✅ Published</span>
+                        </div>
+                        <div class="blog-actions">
+                            <button class="admin-btn secondary" onclick="editPost('sell-car-without-title-florida')">✏️ Edit</button>
+                            <button class="admin-btn secondary" onclick="viewPost('sell-car-without-title-florida')">👁️ View</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Section -->
+            <section class="admin-section" id="content">
+                <div class="admin-section-header">
+                    <h2>📝 Content Management</h2>
+                    <p>Edit text content across all pages</p>
+                </div>
+
+                <div class="content-categories">
+                    <div class="content-category">
+                        <h3>📞 Contact Information</h3>
+                        <div class="content-item">
+                            <label>Phone Number</label>
+                            <input type="tel" value="(305) 534-5991" class="content-input">
+                            <button class="admin-btn small" onclick="updateContent('phone')">💾 Save</button>
+                        </div>
+                        <div class="content-item">
+                            <label>Business Hours</label>
+                            <input type="text" value="Open 8am-10pm Daily" class="content-input">
+                            <button class="admin-btn small" onclick="updateContent('hours')">💾 Save</button>
+                        </div>
+                    </div>
+
+                    <div class="content-category">
+                        <h3>🏠 Homepage Content</h3>
+                        <div class="content-item">
+                            <label>Main Headline</label>
+                            <textarea class="content-textarea">Cash For Junk Cars Miami - Top Dollar Paid - Same Day Pickup</textarea>
+                            <button class="admin-btn small" onclick="updateContent('main-headline')">💾 Save</button>
+                        </div>
+                        <div class="content-item">
+                            <label>Hero Subtitle</label>
+                            <textarea class="content-textarea">We buy junk cars, damaged cars, and cars with no title in Miami-Dade & Broward County. Get paid TOP CASH on the spot with FREE towing in 30 minutes to 1 hour!</textarea>
+                            <button class="admin-btn small" onclick="updateContent('hero-subtitle')">💾 Save</button>
+                        </div>
+                    </div>
+
+                    <div class="content-category">
+                        <h3>🔧 Services Content</h3>
+                        <div class="content-item">
+                            <label>Services Page Title</label>
+                            <input type="text" value="Complete Miami Junk Car Services - Every Vehicle, Every Situation" class="content-input">
+                            <button class="admin-btn small" onclick="updateContent('services-title')">💾 Save</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Backlinks Section -->
+            <section class="admin-section" id="backlinks">
+                <div class="admin-section-header">
+                    <h2>🔗 Backlink Management</h2>
+                    <button class="admin-btn primary" onclick="addNewBacklink()">➕ Add Backlink</button>
+                </div>
+
+                <div class="backlink-list">
+                    <div class="backlink-item">
+                        <div class="backlink-info">
+                            <h4>Home → Services</h4>
+                            <p>/ links to /services/ | "Services" anchor text</p>
+                        </div>
+                        <div class="backlink-actions">
+                            <button class="admin-btn secondary" onclick="editBacklink(1)">✏️ Edit</button>
+                            <button class="admin-btn danger" onclick="removeBacklink(1)">🗑️ Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="backlink-item">
+                        <div class="backlink-info">
+                            <h4>Services → Honda Brand</h4>
+                            <p>/services/ links to /brands/honda/ | "Honda Cash Buyer" anchor text</p>
+                        </div>
+                        <div class="backlink-actions">
+                            <button class="admin-btn secondary" onclick="editBacklink(2)">✏️ Edit</button>
+                            <button class="admin-btn danger" onclick="removeBacklink(2)">🗑️ Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="backlink-item">
+                        <div class="backlink-info">
+                            <h4>Blog → Legal Guide</h4>
+                            <p>/blog/ links to /blog/florida-car-title-laws/ | "Florida Car Title Laws" anchor text</p>
+                        </div>
+                        <div class="backlink-actions">
+                            <button class="admin-btn secondary" onclick="editBacklink(3)">✏️ Edit</button>
+                            <button class="admin-btn danger" onclick="removeBacklink(3)">🗑️ Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="backlink-analyzer">
+                    <h3>🔍 Link Analysis</h3>
+                    <button class="admin-btn primary" onclick="analyzeSiteLinks()">🔍 Analyze All Links</button>
+                    <div class="analysis-results" id="linkAnalysis">
+                        <p>Click "Analyze All Links" to scan for broken links and optimization opportunities</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEO Section -->
+            <section class="admin-section" id="seo">
+                <div class="admin-section-header">
+                    <h2>🎯 SEO Management</h2>
+                    <p>Search engine optimization tools and monitoring</p>
+                </div>
+
+                <div class="seo-categories">
+                    <div class="seo-category">
+                        <h3>📊 SEO Overview</h3>
+                        <div class="seo-metrics">
+                            <div class="seo-metric">
+                                <span class="metric-label">Page Titles</span>
+                                <span class="metric-value good">✅ 47/47</span>
+                            </div>
+                            <div class="seo-metric">
+                                <span class="metric-label">Meta Descriptions</span>
+                                <span class="metric-value good">✅ 47/47</span>
+                            </div>
+                            <div class="seo-metric">
+                                <span class="metric-label">H1 Tags</span>
+                                <span class="metric-value good">✅ 47/47</span>
+                            </div>
+                            <div class="seo-metric">
+                                <span class="metric-label">Schema Markup</span>
+                                <span class="metric-value warning">⚠️ 5/47</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="seo-category">
+                        <h3>🗺️ Sitemap</h3>
+                        <button class="admin-btn primary" onclick="regenerateSitemap()">🔄 Regenerate Sitemap</button>
+                        <p>Last updated: November 7, 2024</p>
+                        <p>47 pages indexed</p>
+                    </div>
+
+                    <div class="seo-category">
+                        <h3>🔍 Keywords</h3>
+                        <div class="keyword-list">
+                            <span class="keyword-tag">junk car Miami</span>
+                            <span class="keyword-tag">sell junk car</span>
+                            <span class="keyword-tag">cash for cars</span>
+                            <span class="keyword-tag">Miami auto removal</span>
+                            <span class="keyword-tag">flood damaged cars</span>
+                        </div>
+                        <button class="admin-btn secondary" onclick="manageKeywords()">🏷️ Manage Keywords</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin-script-backend.js"></script>
+</body>
+</html>

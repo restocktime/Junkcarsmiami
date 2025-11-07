@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doral Junk Car Removal - Cash for Cars | Buy Junk Car Miami</title>
+    <meta name="description" content="Professional junk car removal in Doral, FL. Cash for luxury cars, business district vehicles, airport area service. Call (305) 534-5991.">
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">=Þ (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/" class="active">Locations</a></li>
+                    <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Doral Junk Car Removal - Corporate & Luxury Service</h1>
+                <p>Doral's premier business district junk car service. Corporate fleet removal, luxury vehicle specialists, and airport area expertise. Professional service for Miami's business capital.</p>
+                <a href="tel:+13055345991" class="btn btn-primary btn-large">=Þ Call Doral: (305) 534-5991</a>
+            </div>
+        </section>
+        <section class="location-info">
+            <div class="container">
+                <h2>Doral Business District Specialists</h2>
+                <p>Serving Doral's corporate community, luxury residential areas, and Miami International Airport vicinity with professional, discreet vehicle removal services.</p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Buy Junk Car Miami - Doral Business Service</p>
+        </div>
+    </footer>
+    <script src="../../js/app.js"></script>
+</body>
+</html>

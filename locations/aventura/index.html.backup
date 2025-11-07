@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura Junk Car Removal - Cash for Cars | Buy Junk Car Miami</title>
+    <meta name="description" content="Premium junk car removal in Aventura, FL. Cash for luxury vehicles, mall area service, waterfront community specialists. Call (305) 534-5991.">
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">=Þ (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/" class="active">Locations</a></li>
+                    <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Aventura Luxury Car Removal - Premium Service</h1>
+                <p>Aventura's upscale community deserves premium junk car service. Luxury vehicle specialists, mall area expertise, and waterfront property access. Discretion guaranteed.</p>
+                <a href="tel:+13055345991" class="btn btn-primary btn-large">=Þ Call Aventura: (305) 534-5991</a>
+            </div>
+        </section>
+        <section class="location-info">
+            <div class="container">
+                <h2>Aventura Luxury Vehicle Specialists</h2>
+                <p>Serving Aventura's affluent community with discretion and professionalism. From Aventura Mall area to exclusive waterfront condominiums.</p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Buy Junk Car Miami - Aventura Premium Service</p>
+        </div>
+    </footer>
+    <script src="../../js/app.js"></script>
+</body>
+</html>
