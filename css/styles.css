@@ -3935,6 +3935,254 @@ p {
   }
 }
 
+/* ==============================================
+   GLOBAL MOBILE FIXES - APPLIED SITE-WIDE
+   ============================================== */
+
+@media (max-width: 768px) {
+  /* Fix white space gaps globally */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Aggressive header fixes */
+  .header {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  
+  .navbar {
+    padding: 2px 12px !important;
+    min-height: 48px !important;
+    margin: 0 !important;
+  }
+  
+  .nav-brand {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .logo-img {
+    height: 30px !important;
+    max-width: 120px !important;
+  }
+  
+  /* Container fixes for all pages */
+  .container {
+    padding: 0 12px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Section padding fixes */
+  section {
+    padding: 2rem 0 !important;
+  }
+  
+  .hero {
+    padding: 1.5rem 0 !important;
+  }
+  
+  /* Hero content fixes */
+  .hero-content {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .hero-text {
+    padding: 0 !important;
+  }
+  
+  /* Form container fixes */
+  .form-container {
+    margin: 1rem 0 !important;
+    padding: 1rem !important;
+  }
+  
+  /* Button spacing */
+  .hero-cta {
+    gap: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+  }
+  
+  /* Trust signals */
+  .trust-signals {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  
+  /* Service grids */
+  .services-grid,
+  .features-grid,
+  .brands-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 0 !important;
+  }
+  
+  /* Content sections */
+  .content-section {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .main-content,
+  .sidebar {
+    padding: 0 !important;
+  }
+  
+  /* Footer fixes */
+  .footer {
+    padding: 2rem 0 !important;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    text-align: center;
+  }
+  
+  /* Location pages specific */
+  .location-hero {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .location-details-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Service pages specific */
+  .service-features {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Brand pages specific */
+  .brand-models {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  /* Contact page specific */
+  .contact-methods {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Blog pages specific */
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .blog-content {
+    padding: 0 !important;
+  }
+  
+  /* FAQ pages */
+  .faq-item {
+    margin: 0 0 1rem 0 !important;
+  }
+  
+  /* Gallery pages */
+  .gallery-item {
+    margin: 0 !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Team and facility */
+  .team-gallery,
+  .facility-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Contact bar mobile fixes */
+  .contact-bar {
+    padding: 0.75rem 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
+  .contact-content {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    text-align: center !important;
+  }
+  
+  .contact-actions {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+  }
+  
+  .contact-actions .btn {
+    width: 100% !important;
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  /* Testimonials mobile */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  .testimonial {
+    padding: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile fixes */
+  .container {
+    padding: 0 8px !important;
+  }
+  
+  .hero {
+    padding: 1rem 0 !important;
+  }
+  
+  section {
+    padding: 1.5rem 0 !important;
+  }
+  
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .btn {
+    padding: 12px 20px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .hero-features {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  .brand-models {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 480px) {
   .gallery-preview {
     padding: 2.5rem 0;
