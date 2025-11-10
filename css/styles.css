@@ -156,34 +156,52 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px 0;
-    background: #1e293b;
+    padding: 10px 0;
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
     color: white;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     border-bottom: 2px solid #fbbf24;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
 }
 
 .contact-info {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     font-weight: 500;
+    text-align: center;
 }
 
 .phone-number {
-    color: #fbbf24;
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .phone-number:hover {
-    color: #f59e0b;
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .hours {
-    color: #cbd5e1;
-    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .language-toggle a {
@@ -2404,15 +2422,29 @@ p {
     }
     
     .header-top {
-        padding: 6px 0;
-        font-size: 0.75rem;
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        padding: 8px 0;
+        font-size: 0.8rem;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
     }
     
     .contact-info {
-        gap: 0.75rem;
+        gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
+    }
+    
+    .phone-number {
+        font-size: 0.85rem;
+        padding: 3px 10px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+    }
+    
+    .hours {
+        font-size: 0.75rem;
+        padding: 3px 8px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
     }
     
     .navbar {
@@ -2749,27 +2781,36 @@ p {
 @media (max-width: 768px) {
   /* Improve mobile header-top section */
   .header-top {
-    padding: 6px 0;
-    font-size: 0.75rem;
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border-bottom: 1px solid #fbbf24;
+    padding: 8px 0;
+    font-size: 0.8rem;
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
   }
   
   .contact-info {
-    gap: 0.75rem;
+    gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
   }
   
   .phone-number {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: #fbbf24;
+    color: #ffffff;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+  }
+  
+  .phone-number:hover {
+    background: rgba(255, 255, 255, 0.25);
   }
   
   .hours {
-    font-size: 0.7rem;
-    color: #cbd5e1;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 3px 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
   }
   
   /* Fix navbar spacing and remove excessive whitespace */
@@ -2894,16 +2935,24 @@ p {
 @media (max-width: 480px) {
   /* Extra mobile header optimization */
   .header-top {
-    padding: 4px 0;
-    font-size: 0.7rem;
+    padding: 6px 0;
+    font-size: 0.75rem;
+  }
+  
+  .contact-info {
+    gap: 0.75rem;
   }
   
   .phone-number {
     font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
   }
   
   .hours {
     font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 10px;
   }
   
   .navbar {
