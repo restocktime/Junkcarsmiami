@@ -129,28 +129,28 @@
         // Image data for lightbox
         const imageData = {
             'before-after-1': {
-                src: '../images/gallery/before-after/rusted-honda-before.jpg',
-                caption: '2008 Honda Civic - Rusted & Flood Damaged → $1,200 Cash'
+                src: '../images/AdobeStock_373569463_Preview.jpeg',
+                caption: '$1,200 Cash'
             },
             'before-after-2': {
-                src: '../images/gallery/before-after/toyota-camry-before.jpg',
-                caption: '2010 Toyota Camry - Accident Damage → $950 Cash'
+                src: '../images/AdobeStock_332654481_Preview.jpeg',
+                caption: '$950 Cash'
             },
             'before-after-3': {
-                src: '../images/gallery/before-after/ford-f150-before.jpg',
-                caption: '2003 Ford F-150 - Non-Running Truck → $800 Cash'
+                src: '../images/AdobeStock_222819268_Preview.jpeg',
+                caption: '$800 Cash'
             },
             'before-after-4': {
-                src: '../images/gallery/before-after/bmw-325i-before.jpg',
-                caption: '2006 BMW 325i - Engine Problems → $1,500 Cash'
+                src: '../images/AdobeStock_1548310032_Preview.jpeg',
+                caption: '$1,500 Cash'
             },
             'before-after-5': {
-                src: '../images/gallery/before-after/nissan-altima-before.jpg',
-                caption: '2009 Nissan Altima - Hurricane Damage → $750 Cash'
+                src: '../images/AdobeStock_773417243.jpeg',
+                caption: '$750 Cash'
             },
             'before-after-6': {
-                src: '../images/gallery/before-after/mercedes-c300-before.jpg',
-                caption: '2011 Mercedes C300 - Transmission Issues → $2,200 Cash'
+                src: '../images/contact-hero.jpg',
+                caption: '$2,200 Cash'
             }
         };
         
