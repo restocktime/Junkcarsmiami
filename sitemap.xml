@@ -4,7 +4,7 @@
   <!-- Main Pages -->
   <url>
     <loc>https://buyjunkcarmiami.com/</loc>
-    <lastmod>2024-11-07</lastmod>
+    <lastmod>2024-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/"/>
@@ -28,9 +28,9 @@
   
   <url>
     <loc>https://buyjunkcarmiami.com/services/junk-car-removal/</loc>
-    <lastmod>2024-11-07</lastmod>
+    <lastmod>2024-11-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -455,9 +455,9 @@
   
   <url>
     <loc>https://buyjunkcarmiami.com/faq/</loc>
-    <lastmod>2024-11-07</lastmod>
+    <lastmod>2024-11-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.7</priority>
   </url>
   
 </urlset>
