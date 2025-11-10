@@ -42,17 +42,23 @@
                     <a href="/es/blog/" hreflang="es-us">ES</a>
                 </div>
             </div>
-            <nav class="navbar">
+            <nav class="navbar" role="navigation" aria-label="Main navigation">
                 <div class="nav-brand">
-                    <a href="/">
+                    <a href="/" aria-label="Miami Junk Car Buyers Home">
                         <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami Logo" class="logo-img">
                     </a>
                 </div>
-                <ul class="nav-menu">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="/">Home</a></li>
                     <li><a href="/services/">Services</a></li>
                     <li><a href="/locations/">Locations</a></li>
                     <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/resources/">Resources</a></li>
                     <li><a href="/blog/" class="active">Blog</a></li>
                     <li><a href="/contact/">Contact</a></li>
                     <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Get Quote</a></li>
@@ -112,7 +118,7 @@
                             
                             <article class="blog-post featured">
                                 <div class="post-image">
-                                    <img src="../images/hurricane-season-cars-miami.jpg" alt="Hurricane season car damage in Miami" width="400" height="200">
+                                    <img src="../images/hurricane-season-cars-miami.jpg" alt="Hurricane season car damage in Miami" width="400" height="200" loading="lazy">
                                 </div>
                                 <div class="post-content">
                                     <div class="post-meta">
@@ -127,7 +133,7 @@
 
                             <article class="blog-post featured">
                                 <div class="post-image">
-                                    <img src="../images/florida-car-title-laws.jpg" alt="Florida car title legal documents" width="400" height="200">
+                                    <img src="../images/florida-car-title-laws.jpg" alt="Florida car title legal documents" width="400" height="200" loading="lazy">
                                 </div>
                                 <div class="post-content">
                                     <div class="post-meta">

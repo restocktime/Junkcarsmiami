@@ -1,4 +1,18 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "junkcarsmiami.vercel.app" }],
+      "destination": "https://buyjunkcarmiami.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.buyjunkcarmiami.com" }],
+      "destination": "https://buyjunkcarmiami.com/$1",
+      "permanent": true
+    }
+  ]
 }

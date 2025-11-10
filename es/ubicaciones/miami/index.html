@@ -61,13 +61,18 @@
                     <a href="/locations/miami/" hreflang="en-us" aria-label="English">EN</a>
                 </div>
             </div>
-            <nav class="navbar">
+            <nav class="navbar" role="navigation" aria-label="Navegación principal">
                 <div class="nav-brand">
-                    <a href="/es/">
+                    <a href="/es/" aria-label="Compramos Carros Chatarra Miami Inicio">
                         <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Compramos Carros Chatarra Miami Logo" class="logo-img">
                     </a>
                 </div>
-                <ul class="nav-menu">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Alternar menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="/es/">Inicio</a></li>
                     <li><a href="/es/servicios/">Servicios</a></li>
                     <li><a href="/es/ubicaciones/">Ubicaciones</a></li>

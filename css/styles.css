@@ -2681,6 +2681,14 @@ p {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
+
+    /* Mobile fixes for hero backgrounds to prevent zoom/crop issues */
+    .services-hero,
+    .locations-hero,
+    .contact-hero {
+        background-attachment: scroll;
+        background-position: center top;
+    }
     
     .neighborhoods-grid {
         grid-template-columns: 1fr;

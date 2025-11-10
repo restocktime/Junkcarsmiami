@@ -41,11 +41,18 @@
                     <a href="/es/marcas/honda/" hreflang="es-us">ES</a>
                 </div>
             </div>
-            <nav class="navbar">
+            <nav class="navbar" role="navigation" aria-label="Main navigation">
                 <div class="nav-brand">
-                    <a href="/"><img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png?utm_source=perplexity" alt="Buy Junk Car Miami Logo" width="200" height="60"></a>
+                    <a href="/" aria-label="Miami Junk Car Buyers Home">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami Logo" class="logo-img">
+                    </a>
                 </div>
-                <ul class="nav-menu">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="/">Home</a></li>
                     <li><a href="/services/">Services</a></li>
                     <li><a href="/locations/">Locations</a></li>

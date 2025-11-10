@@ -31,6 +31,9 @@
                 this.setAttribute('aria-expanded', !expanded);
                 navMenu.classList.toggle('active');
             });
+        } else if (!navToggle && navMenu) {
+            // Fallback: ensure menu is visible on pages missing the toggle (prevents hidden nav on mobile)
+            navMenu.classList.add('active');
         }
 
         // Handle navigation link clicks
