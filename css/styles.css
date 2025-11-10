@@ -2712,3 +2712,44 @@ p {
         grid-template-columns: 1fr;
     }
 }
+/* Mobile polish: compact header, calmer hero, smaller bottom banner */
+@media (max-width: 1024px){
+  .hero{min-height:50vh;padding:3rem 0;background-attachment:scroll}
+}
+
+@media (max-width: 768px){
+  .navbar{padding:6px 0;min-height:64px}
+  .logo-img{height:34px;max-width:140px}
+  .nav-menu{background:transparent;border:0;box-shadow:none;margin:0;padding:0}
+  .nav-menu{top:calc(100% + 10px)}
+  .nav-menu a{padding:14px 18px;font-size:.95rem}
+  .hero{padding:1.25rem 0;min-height:auto}
+  .hero .container{max-width:640px}
+  .hero h1{font-size:1.75rem;line-height:1.2;margin-bottom:1rem}
+  .hero-subtitle{font-size:1rem;margin-bottom:1.25rem}
+  .hero-cta{gap:.6rem;margin:1rem 0}
+  .btn{padding:12px 18px;font-size:.9rem;border-radius:8px}
+  .btn-large{padding:14px 22px;font-size:.95rem}
+  section{padding:1.5rem 0}
+}
+
+@media (max-width: 480px){
+  .hero h1{font-size:1.55rem}
+}
+
+.contact-bar{position:sticky;bottom:0;z-index:999;background:#13253f}
+.contact-bar.hidden{display:none !important}
+.contact-close{position:absolute;right:10px;top:8px;background:transparent;border:0;color:#fff;font-size:22px;line-height:1;cursor:pointer;opacity:.8}
+.contact-close:hover{opacity:1}
+@media (max-width:768px){
+  .contact-bar{position:fixed;left:0;right:0;padding:.55rem 0}
+  .contact-text{display:none}
+  .contact-actions .btn{padding:10px 14px;font-size:.9rem}
+}
+
+/* Mobile: hide desktop nav pill and only show dropdown when active */
+@media (max-width: 768px){
+  .nav-menu{background: transparent !important; border:0 !important; box-shadow:none !important; margin:0 !important; padding:0 !important;}
+  .nav-menu:not(.active){display:none !important;}
+  .nav-menu.active{display:flex !important; flex-direction:column;}
+}
