@@ -9,6 +9,7 @@
 
     function initializeApp() {
         initNavigation();
+        initDismissibleContactBar();
         initMultiStepForm();
         initFAQ();
         initSmoothScrolling();
@@ -22,7 +23,7 @@
     function initNavigation() {
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
-        
+
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -31,9 +32,6 @@
                 this.setAttribute('aria-expanded', !expanded);
                 navMenu.classList.toggle('active');
             });
-        } else if (!navToggle && navMenu) {
-            // Fallback: ensure menu is visible on pages missing the toggle (prevents hidden nav on mobile)
-            navMenu.classList.add('active');
         }
 
         // Handle navigation link clicks
@@ -56,11 +54,54 @@
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (navMenu && navToggle && 
-                !navToggle.contains(e.target) && 
+            if (navMenu && navToggle &&
+                !navToggle.contains(e.target) &&
                 !navMenu.contains(e.target)) {
                 navMenu.classList.remove('active');
                 navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    navToggle?.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    }
+
+    // Dismissible Contact Bar
+    function initDismissibleContactBar() {
+        const bar = document.querySelector('.contact-bar');
+        if (!bar) return;
+        const closeBtn = bar.querySelector('.contact-close');
+        const STORAGE_KEY = 'contactBarDismissed';
+
+        // Restore hidden state
+        try {
+            if (localStorage.getItem(STORAGE_KEY) === '1') {
+                bar.classList.add('hidden');
+                return;
+            }
+        } catch (e) { /* ignore */ }
+
+        const hideBar = () => {
+            bar.classList.add('hidden');
+            try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) { /* ignore */ }
+        };
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', hideBar);
+        }
+
+        // Optional: tap background to dismiss on mobile if user taps outside actions
+        bar.addEventListener('click', function(e) {
+            const isAction = e.target.closest('.contact-actions') || e.target.closest('.contact-close');
+            if (!isAction) {
+                hideBar();
             }
         });
     }
@@ -511,7 +552,7 @@
     function initHeroVideo() {
         const heroVideo = document.querySelector('.hero-video');
         const heroVideoContainer = document.querySelector('.hero-video-container');
-        
+
         if (heroVideo && heroVideoContainer) {
             console.log('Initializing hero video...');
             
