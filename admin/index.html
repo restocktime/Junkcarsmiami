@@ -1371,6 +1371,7 @@
 
     <script>
 // Simple Admin Portal JavaScript - Works without backend
+// Updated: 2025-11-10 - Version 2.0 - Real Working Dashboard
 (function() {
     'use strict';
 
@@ -1446,6 +1447,12 @@
 
         // Simulate authentication delay
         setTimeout(() => {
+            console.log('Checking credentials:', {
+                entered: { username, password },
+                expected: ADMIN_CREDENTIALS,
+                match: username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password
+            });
+            
             if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
                 isLoggedIn = true;
                 localStorage.setItem('adminLoggedIn', 'true');
@@ -1454,6 +1461,7 @@
                 showDashboard();
                 logActivity('🔐 Admin logged in successfully');
             } else {
+                console.error('Login failed - credentials mismatch');
                 alert('❌ Invalid credentials. Please try again.');
                 // Clear form
                 document.getElementById('username').value = '';
