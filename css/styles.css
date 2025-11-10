@@ -2753,3 +2753,24 @@ p {
   .nav-menu:not(.active){display:none !important;}
   .nav-menu.active{display:flex !important; flex-direction:column;}
 }
+
+/* Mobile: visible dropdown styling when menu is open */
+@media (max-width: 768px){
+  .nav-menu.active{
+    background: rgba(255,255,255,0.98) !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15) !important;
+    border-radius: 12px;
+    padding: 6px 0 !important;
+    z-index: 1001 !important;
+  }
+  .nav-menu.active a{
+    color: #111827 !important;
+    background: transparent !important;
+  }
+  .nav-menu.active a:hover,
+  .nav-menu.active a.active{
+    background: #f8fafc !important;
+    color: #dc2626 !important;
+  }
+}
