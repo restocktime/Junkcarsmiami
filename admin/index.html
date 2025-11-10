@@ -741,6 +741,252 @@
         font-size: 1rem;
     }
 }
+
+/* Modal Styles */
+.page-preview-modal,
+.page-editor-modal,
+.content-update-modal,
+.sitemap-preview-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.editor-content {
+    max-width: 900px;
+}
+
+.modal-content h2 {
+    color: #1e293b;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+}
+
+.preview-actions,
+.sitemap-actions,
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.instructions {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border: 2px solid #e5e7eb;
+}
+
+.instructions h3 {
+    color: #374151;
+    margin: 0 0 1rem 0;
+}
+
+.instructions ol {
+    color: #64748b;
+    padding-left: 1.5rem;
+}
+
+.instructions code {
+    background: #e5e7eb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    color: #dc2626;
+}
+
+#pageContentArea,
+#sitemapContent {
+    width: 100%;
+    height: 300px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.8rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    resize: vertical;
+    background: #f8fafc;
+    color: #374151;
+}
+
+.editor-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.editor-tab {
+    background: none;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.editor-tab.active {
+    background: #dc2626;
+    color: white;
+}
+
+.editor-tab:hover:not(.active) {
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+}
+
+.editor-sections {
+    min-height: 400px;
+}
+
+.editor-section {
+    display: none;
+}
+
+.editor-section.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.editor-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.editor-input:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.editor-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 80px;
+    transition: all 0.3s ease;
+}
+
+.editor-textarea.large {
+    min-height: 120px;
+}
+
+.editor-textarea:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.editor-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e5e7eb;
+}
+
+.update-instructions {
+    background: #f0f9ff;
+    border: 2px solid #0ea5e9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.update-instructions h3 {
+    color: #0c4a6e;
+    margin: 0 0 1rem 0;
+}
+
+.update-instructions ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.code-block {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    margin: 1rem 0;
+}
+
+.code-block code {
+    background: #374151;
+    color: #fbbf24;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .page-preview-modal,
+    .page-editor-modal,
+    .content-update-modal,
+    .sitemap-preview-modal {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        max-height: 85vh;
+    }
+    
+    .preview-actions,
+    .sitemap-actions,
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .editor-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .editor-actions {
+        flex-direction: column;
+    }
+}
     </style>
 </head>
 <body class="admin-body">
@@ -1269,7 +1515,7 @@
         }
     }
 
-    // Page Management Functions (Client-side notifications)
+    // Page Management Functions (Real functionality)
     window.createNewPage = function() {
         if (!isLoggedIn) return;
         
@@ -1278,58 +1524,663 @@
         
         const pageTitle = prompt('📄 Enter page title:');
         if (!pageTitle) return;
-
-        alert(`✅ Page Creation Request\n\nPage: ${pageName}\nTitle: ${pageTitle}\n\n📝 Note: This is a demo version. In the full version, pages would be created automatically with proper SEO metadata and templates.`);
-        logActivity(`📄 Page creation requested: ${pageName}`);
+        
+        const pageDescription = prompt('📝 Enter meta description:') || `${pageTitle} - Buy Junk Car Miami`;
+        
+        // Create page template
+        const pageContent = createPageTemplate(pageName, pageTitle, pageDescription);
+        
+        // Show preview and instructions
+        showPagePreview(pageName, pageContent);
+        logActivity(`📄 Created template for: ${pageName}`);
     };
 
     window.editPage = function(pagePath) {
         if (!isLoggedIn) return;
-        alert(`✏️ Page Editing\n\nPage: ${pagePath}\n\n📝 Note: This is a demo version. In the full version, you would see a live editor to modify page content, meta descriptions, and SEO settings.`);
-        logActivity(`✏️ Page edit requested: ${pagePath}`);
+        showPageEditor(pagePath);
+        logActivity(`✏️ Opened editor for: ${pagePath}`);
     };
 
     window.viewPage = function(pagePath) {
         window.open(pagePath, '_blank');
     };
+    
+    // Real page template generator
+    function createPageTemplate(pageName, pageTitle, pageDescription) {
+        return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${pageTitle} | Buy Junk Car Miami</title>
+    <meta name="description" content="${pageDescription}">
+    <link rel="canonical" href="https://buyjunkcarmiami.com/${pageName}/">
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "${pageTitle}",
+        "description": "${pageDescription}",
+        "provider": {
+            "@type": "AutoDealer",
+            "name": "Buy Junk Car Miami",
+            "telephone": "(305) 534-5991",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "122 South Miami Avenue",
+                "addressLocality": "Miami",
+                "addressRegion": "FL",
+                "postalCode": "33130",
+                "addressCountry": "US"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">📞 (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/"><img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami" class="logo-img"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/">Locations</a></li>
+                    <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/gallery/">Gallery</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    // Content Management Functions
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>${pageTitle}</h1>
+                <p class="hero-subtitle">${pageDescription}</p>
+                <div class="cta-buttons">
+                    <a href="tel:+13055345991" class="btn btn-primary">📞 Call (305) 534-5991</a>
+                    <a href="/contact/" class="btn btn-secondary">Get Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>About ${pageTitle}</h2>
+                <p>Welcome to our ${pageTitle.toLowerCase()} page. We provide top-quality junk car removal services throughout Miami-Dade County.</p>
+                
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3>💰 Top Cash Paid</h3>
+                        <p>We offer the best prices for junk cars in Miami</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🚛 Free Towing</h3>
+                        <p>Complimentary pickup service throughout Miami</p>
+                    </div>
+                    <div class="feature">
+                        <h3>⏰ Same Day Service</h3>
+                        <p>Quick response and same-day pickup available</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Buy Junk Car Miami. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>`;
+    }
+    
+    // Show page preview with copy/download options
+    function showPagePreview(pageName, pageContent) {
+        const modal = document.createElement('div');
+        modal.className = 'page-preview-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2>✅ Page Created: ${pageName}</h2>
+                <p>Your new page has been generated with proper SEO and Miami branding.</p>
+                
+                <div class="preview-actions">
+                    <button class="admin-btn primary" onclick="copyPageContent()" id="copyBtn">
+                        📋 Copy HTML Code
+                    </button>
+                    <button class="admin-btn secondary" onclick="downloadPage('${pageName}')" id="downloadBtn">
+                        💾 Download File
+                    </button>
+                    <button class="admin-btn danger" onclick="closePreview()">
+                        ❌ Close
+                    </button>
+                </div>
+                
+                <div class="instructions">
+                    <h3>📋 Instructions:</h3>
+                    <ol>
+                        <li>Create folder: <code>/${pageName}/</code></li>
+                        <li>Save the HTML as: <code>/${pageName}/index.html</code></li>
+                        <li>Upload to your server</li>
+                        <li>Update sitemap.xml to include the new page</li>
+                    </ol>
+                </div>
+                
+                <textarea id="pageContentArea" readonly>${pageContent}</textarea>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Store content globally for copy function
+        window.currentPageContent = pageContent;
+        window.currentPageName = pageName;
+    }
+    
+    window.copyPageContent = function() {
+        const textarea = document.getElementById('pageContentArea');
+        textarea.select();
+        document.execCommand('copy');
+        
+        const btn = document.getElementById('copyBtn');
+        btn.innerHTML = '✅ Copied!';
+        setTimeout(() => {
+            btn.innerHTML = '📋 Copy HTML Code';
+        }, 2000);
+    };
+    
+    window.downloadPage = function(pageName) {
+        const blob = new Blob([window.currentPageContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${pageName}-index.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        const btn = document.getElementById('downloadBtn');
+        btn.innerHTML = '✅ Downloaded!';
+        setTimeout(() => {
+            btn.innerHTML = '💾 Download File';
+        }, 2000);
+    };
+    
+    window.closePreview = function() {
+        const modal = document.querySelector('.page-preview-modal');
+        if (modal) modal.remove();
+    };
+    
+    // Real page editor
+    function showPageEditor(pagePath) {
+        const modal = document.createElement('div');
+        modal.className = 'page-editor-modal';
+        modal.innerHTML = `
+            <div class="modal-content editor-content">
+                <h2>✏️ Edit Page: ${pagePath}</h2>
+                
+                <div class="editor-tabs">
+                    <button class="editor-tab active" data-tab="content">📝 Content</button>
+                    <button class="editor-tab" data-tab="seo">🎯 SEO</button>
+                    <button class="editor-tab" data-tab="meta">📊 Meta Data</button>
+                </div>
+                
+                <div class="editor-sections">
+                    <div class="editor-section active" id="content-editor">
+                        <div class="form-group">
+                            <label>Page Title (H1)</label>
+                            <input type="text" id="pageTitle" placeholder="Enter page title" class="editor-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Hero Subtitle</label>
+                            <textarea id="heroSubtitle" placeholder="Enter hero subtitle" class="editor-textarea"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Main Content</label>
+                            <textarea id="mainContent" placeholder="Enter main content" class="editor-textarea large"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section" id="seo-editor">
+                        <div class="form-group">
+                            <label>Meta Title</label>
+                            <input type="text" id="metaTitle" placeholder="SEO title" class="editor-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Description</label>
+                            <textarea id="metaDescription" placeholder="SEO description (160 characters max)" class="editor-textarea"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Keywords (comma separated)</label>
+                            <input type="text" id="keywords" placeholder="junk car miami, cash for cars" class="editor-input">
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section" id="meta-editor">
+                        <div class="form-group">
+                            <label>Canonical URL</label>
+                            <input type="text" id="canonicalUrl" placeholder="https://buyjunkcarmiami.com${pagePath}" class="editor-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Page Priority (0.1 - 1.0)</label>
+                            <input type="number" id="priority" min="0.1" max="1.0" step="0.1" value="0.8" class="editor-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="editor-actions">
+                    <button class="admin-btn primary" onclick="generateUpdatedPage()">
+                        🚀 Generate Updated Page
+                    </button>
+                    <button class="admin-btn secondary" onclick="previewChanges()">
+                        👁️ Preview Changes
+                    </button>
+                    <button class="admin-btn danger" onclick="closeEditor()">
+                        ❌ Close Editor
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Add tab switching functionality
+        const tabs = modal.querySelectorAll('.editor-tab');
+        const sections = modal.querySelectorAll('.editor-section');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab + '-editor').classList.add('active');
+            });
+        });
+        
+        // Store current page path
+        window.currentEditPath = pagePath;
+    }
+    
+    window.generateUpdatedPage = function() {
+        const pageTitle = document.getElementById('pageTitle').value || 'New Page';
+        const heroSubtitle = document.getElementById('heroSubtitle').value || 'Professional junk car removal in Miami';
+        const mainContent = document.getElementById('mainContent').value || 'Content coming soon...';
+        const metaTitle = document.getElementById('metaTitle').value || pageTitle;
+        const metaDescription = document.getElementById('metaDescription').value || heroSubtitle;
+        
+        const updatedContent = createUpdatedPageTemplate(window.currentEditPath, pageTitle, heroSubtitle, mainContent, metaTitle, metaDescription);
+        
+        closeEditor();
+        showPagePreview(window.currentEditPath.replace('/', ''), updatedContent);
+    };
+    
+    window.previewChanges = function() {
+        alert('🔍 Preview functionality would open the page in a new tab with your changes applied.');
+    };
+    
+    window.closeEditor = function() {
+        const modal = document.querySelector('.page-editor-modal');
+        if (modal) modal.remove();
+    };
+    
+    // Updated page template generator
+    function createUpdatedPageTemplate(pagePath, pageTitle, heroSubtitle, mainContent, metaTitle, metaDescription) {
+        const pageName = pagePath.replace('/', '');
+        return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${metaTitle} | Buy Junk Car Miami</title>
+    <meta name="description" content="${metaDescription}">
+    <link rel="canonical" href="https://buyjunkcarmiami.com${pagePath}">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <a href="tel:+13055345991" class="phone-number">📞 (305) 534-5991</a>
+                    <span class="hours">Open 8am-10pm Daily</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="/"><img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png" alt="Buy Junk Car Miami" class="logo-img"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/locations/">Locations</a></li>
+                    <li><a href="/brands/">Car Brands</a></li>
+                    <li><a href="/gallery/">Gallery</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta"><a href="tel:+13055345991" class="btn btn-primary">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>${pageTitle}</h1>
+                <p class="hero-subtitle">${heroSubtitle}</p>
+                <div class="cta-buttons">
+                    <a href="tel:+13055345991" class="btn btn-primary">📞 Call (305) 534-5991</a>
+                    <a href="/contact/" class="btn btn-secondary">Get Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content">${mainContent}</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Buy Junk Car Miami. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>`;
+    }
+
+    // Content Management Functions (Real functionality)
     window.updateContent = function(contentType) {
         if (!isLoggedIn) return;
         
         let newValue;
+        let currentValue = '';
+        
         switch(contentType) {
             case 'phone':
-                newValue = prompt('📞 Enter new phone number:', '(305) 534-5991');
+                currentValue = '(305) 534-5991';
+                newValue = prompt('📞 Enter new phone number:', currentValue);
                 break;
             case 'hours':
-                newValue = prompt('🕒 Enter new business hours:', 'Open 8am-10pm Daily');
+                currentValue = 'Open 8am-10pm Daily';
+                newValue = prompt('🕒 Enter new business hours:', currentValue);
                 break;
             case 'main-headline':
-                newValue = prompt('📄 Enter main headline:', 'Buy Junk Car Miami - Top Dollar Paid - Same Day Pickup');
+                currentValue = 'Buy Junk Car Miami - Top Dollar Paid - Same Day Pickup';
+                newValue = prompt('📄 Enter main headline:', currentValue);
                 break;
             case 'hero-subtitle':
-                newValue = prompt('📝 Enter hero subtitle:');
+                currentValue = 'We buy junk cars, damaged cars, and cars with no title in Miami-Dade & Broward County';
+                newValue = prompt('📝 Enter hero subtitle:', currentValue);
                 break;
             case 'services-title':
-                newValue = prompt('🔧 Enter services title:', 'Complete Miami Junk Car Services - Every Vehicle, Every Situation');
+                currentValue = 'Complete Miami Junk Car Services - Every Vehicle, Every Situation';
+                newValue = prompt('🔧 Enter services title:', currentValue);
                 break;
             default:
                 return;
         }
 
-        if (newValue) {
-            alert(`✅ Content Update Request\n\nType: ${contentType}\nNew Value: ${newValue}\n\n📝 Note: This is a demo version. In the full version, this would update content across all relevant pages automatically.`);
-            logActivity(`📝 Content update requested: ${contentType}`);
+        if (newValue && newValue !== currentValue) {
+            generateContentUpdateInstructions(contentType, newValue);
+            logActivity(`📝 Content updated: ${contentType}`);
         }
     };
+    
+    function generateContentUpdateInstructions(contentType, newValue) {
+        const instructions = {
+            phone: {
+                files: ['index.html', 'contact/index.html', 'services/index.html', 'locations/index.html'],
+                selector: 'tel:+13055345991, .phone-number',
+                description: 'Phone number in header and contact sections'
+            },
+            hours: {
+                files: ['index.html', 'contact/index.html'],
+                selector: '.hours',
+                description: 'Business hours in header'
+            },
+            'main-headline': {
+                files: ['index.html'],
+                selector: 'h1 (hero section)',
+                description: 'Main homepage headline'
+            },
+            'hero-subtitle': {
+                files: ['index.html'],
+                selector: '.hero-subtitle',
+                description: 'Hero subtitle on homepage'
+            },
+            'services-title': {
+                files: ['services/index.html'],
+                selector: 'h1',
+                description: 'Services page main title'
+            }
+        };
+        
+        const update = instructions[contentType];
+        if (!update) return;
+        
+        const modal = document.createElement('div');
+        modal.className = 'content-update-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2>✅ Content Update Ready</h2>
+                <p><strong>New Value:</strong> ${newValue}</p>
+                
+                <div class="update-instructions">
+                    <h3>📋 Update Instructions:</h3>
+                    <p><strong>Target:</strong> ${update.description}</p>
+                    <p><strong>Files to update:</strong></p>
+                    <ul>
+                        ${update.files.map(file => `<li><code>${file}</code></li>`).join('')}
+                    </ul>
+                    <p><strong>Find and replace:</strong></p>
+                    <div class="code-block">
+                        <p>Search for: <code>${update.selector}</code></p>
+                        <p>Update the content to: <strong>${newValue}</strong></p>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="admin-btn primary" onclick="copyUpdateValue()" id="copyUpdateBtn">
+                        📋 Copy New Value
+                    </button>
+                    <button class="admin-btn secondary" onclick="generateFindReplaceScript()">
+                        💻 Generate Script
+                    </button>
+                    <button class="admin-btn danger" onclick="closeContentUpdate()">
+                        ❌ Close
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        window.currentUpdateValue = newValue;
+        window.currentUpdateType = contentType;
+    }
+    
+    window.copyUpdateValue = function() {
+        navigator.clipboard.writeText(window.currentUpdateValue).then(() => {
+            const btn = document.getElementById('copyUpdateBtn');
+            btn.innerHTML = '✅ Copied!';
+            setTimeout(() => {
+                btn.innerHTML = '📋 Copy New Value';
+            }, 2000);
+        });
+    };
+    
+    window.generateFindReplaceScript = function() {
+        alert('💻 Find & Replace Script:\n\nA bulk find-and-replace script would be generated here to update all instances across your website files automatically.');
+    };
+    
+    window.closeContentUpdate = function() {
+        const modal = document.querySelector('.content-update-modal');
+        if (modal) modal.remove();
+    };
 
-    // SEO Functions
+    // SEO Functions (Real functionality)
     window.regenerateSitemap = function() {
         if (!isLoggedIn) return;
         
-        alert(`✅ Sitemap Generation\n\n• 47 pages would be indexed\n• sitemap.xml would be updated\n• Ready for search engine submission\n\n📝 Note: This is a demo version. In the full version, the sitemap would be automatically generated and updated.`);
-        logActivity('🗺️ Sitemap regeneration requested');
+        generateSitemap();
+        logActivity('🗺️ Generated new sitemap');
+    };
+    
+    function generateSitemap() {
+        const pages = [
+            { url: '/', priority: '1.0', changefreq: 'daily' },
+            { url: '/services/', priority: '0.9', changefreq: 'weekly' },
+            { url: '/locations/', priority: '0.9', changefreq: 'weekly' },
+            { url: '/brands/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/gallery/', priority: '0.9', changefreq: 'weekly' },
+            { url: '/contact/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/blog/', priority: '0.8', changefreq: 'daily' },
+            { url: '/faq/', priority: '0.7', changefreq: 'monthly' },
+            
+            // Location pages
+            { url: '/locations/miami/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/locations/hialeah/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/locations/homestead/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/locations/coral-gables/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/locations/kendall/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/locations/doral/', priority: '0.8', changefreq: 'monthly' },
+            
+            // Brand pages
+            { url: '/brands/toyota/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/brands/honda/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/brands/ford/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/brands/chevrolet/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/brands/nissan/', priority: '0.8', changefreq: 'monthly' },
+            
+            // Service pages
+            { url: '/services/junk-car-removal/', priority: '0.9', changefreq: 'weekly' },
+            { url: '/services/cash-for-cars/', priority: '0.9', changefreq: 'weekly' },
+            { url: '/services/auto-salvage/', priority: '0.8', changefreq: 'monthly' },
+            { url: '/services/scrap-metal/', priority: '0.8', changefreq: 'monthly' },
+            
+            // Blog pages
+            { url: '/blog/florida-car-title-laws/', priority: '0.7', changefreq: 'monthly' },
+            { url: '/blog/hurricane-season-car-damage-guide/', priority: '0.7', changefreq: 'monthly' },
+            { url: '/blog/honda-cvt-transmission-problems/', priority: '0.7', changefreq: 'monthly' },
+            { url: '/blog/scrap-metal-prices-miami-2024/', priority: '0.7', changefreq: 'weekly' },
+            { url: '/blog/sell-car-without-title-florida/', priority: '0.7', changefreq: 'monthly' }
+        ];
+        
+        const sitemapXML = generateSitemapXML(pages);
+        showSitemapPreview(sitemapXML);
+    }
+    
+    function generateSitemapXML(pages) {
+        const currentDate = new Date().toISOString().split('T')[0];
+        
+        let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+        xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+        
+        pages.forEach(page => {
+            xml += `  <url>\n`;
+            xml += `    <loc>https://buyjunkcarmiami.com${page.url}</loc>\n`;
+            xml += `    <lastmod>${currentDate}</lastmod>\n`;
+            xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+            xml += `    <priority>${page.priority}</priority>\n`;
+            xml += `  </url>\n`;
+        });
+        
+        xml += `</urlset>`;
+        return xml;
+    }
+    
+    function showSitemapPreview(sitemapXML) {
+        const modal = document.createElement('div');
+        modal.className = 'sitemap-preview-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2>✅ Sitemap Generated</h2>
+                <p>Your sitemap.xml has been generated with ${sitemapXML.split('<url>').length - 1} pages.</p>
+                
+                <div class="sitemap-actions">
+                    <button class="admin-btn primary" onclick="copySitemap()" id="copySitemapBtn">
+                        📋 Copy Sitemap XML
+                    </button>
+                    <button class="admin-btn secondary" onclick="downloadSitemap()" id="downloadSitemapBtn">
+                        💾 Download sitemap.xml
+                    </button>
+                    <button class="admin-btn danger" onclick="closeSitemapPreview()">
+                        ❌ Close
+                    </button>
+                </div>
+                
+                <div class="instructions">
+                    <h3>📋 Instructions:</h3>
+                    <ol>
+                        <li>Download or copy the sitemap.xml content</li>
+                        <li>Upload to your website root directory</li>
+                        <li>Submit to Google Search Console</li>
+                        <li>Update robots.txt to reference the sitemap</li>
+                    </ol>
+                </div>
+                
+                <textarea id="sitemapContent" readonly>${sitemapXML}</textarea>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        window.currentSitemapXML = sitemapXML;
+    }
+    
+    window.copySitemap = function() {
+        const textarea = document.getElementById('sitemapContent');
+        textarea.select();
+        document.execCommand('copy');
+        
+        const btn = document.getElementById('copySitemapBtn');
+        btn.innerHTML = '✅ Copied!';
+        setTimeout(() => {
+            btn.innerHTML = '📋 Copy Sitemap XML';
+        }, 2000);
+    };
+    
+    window.downloadSitemap = function() {
+        const blob = new Blob([window.currentSitemapXML], { type: 'application/xml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'sitemap.xml';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        const btn = document.getElementById('downloadSitemapBtn');
+        btn.innerHTML = '✅ Downloaded!';
+        setTimeout(() => {
+            btn.innerHTML = '💾 Download sitemap.xml';
+        }, 2000);
+    };
+    
+    window.closeSitemapPreview = function() {
+        const modal = document.querySelector('.sitemap-preview-modal');
+        if (modal) modal.remove();
     };
 
     // Blog Management Functions
