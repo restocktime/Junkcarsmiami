@@ -27,7 +27,7 @@ app.use('/api/', limiter);
 
 // CORS configuration
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:8000', 'https://buyjunkcarmiami.com'],
+    origin: ['http://localhost:3000', 'http://localhost:8000', 'https://buyjunkcarmiami.com', 'file://'],
     credentials: true
 }));
 
@@ -39,7 +39,7 @@ const SITE_ROOT = path.join(__dirname, '..');
 
 // Admin user credentials (in production, use database)
 const ADMIN_USERS = {
-    'admin': '$2b$10$vq8H7dTyqwrJhk8K7h8nqOOdUB.Gd8kO9F7C5nN6Qh8K7h8nqOOdU' // BuyJunkCarMiami2024!
+    'admin': '$2b$10$6ZtdR6SyMvi2JQBp7QvC5evGW8CYuM7IMGrLxD2jx7sSH/vNMmO4G' // BuyJunkCarMiami2024!
 };
 
 // Middleware to verify JWT token

@@ -44,14 +44,10 @@
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         
-        // Simple authentication (in production, use proper backend authentication)
-        if (username === 'admin' && password === 'BuyJunkCarMiami2024!') {
-            localStorage.setItem('adminLoggedIn', 'true');
-            showDashboard();
-            logActivity('🔐 Admin logged in');
-        } else {
-            alert('❌ Invalid credentials. Please try again.');
-        }
+        // Client-side authentication removed for security
+        // This fallback script is only for demo purposes
+        alert('❌ Backend authentication required. Please ensure the backend server is running on port 3001.');
+        console.log('Admin login requires backend server at localhost:3001');
     }
 
     function showDashboard() {
