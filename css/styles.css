@@ -2417,20 +2417,25 @@ p {
     
     .navbar {
         position: relative;
-        padding: 4px 0;
+        padding: 2px 0 !important;
         justify-content: space-between;
         align-items: center;
-        min-height: 50px;
+        min-height: 48px !important;
+        margin: 0 !important;
     }
     
     .nav-brand {
         flex-shrink: 0;
-        min-height: auto;
+        min-height: 32px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     .logo-img {
-        height: 32px;
-        max-width: 130px;
+        height: 30px !important;
+        max-width: 120px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     .nav-toggle {
@@ -2769,17 +2774,33 @@ p {
   
   /* Fix navbar spacing and remove excessive whitespace */
   .navbar {
-    padding: 4px 0;
-    min-height: 50px;
+    padding: 2px 0 !important;
+    min-height: 48px !important;
+    margin: 0 !important;
   }
   
   .nav-brand {
-    min-height: auto;
+    min-height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .logo-img {
-    height: 32px;
-    max-width: 130px;
+    height: 30px !important;
+    max-width: 120px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Remove any inherited spacing */
+  .header {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .header .container {
+    padding: 0 1rem !important;
+    margin: 0 !important;
   }
   
   .nav-menu {
@@ -2886,13 +2907,22 @@ p {
   }
   
   .navbar {
-    padding: 3px 0;
-    min-height: 45px;
+    padding: 1px 0 !important;
+    min-height: 42px !important;
+    margin: 0 !important;
+  }
+  
+  .nav-brand {
+    min-height: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .logo-img {
-    height: 28px;
-    max-width: 120px;
+    height: 26px !important;
+    max-width: 110px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .hero {
