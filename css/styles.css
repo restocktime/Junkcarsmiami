@@ -270,18 +270,31 @@ p {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 21px;
+    padding: 8px;
+    width: 35px;
+    height: 30px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
 }
 
-.nav-toggle span {
+.nav-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nav-toggle span,
+.hamburger-line {
     display: block;
-    height: 3px;
-    width: 100%;
+    height: 2px;
+    width: 20px;
     background: #333;
     margin-bottom: 3px;
-    transition: 0.3s;
+    border-radius: 1px;
+    transition: 0.3s ease;
+}
+
+.nav-toggle span:last-child,
+.hamburger-line:last-child {
+    margin-bottom: 0;
 }
 
 .nav-menu {
@@ -2391,28 +2404,33 @@ p {
     }
     
     .header-top {
-        padding: 8px 0;
-        font-size: 0.8rem;
+        padding: 6px 0;
+        font-size: 0.75rem;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     }
     
     .contact-info {
-        gap: 1rem;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .navbar {
         position: relative;
-        padding: 0.8rem 0;
+        padding: 4px 0;
         justify-content: space-between;
         align-items: center;
+        min-height: 50px;
     }
     
     .nav-brand {
         flex-shrink: 0;
+        min-height: auto;
     }
     
     .logo-img {
-        height: 38px;
-        max-width: 150px;
+        height: 32px;
+        max-width: 130px;
     }
     
     .nav-toggle {
@@ -2724,14 +2742,44 @@ p {
 }
 
 @media (max-width: 768px) {
-  .navbar {
+  /* Improve mobile header-top section */
+  .header-top {
     padding: 6px 0;
-    min-height: 64px;
+    font-size: 0.75rem;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-bottom: 1px solid #fbbf24;
+  }
+  
+  .contact-info {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .phone-number {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fbbf24;
+  }
+  
+  .hours {
+    font-size: 0.7rem;
+    color: #cbd5e1;
+  }
+  
+  /* Fix navbar spacing and remove excessive whitespace */
+  .navbar {
+    padding: 4px 0;
+    min-height: 50px;
+  }
+  
+  .nav-brand {
+    min-height: auto;
   }
   
   .logo-img {
-    height: 34px;
-    max-width: 140px;
+    height: 32px;
+    max-width: 130px;
   }
   
   .nav-menu {
@@ -2823,6 +2871,30 @@ p {
 }
 
 @media (max-width: 480px) {
+  /* Extra mobile header optimization */
+  .header-top {
+    padding: 4px 0;
+    font-size: 0.7rem;
+  }
+  
+  .phone-number {
+    font-size: 0.75rem;
+  }
+  
+  .hours {
+    font-size: 0.65rem;
+  }
+  
+  .navbar {
+    padding: 3px 0;
+    min-height: 45px;
+  }
+  
+  .logo-img {
+    height: 28px;
+    max-width: 120px;
+  }
+  
   .hero {
     min-height: 35vh;
     padding: 1.5rem 0;
