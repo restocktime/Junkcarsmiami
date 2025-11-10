@@ -464,6 +464,16 @@
 
         // Simulate authentication delay
         setTimeout(() => {
+            // Debug logging
+            console.log('Login attempt:', {
+                enteredUsername: username,
+                enteredPassword: password,
+                expectedUsername: ADMIN_CREDENTIALS.username,
+                expectedPassword: ADMIN_CREDENTIALS.password,
+                usernameMatch: username === ADMIN_CREDENTIALS.username,
+                passwordMatch: password === ADMIN_CREDENTIALS.password
+            });
+            
             if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
                 isLoggedIn = true;
                 localStorage.setItem('adminLoggedIn', 'true');
@@ -472,7 +482,7 @@
                 showDashboard();
                 logActivity('🔐 Admin logged in successfully');
             } else {
-                alert('❌ Invalid credentials. Please try again.');
+                alert(`❌ Invalid credentials. Please try again.\n\nDebug Info:\nUsername entered: "${username}"\nPassword entered: "${password}"\nExpected: admin / BuyJunkCarMiami2024!`);
                 // Clear form
                 document.getElementById('username').value = '';
                 document.getElementById('password').value = '';
