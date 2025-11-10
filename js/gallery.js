@@ -130,27 +130,27 @@
         const imageData = {
             'before-after-1': {
                 src: '../images/AdobeStock_373569463_Preview.jpeg',
-                caption: '$1,200 Cash'
+                caption: 'Top Cash Paid - Miami Junk Car Removal'
             },
             'before-after-2': {
                 src: '../images/AdobeStock_332654481_Preview.jpeg',
-                caption: '$950 Cash'
+                caption: 'Same Day Pickup - Free Junk Car Towing'
             },
             'before-after-3': {
                 src: '../images/AdobeStock_222819268_Preview.jpeg',
-                caption: '$800 Cash'
+                caption: 'Free Towing - Professional Auto Removal'
             },
             'before-after-4': {
                 src: '../images/AdobeStock_1548310032_Preview.jpeg',
-                caption: '$1,500 Cash'
+                caption: 'Any Condition - We Buy All Cars'
             },
             'before-after-5': {
                 src: '../images/AdobeStock_773417243.jpeg',
-                caption: '$750 Cash'
+                caption: 'No Title OK - Florida Junk Car Buyers'
             },
             'before-after-6': {
                 src: '../images/contact-hero.jpg',
-                caption: '$2,200 Cash'
+                caption: 'Fast & Easy - Instant Cash Offers'
             }
         };
         
