@@ -1,8 +1,90 @@
-# Robots.txt for Preview/Staging Site - DO NOT INDEX
-# This is a preview/staging site and should not be indexed by search engines
+# Robots.txt for Buy Junk Car Miami - Production Version
+# Optimized for maximum SEO crawling and indexing
 
 User-agent: *
+Allow: /
+
+# High-priority paths for faster indexing
+Crawl-delay: 1
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.well-known/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /logs/
+
+# Block dynamic/duplicate content
+Disallow: /*?*
+Disallow: /search?
+Disallow: /search/
+Disallow: /*utm_*
+Disallow: /*ref=*
+Disallow: /*source=*
+
+# Block development files
+Disallow: /*.git
+Disallow: /*.env
+Disallow: /*.log
+Disallow: /*.backup
+Disallow: /node_modules/
+Disallow: /.vscode/
+
+# Block session/tracking parameters
+Disallow: /*sessionid*
+Disallow: /*PHPSESSID*
+Disallow: /*sid=*
+
+# Allow all image crawling for better visibility
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.png
+Allow: *.gif
+Allow: *.webp
+Allow: *.svg
+
+# Specific crawler optimizations
+User-agent: Googlebot
+Crawl-delay: 1
+Allow: /
+
+User-agent: Bingbot
+Crawl-delay: 2
+Allow: /
+
+User-agent: Slurp
+Crawl-delay: 3
+Allow: /
+
+# Block problematic crawlers that waste resources
+User-agent: AhrefsBot
 Disallow: /
 
-# No sitemap for staging site to prevent confusion
-# Sitemap will be enabled after migration to production domain
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# XML Sitemaps (prioritized order)
+Sitemap: https://buyjunkcarmiami.com/sitemap.xml
+Sitemap: https://buyjunkcarmiami.com/sitemap-images.xml
+Sitemap: https://buyjunkcarmiami.com/sitemap-news.xml
+
+# Additional optimization directives
+Host: buyjunkcarmiami.com
+
+# Performance note: This robots.txt is optimized for:
+# - Maximum Google crawl efficiency
+# - Proper resource allocation
+# - Prevention of duplicate content indexing
+# - Protection of sensitive areas
+# Last updated: 2024-11-11
