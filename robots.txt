@@ -1,69 +1,8 @@
-# Robots.txt for Miami Junk Car Buyers - SEO Optimized
-# Allow all search engines to crawl the entire site for maximum visibility
+# Robots.txt for Preview/Staging Site - DO NOT INDEX
+# This is a preview/staging site and should not be indexed by search engines
 
 User-agent: *
-Allow: /
+Disallow: /
 
-# Allow access to important SEO assets
-Allow: /css/
-Allow: /js/
-Allow: /images/
-
-# Disallow admin or private areas (if any exist in future)
-# Disallow: /admin/
-# Disallow: /private/
-
-# Allow all location pages for maximum local SEO
-Allow: /locations/
-Allow: /es/ubicaciones/
-
-# Allow all service pages
-Allow: /services/
-Allow: /es/servicios/
-
-# Allow blog/content marketing pages
-Allow: /blog/
-Allow: /resources/
-
-# Crawl delay - be nice to search engines but ensure fast indexing
-Crawl-delay: 1
-
-# Sitemap location for search engines
-Sitemap: https://buyjunkcarmiami.com/sitemap.xml
-
-# Additional sitemaps (if created later)
-# Sitemap: https://buyjunkcarmiami.com/sitemap-locations.xml
-# Sitemap: https://buyjunkcarmiami.com/sitemap-services.xml
-# Sitemap: https://buyjunkcarmiami.com/sitemap-blog.xml
-
-# Google-specific directives for better indexing
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-# Bing-specific directives
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-# Yandex for Russian-speaking community in Miami
-User-agent: YandexBot
-Allow: /
-
-# Baidu for Chinese community
-User-agent: Baiduspider
-Allow: /
-
-# Allow social media bots for better sharing
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-# Allow WhatsApp link previews (important for Miami Hispanic market)
-User-agent: WhatsApp
-Allow: /
+# No sitemap for staging site to prevent confusion
+# Sitemap will be enabled after migration to production domain

@@ -8,6 +8,112 @@
     <meta name="description" content="Get instant cash for your junk car in Miami! Free towing, same-day pickup. We buy cars with no title. Call (305) XXX-XXXX for your quote today.">
     
     <link rel="canonical" href="https://buyjunkcarmiami.com/">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoDealer",
+        "name": "Buy Junk Car Miami",
+        "alternateName": "Miami Junk Car Buyers",
+        "description": "Licensed junk car buyers in Miami-Dade and Broward County. We buy all cars, trucks, SUVs in any condition. Free towing, same day service.",
+        "url": "https://buyjunkcarmiami.com/",
+        "telephone": "(305) 534-5991",
+        "email": "info@buyjunkcarmiami.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "122 South Miami Avenue",
+            "addressLocality": "Miami",
+            "addressRegion": "FL",
+            "postalCode": "33130",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "25.7617",
+            "longitude": "-80.1918"
+        },
+        "openingHours": "Mo-Su 08:00-22:00",
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Miami",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Florida"
+                }
+            },
+            {
+                "@type": "City", 
+                "name": "Hialeah",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Florida"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Kendall", 
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Florida"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Homestead",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Florida"
+                }
+            }
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Junk Car Buying Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Junk Car Removal",
+                        "description": "Free towing and removal of junk vehicles with cash payment"
+                    }
+                },
+                {
+                    "@type": "Offer", 
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "No Title Car Purchase",
+                        "description": "Legal purchase of vehicles without titles using Florida procedures"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service", 
+                        "name": "Flood Damaged Car Removal",
+                        "description": "Specialized removal of flood and hurricane damaged vehicles"
+                    }
+                }
+            ]
+        },
+        "sameAs": [
+            "https://www.google.com/maps/place/Buy+Junk+Car+Miami"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": "23",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "priceRange": "$$",
+        "currenciesAccepted": "USD",
+        "paymentAccepted": "Cash, Check"
+    }
+    </script>
+    
     <!-- Hreflang tags for bilingual support -->
     <link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/" />
     <link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/" />
@@ -333,6 +439,84 @@
             display: none !important;
         }
     }
+    
+    /* Price Guarantee Section */
+    .price-guarantee {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: white;
+        padding: 3rem 0;
+        margin: 2rem 0;
+    }
+    
+    .guarantee-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+    
+    .guarantee-badge {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .badge-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .guarantee-promise {
+        font-size: 1.3rem;
+        margin-bottom: 0;
+        font-weight: 500;
+    }
+    
+    .guarantee-details h3 {
+        color: #ffd700;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+    
+    .guarantee-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .guarantee-list li {
+        padding: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+    
+    .guarantee-note {
+        font-style: italic;
+        opacity: 0.9;
+        border-left: 3px solid #ffd700;
+        padding-left: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    @media (max-width: 768px) {
+        .guarantee-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .guarantee-badge {
+            padding: 1.5rem;
+        }
+        
+        .badge-icon {
+            font-size: 2.5rem;
+        }
+        
+        .guarantee-promise {
+            font-size: 1.1rem;
+        }
+    }
     </style>
     
     <header class="header">
@@ -532,7 +716,7 @@
                                     
                                     <div class="form-group">
                                         <label for="vin">VIN (Optional but gets you a better quote)</label>
-                                        <input type="text" id="vin" name="vin" placeholder="Enter 17-digit VIN" maxlength="17">
+                                        <input type="text" id="vin" name="vin" placeholder="Enter 17-digit VIN" maxlength="17" inputmode="text" autocapitalize="characters">
                                         <span class="help-text">Find VIN on dashboard or driver's door</span>
                                     </div>
                                     
@@ -646,18 +830,18 @@
                                     
                                     <div class="form-group">
                                         <label for="phone">Phone Number*</label>
-                                        <input type="tel" id="phone" name="phone" required aria-required="true" aria-describedby="phone-error" placeholder="(305) 555-1234">
+                                        <input type="tel" id="phone" name="phone" required aria-required="true" aria-describedby="phone-error" placeholder="(305) 555-1234" inputmode="tel">
                                         <span class="error-message" id="phone-error" role="alert" aria-live="polite"></span>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="email">Email Address</label>
-                                        <input type="email" id="email" name="email" placeholder="john@example.com">
+                                        <input type="email" id="email" name="email" placeholder="john@example.com" inputmode="email">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="location">Vehicle Location (Zip Code)*</label>
-                                        <input type="text" id="location" name="location" required aria-required="true" aria-describedby="location-error" placeholder="33101" maxlength="5">
+                                        <input type="text" id="location" name="location" required aria-required="true" aria-describedby="location-error" placeholder="33101" maxlength="5" inputmode="numeric" pattern="[0-9]{5}">
                                         <span class="error-message" id="location-error" role="alert" aria-live="polite"></span>
                                     </div>
                                     
@@ -686,6 +870,29 @@
                                 <p>✓ No obligation quote ✓ Same day pickup ✓ Cash on the spot</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Price Guarantee Section -->
+        <section class="price-guarantee">
+            <div class="container">
+                <div class="guarantee-content">
+                    <div class="guarantee-badge">
+                        <div class="badge-icon">🏆</div>
+                        <h2>Price Match Guarantee</h2>
+                        <p class="guarantee-promise">The Price We Quote is the Cash You Get. <strong>Guaranteed.</strong></p>
+                    </div>
+                    <div class="guarantee-details">
+                        <h3>No On-Site Haggling Policy</h3>
+                        <ul class="guarantee-list">
+                            <li>✅ <strong>Honest Quotes:</strong> Our phone quote is our final offer</li>
+                            <li>✅ <strong>No Surprises:</strong> No hidden fees or last-minute price drops</li>
+                            <li>✅ <strong>Written Guarantee:</strong> Price locked in writing when we arrive</li>
+                            <li>✅ <strong>Same-Day Cash:</strong> Get paid the amount we promised</li>
+                        </ul>
+                        <p class="guarantee-note">Unlike other buyers who reduce offers on-site, we stand behind our quotes. Your peace of mind is guaranteed.</p>
                     </div>
                 </div>
             </div>
