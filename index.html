@@ -292,20 +292,22 @@
     
     /* Mobile-specific styles */
     @media (max-width: 768px) {
-        .gallery-preview-images {
-            display: flex !important;
+        .gallery-preview-content {
             overflow: hidden;
             position: relative;
-            width: 100%;
+        }
+        
+        .gallery-preview-images {
+            display: flex !important;
+            width: 1000%; /* 10 images × 100% each */
             transition: transform 0.5s ease-in-out;
+            position: relative;
         }
         
         .preview-item {
-            flex: 0 0 100%;
-            min-width: 100%;
-            max-width: 100%;
+            flex: 0 0 10%; /* Each item takes 10% of the 1000% container (= 100% of viewport) */
+            width: 10%;
             position: relative;
-            display: block;
         }
         
         .preview-item img {
@@ -313,6 +315,25 @@
             height: 250px;
             object-fit: cover;
             border-radius: 8px;
+            display: block;
+        }
+        
+        .preview-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px 15px 15px;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .preview-overlay h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
         }
         
         .mobile-slideshow-controls {
@@ -325,11 +346,6 @@
         
         .slide-btn {
             display: block;
-        }
-        
-        /* Hide extra images on mobile initially */
-        .gallery-preview-content {
-            overflow: hidden;
         }
     }
     

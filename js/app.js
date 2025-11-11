@@ -711,8 +711,9 @@
         
         // Only apply slideshow on mobile
         if (window.innerWidth <= 768) {
-            // Move slides
-            const translateX = -(slideIndex - 1) * 100;
+            // Move slides - since each slide is 10% of the 1000% container,
+            // we need to move by 10% increments
+            const translateX = -(slideIndex - 1) * 10;
             slideshow.style.transform = `translateX(${translateX}%)`;
             console.log(`Moving to slide ${slideIndex}, translateX: ${translateX}%`);
             
