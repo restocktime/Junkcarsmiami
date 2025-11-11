@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cheerio = require('cheerio');
+const multer = require('multer');
+const sharp = require('sharp');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -64,12 +66,45 @@ const checkAdminAccess = (req, res, next) => {
     });
 };
 
+// Configure multer for image uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const uploadPath = path.join(SITE_ROOT, 'images');
+        fs.ensureDir(uploadPath).then(() => {
+            cb(null, uploadPath);
+        }).catch(cb);
+    },
+    filename: function (req, file, cb) {
+        // Generate unique filename
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const ext = path.extname(file.originalname);
+        const name = path.basename(file.originalname, ext).replace(/[^a-zA-Z0-9]/g, '-');
+        cb(null, `${name}-${uniqueSuffix}${ext}`);
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 10 * 1024 * 1024 // 10MB limit
+    },
+    fileFilter: function (req, file, cb) {
+        // Accept only image files
+        if (file.mimetype.startsWith('image/')) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only image files are allowed!'), false);
+        }
+    }
+});
+
 // Apply admin security to all admin routes
 app.use('/api/auth/*', checkAdminAccess);
 app.use('/api/stats', checkAdminAccess);
 app.use('/api/pages/*', checkAdminAccess);
 app.use('/api/content/*', checkAdminAccess);
 app.use('/api/sitemap/*', checkAdminAccess);
+app.use('/api/images/*', checkAdminAccess);
 
 // Rate limiting
 const limiter = rateLimit({
@@ -514,6 +549,141 @@ app.post('/api/contact', async (req, res) => {
     } catch (error) {
         console.error('Contact form error:', error);
         res.status(500).json({ error: 'Failed to submit contact form' });
+    }
+});
+
+// Image Management Endpoints
+
+// Get all images
+app.get('/api/images', authenticateToken, async (req, res) => {
+    try {
+        const imagesDir = path.join(SITE_ROOT, 'images');
+        const files = await fs.readdir(imagesDir);
+        
+        const imageFiles = [];
+        
+        for (const file of files) {
+            const filePath = path.join(imagesDir, file);
+            const stats = await fs.stat(filePath);
+            
+            if (stats.isFile() && /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file)) {
+                imageFiles.push({
+                    filename: file,
+                    path: `/images/${file}`,
+                    size: stats.size,
+                    modified: stats.mtime,
+                    type: path.extname(file).toLowerCase()
+                });
+            }
+        }
+        
+        res.json({ success: true, images: imageFiles });
+    } catch (error) {
+        console.error('Get images error:', error);
+        res.status(500).json({ error: 'Failed to get images' });
+    }
+});
+
+// Upload new image
+app.post('/api/images/upload', authenticateToken, upload.single('image'), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No image file provided' });
+        }
+        
+        const originalPath = req.file.path;
+        const filename = req.file.filename;
+        let finalPath = originalPath;
+        
+        // Optimize image if it's not SVG
+        if (!['.svg'].includes(path.extname(filename).toLowerCase())) {
+            try {
+                await sharp(originalPath)
+                    .resize(2000, 2000, { 
+                        fit: 'inside',
+                        withoutEnlargement: true 
+                    })
+                    .jpeg({ quality: 85 })
+                    .png({ quality: 85 })
+                    .webp({ quality: 85 })
+                    .toFile(originalPath + '.optimized');
+                
+                // Replace original with optimized
+                await fs.move(originalPath + '.optimized', originalPath, { overwrite: true });
+            } catch (optimizeError) {
+                console.warn('Image optimization failed, using original:', optimizeError.message);
+            }
+        }
+        
+        res.json({
+            success: true,
+            message: 'Image uploaded successfully',
+            image: {
+                filename: filename,
+                path: `/images/${filename}`,
+                originalName: req.file.originalname,
+                size: req.file.size
+            }
+        });
+    } catch (error) {
+        console.error('Upload error:', error);
+        res.status(500).json({ error: 'Failed to upload image' });
+    }
+});
+
+// Delete image
+app.delete('/api/images/:filename', authenticateToken, async (req, res) => {
+    try {
+        const filename = req.params.filename;
+        const imagePath = path.join(SITE_ROOT, 'images', filename);
+        
+        // Security check - ensure file is in images directory
+        if (!imagePath.startsWith(path.join(SITE_ROOT, 'images'))) {
+            return res.status(400).json({ error: 'Invalid file path' });
+        }
+        
+        if (await fs.pathExists(imagePath)) {
+            await fs.remove(imagePath);
+            res.json({ success: true, message: 'Image deleted successfully' });
+        } else {
+            res.status(404).json({ error: 'Image not found' });
+        }
+    } catch (error) {
+        console.error('Delete image error:', error);
+        res.status(500).json({ error: 'Failed to delete image' });
+    }
+});
+
+// Rename image
+app.put('/api/images/:filename/rename', authenticateToken, async (req, res) => {
+    try {
+        const oldFilename = req.params.filename;
+        const { newFilename } = req.body;
+        
+        if (!newFilename) {
+            return res.status(400).json({ error: 'New filename is required' });
+        }
+        
+        const oldPath = path.join(SITE_ROOT, 'images', oldFilename);
+        const newPath = path.join(SITE_ROOT, 'images', newFilename);
+        
+        if (await fs.pathExists(newPath)) {
+            return res.status(400).json({ error: 'File with new name already exists' });
+        }
+        
+        if (await fs.pathExists(oldPath)) {
+            await fs.move(oldPath, newPath);
+            res.json({ 
+                success: true, 
+                message: 'Image renamed successfully',
+                newPath: `/images/${newFilename}`
+            });
+        } else {
+            res.status(404).json({ error: 'Image not found' });
+        }
+    } catch (error) {
+        console.error('Rename image error:', error);
+        res.status(500).json({ error: 'Failed to rename image' });
     }
 });
 
