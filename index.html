@@ -202,36 +202,6 @@
         top: 6px;
     }
     
-    /* Hero Section with Image Background */
-    .hero {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    }
-    
-    .hero .container {
-        position: relative;
-        z-index: 2;
-    }
-    
-    .hero-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: center;
-        padding: 2rem 0;
-    }
-    
-    @media (max-width: 768px) {
-        .hero-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            text-align: center;
-        }
-    }
-    
     /* Mobile Gallery Slideshow */
     .gallery-preview-content {
         position: relative;
@@ -364,17 +334,6 @@
     }
     </style>
     
-    <!-- Alternative Hero Image Options (comment/uncomment to switch) -->
-    <!-- 
-    Alternative tow truck images you can use:
-    - junkcars1.webp (Professional tow truck service)
-    - junkcars2.webp (Cash for cars)
-    - junkcars4.webp (Quick pickup service)
-    - services-background.png (Service facility)
-    
-    To change hero image, replace 'junkcars3.webp' with any of the above in the style attribute.
-    -->
-    
     <header class="header">
         <div class="container">
             <div class="header-top">
@@ -420,7 +379,15 @@
 
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero" role="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/junkcars3.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; position: relative;">
+        <section class="hero" role="banner">
+            <div class="hero-video-container">
+                <video class="hero-video" autoplay muted loop playsinline preload="auto">
+                    <source src="videos/AdobeStock_90790068.mov" type="video/mp4">
+                    <source src="videos/AdobeStock_90790068.mov" type="video/quicktime">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="hero-video-overlay"></div>
+            </div>
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
