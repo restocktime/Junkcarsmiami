@@ -231,6 +231,105 @@
             text-align: center;
         }
     }
+    
+    /* Mobile Gallery Slideshow */
+    .gallery-preview-content {
+        position: relative;
+    }
+    
+    .mobile-slideshow-controls {
+        display: none;
+    }
+    
+    .mobile-slideshow-dots {
+        display: none;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+    }
+    
+    .dot {
+        height: 12px;
+        width: 12px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .dot.active, .dot:hover {
+        background-color: #717171;
+    }
+    
+    .slide-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0,0,0,0.7);
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 10;
+        transition: all 0.3s;
+    }
+    
+    .slide-btn:hover {
+        background-color: rgba(0,0,0,0.9);
+        transform: translateY(-50%) scale(1.1);
+    }
+    
+    .prev-btn {
+        left: 10px;
+    }
+    
+    .next-btn {
+        right: 10px;
+    }
+    
+    /* Mobile-specific styles */
+    @media (max-width: 768px) {
+        .gallery-preview-images {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .preview-item {
+            min-width: 100%;
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+        
+        .mobile-slideshow-controls {
+            display: block;
+        }
+        
+        .mobile-slideshow-dots {
+            display: flex;
+        }
+        
+        .slide-btn {
+            display: block;
+        }
+    }
+    
+    /* Desktop keeps grid layout */
+    @media (min-width: 769px) {
+        .gallery-preview-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .mobile-slideshow-controls,
+        .mobile-slideshow-dots {
+            display: none !important;
+        }
+    }
     </style>
     
     <!-- Alternative Hero Image Options (comment/uncomment to switch) -->
@@ -833,7 +932,13 @@
                 <h2>🖼️ Photo Gallery</h2>
                 
                 <div class="gallery-preview-content">
-                    <div class="gallery-preview-images">
+                    <!-- Mobile Slideshow Controls -->
+                    <div class="mobile-slideshow-controls">
+                        <button class="slide-btn prev-btn" onclick="changeGallerySlide(-1)" aria-label="Previous image">‹</button>
+                        <button class="slide-btn next-btn" onclick="changeGallerySlide(1)" aria-label="Next image">›</button>
+                    </div>
+                    
+                    <div class="gallery-preview-images" id="gallerySlideshow">
                         <div class="preview-item">
                             <img src="images/AdobeStock_373569463_Preview.jpeg" alt="Junk car removal Miami" loading="lazy">
                             <div class="preview-overlay">
@@ -894,6 +999,20 @@
                                 <h4>Same Day Service</h4>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- Mobile Slideshow Dots -->
+                    <div class="mobile-slideshow-dots">
+                        <span class="dot active" onclick="currentGallerySlide(1)"></span>
+                        <span class="dot" onclick="currentGallerySlide(2)"></span>
+                        <span class="dot" onclick="currentGallerySlide(3)"></span>
+                        <span class="dot" onclick="currentGallerySlide(4)"></span>
+                        <span class="dot" onclick="currentGallerySlide(5)"></span>
+                        <span class="dot" onclick="currentGallerySlide(6)"></span>
+                        <span class="dot" onclick="currentGallerySlide(7)"></span>
+                        <span class="dot" onclick="currentGallerySlide(8)"></span>
+                        <span class="dot" onclick="currentGallerySlide(9)"></span>
+                        <span class="dot" onclick="currentGallerySlide(10)"></span>
                     </div>
                 </div>
                 

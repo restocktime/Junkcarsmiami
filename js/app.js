@@ -627,3 +627,122 @@
         }
     }
 })();
+
+// Homepage Gallery Slideshow
+(function() {
+    'use strict';
+    
+    let currentGallerySlideIndex = 1;
+    let gallerySlideInterval;
+    
+    // Initialize gallery slideshow
+    document.addEventListener('DOMContentLoaded', function() {
+        initGallerySlideshow();
+        showGallerySlide(currentGallerySlideIndex);
+        startAutoSlide();
+    });
+    
+    function initGallerySlideshow() {
+        // Add touch/swipe support for mobile
+        const slideshow = document.getElementById('gallerySlideshow');
+        if (slideshow && window.innerWidth <= 768) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slideshow.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            slideshow.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGallerySwipe();
+            });
+            
+            function handleGallerySwipe() {
+                const swipeThreshold = 50;
+                const swipeLength = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeLength) > swipeThreshold) {
+                    if (swipeLength > 0) {
+                        changeGallerySlide(-1); // Swipe right - previous
+                    } else {
+                        changeGallerySlide(1); // Swipe left - next
+                    }
+                }
+            }
+        }
+    }
+    
+    window.changeGallerySlide = function(direction) {
+        currentGallerySlideIndex += direction;
+        
+        const totalSlides = document.querySelectorAll('#gallerySlideshow .preview-item').length;
+        
+        if (currentGallerySlideIndex > totalSlides) {
+            currentGallerySlideIndex = 1;
+        } else if (currentGallerySlideIndex < 1) {
+            currentGallerySlideIndex = totalSlides;
+        }
+        
+        showGallerySlide(currentGallerySlideIndex);
+        resetAutoSlide();
+    };
+    
+    window.currentGallerySlide = function(index) {
+        currentGallerySlideIndex = index;
+        showGallerySlide(currentGallerySlideIndex);
+        resetAutoSlide();
+    };
+    
+    function showGallerySlide(slideIndex) {
+        const slideshow = document.getElementById('gallerySlideshow');
+        const dots = document.querySelectorAll('.mobile-slideshow-dots .dot');
+        
+        if (!slideshow || window.innerWidth > 768) return;
+        
+        // Move slides
+        const translateX = -(slideIndex - 1) * 100;
+        slideshow.style.transform = `translateX(${translateX}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === slideIndex - 1);
+        });
+    }
+    
+    function startAutoSlide() {
+        if (window.innerWidth <= 768) {
+            gallerySlideInterval = setInterval(() => {
+                changeGallerySlide(1);
+            }, 4000); // Change slide every 4 seconds
+        }
+    }
+    
+    function resetAutoSlide() {
+        clearInterval(gallerySlideInterval);
+        startAutoSlide();
+    }
+    
+    // Pause auto-slide on hover (desktop) or touch (mobile)
+    const gallerySection = document.querySelector('.gallery-preview');
+    if (gallerySection) {
+        gallerySection.addEventListener('mouseenter', function() {
+            clearInterval(gallerySlideInterval);
+        });
+        
+        gallerySection.addEventListener('mouseleave', function() {
+            startAutoSlide();
+        });
+    }
+    
+    // Restart slideshow on window resize
+    window.addEventListener('resize', function() {
+        clearInterval(gallerySlideInterval);
+        if (window.innerWidth <= 768) {
+            showGallerySlide(currentGallerySlideIndex);
+            startAutoSlide();
+        }
+    });
+    
+    console.log('📱 Mobile gallery slideshow initialized');
+})();
