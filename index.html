@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Buy Junk Car Miami - We Buy Junk Cars Miami | Free Towing</title>
     <meta name="description" content="Get instant cash for your junk car in Miami! Free towing, same-day pickup. We buy cars with no title. Call (305) XXX-XXXX for your quote today.">
     
@@ -269,14 +270,14 @@
         
         .gallery-preview-images {
             display: flex !important;
-            width: 1000%; /* 10 images × 100% each */
+            width: 1200%; /* 12 images × 100% each */
             transition: transform 0.5s ease-in-out;
             position: relative;
         }
         
         .preview-item {
-            flex: 0 0 10%; /* Each item takes 10% of the 1000% container (= 100% of viewport) */
-            width: 10%;
+            flex: 0 0 8.33%; /* Each item takes 8.33% of the 1200% container (= 100% of viewport) */
+            width: 8.33%;
             position: relative;
         }
         
@@ -340,6 +341,9 @@
                 <div class="contact-info">
                     <a href="tel:+13055345991" class="phone-number" aria-label="Call us at (305) 534-5991">
                         📞 (305) 534-5991
+                    </a>
+                    <a href="https://wa.me/13055345991" class="whatsapp-link" target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+                        💬 WhatsApp
                     </a>
                     <span class="hours">Open 8am-10pm Daily</span>
                 </div>
@@ -545,8 +549,9 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label>Does your car start and drive?*</label>
-                                        <div class="radio-group">
+                                        <fieldset>
+                                            <legend>Does your car start and drive?*</legend>
+                                            <div class="radio-group">
                                             <label class="radio-label">
                                                 <input type="radio" name="runs" value="yes" required>
                                                 <span class="radio-custom"></span>
@@ -562,12 +567,14 @@
                                                 <span class="radio-custom"></span>
                                                 Doesn't start or run
                                             </label>
-                                        </div>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label>Do you have the title?*</label>
-                                        <div class="radio-group">
+                                        <fieldset>
+                                            <legend>Do you have the title?*</legend>
+                                            <div class="radio-group">
                                             <label class="radio-label">
                                                 <input type="radio" name="title" value="yes" required>
                                                 <span class="radio-custom"></span>
@@ -578,12 +585,14 @@
                                                 <span class="radio-custom"></span>
                                                 No title (we can still buy it!)
                                             </label>
-                                        </div>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label>Vehicle damage (check all that apply)</label>
-                                        <div class="checkbox-group">
+                                        <fieldset>
+                                            <legend>Vehicle damage (check all that apply)</legend>
+                                            <div class="checkbox-group">
                                             <label class="checkbox-label">
                                                 <input type="checkbox" name="damage[]" value="flood">
                                                 <span class="checkbox-custom"></span>
@@ -604,7 +613,8 @@
                                                 <span class="checkbox-custom"></span>
                                                 Fire damage
                                             </label>
-                                        </div>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                     
                                     <div class="form-actions">
@@ -654,6 +664,15 @@
                                     <div class="form-group">
                                         <label for="comments">Additional Comments</label>
                                         <textarea id="comments" name="comments" rows="3" placeholder="Any additional details about your vehicle..."></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="checkbox-label tcpa-consent">
+                                            <input type="checkbox" id="tcpa-consent" name="tcpa_consent" required>
+                                            <span class="checkbox-custom"></span>
+                                            I consent to receive calls and texts from Buy Junk Car Miami at the phone number provided above, including through automated means. Consent is not required to purchase services. Message and data rates may apply.
+                                        </label>
+                                        <span class="error-message" id="tcpa-consent-error" role="alert" aria-live="polite"></span>
                                     </div>
                                     
                                     <div class="form-actions">
@@ -775,6 +794,7 @@
                         <div class="step-content">
                             <h3>Get Paid Cash</h3>
                             <p>Sign the paperwork, hand over the keys, and get paid cash on the spot. We handle all the towing for free!</p>
+                            <p class="legal-disclaimer"><small><strong>Florida Law Notice:</strong> For derelict vehicles (10+ years old, valued under $1,000) sold by non-owners, payment must be made by check or money order per FL Statute 319.30.</small></p>
                         </div>
                     </div>
                 </div>
@@ -998,6 +1018,18 @@
                                 <h4>Same Day Service</h4>
                             </div>
                         </div>
+                        <div class="preview-item">
+                            <img src="images/939477fa-f5c0-4313-b136-2afa207a675f.JPG" alt="Miami junk car customer testimonial" loading="lazy">
+                            <div class="preview-overlay">
+                                <h4>Happy Customer</h4>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <img src="images/IMG_5954.HEIC" alt="Real junk car pickup Miami" loading="lazy">
+                            <div class="preview-overlay">
+                                <h4>Real Service</h4>
+                            </div>
+                        </div>
                     </div>
                     
                     <!-- Mobile Slideshow Dots -->
@@ -1012,6 +1044,8 @@
                         <span class="dot" onclick="currentGallerySlide(8)"></span>
                         <span class="dot" onclick="currentGallerySlide(9)"></span>
                         <span class="dot" onclick="currentGallerySlide(10)"></span>
+                        <span class="dot" onclick="currentGallerySlide(11)"></span>
+                        <span class="dot" onclick="currentGallerySlide(12)"></span>
                     </div>
                 </div>
                 
@@ -1181,5 +1215,152 @@
 
       gtag('config', 'G-9P16HD7E8K');
     </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3>We use cookies</h3>
+                <p>We use cookies to improve your experience on our site and to show you relevant advertising. By clicking "Accept All", you consent to the use of ALL cookies. You can also manage your preferences.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept-all" class="btn btn-primary">Accept All</button>
+                <button id="cookie-necessary" class="btn btn-secondary">Necessary Only</button>
+                <button id="cookie-settings" class="btn btn-outline">Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Consent Mode v2 -->
+    <script>
+    // Update existing consent state to use Consent Mode v2
+    gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied', 
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'functionality_storage': 'granted',
+        'security_storage': 'granted'
+    });
+    
+    // Cookie consent handling
+    document.addEventListener('DOMContentLoaded', function() {
+        const banner = document.getElementById('cookie-banner');
+        const acceptAll = document.getElementById('cookie-accept-all');
+        const necessaryOnly = document.getElementById('cookie-necessary');
+        const settings = document.getElementById('cookie-settings');
+        
+        // Check if consent has already been given
+        const consentGiven = localStorage.getItem('cookie-consent');
+        if (!consentGiven) {
+            banner.style.display = 'block';
+        } else if (consentGiven === 'all') {
+            // Update consent for returning users
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted', 
+                'ad_personalization': 'granted'
+            });
+        }
+        
+        acceptAll.addEventListener('click', function() {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+            localStorage.setItem('cookie-consent', 'all');
+            banner.style.display = 'none';
+        });
+        
+        necessaryOnly.addEventListener('click', function() {
+            localStorage.setItem('cookie-consent', 'necessary');
+            banner.style.display = 'none';
+        });
+        
+        settings.addEventListener('click', function() {
+            alert('Detailed cookie settings will be implemented in production. For now, use "Accept All" or "Necessary Only".');
+        });
+    });
+    </script>
+
+    <style>
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 2px solid #007bff;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 9999;
+        padding: 20px;
+    }
+    
+    .cookie-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    
+    .cookie-text h3 {
+        margin: 0 0 8px 0;
+        font-size: 18px;
+        color: #333;
+    }
+    
+    .cookie-text p {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+    }
+    
+    .cookie-buttons {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+    
+    .cookie-buttons .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 1px solid;
+    }
+    
+    .btn-outline {
+        background: transparent;
+        color: #007bff;
+        border-color: #007bff;
+    }
+    
+    .btn-outline:hover {
+        background: #007bff;
+        color: white;
+    }
+    
+    @media (max-width: 768px) {
+        .cookie-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .cookie-buttons {
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        .cookie-buttons .btn {
+            width: 100%;
+        }
+    }
+    </style>
 </body>
 </html>
