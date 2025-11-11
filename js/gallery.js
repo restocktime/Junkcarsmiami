@@ -151,6 +151,22 @@
             'before-after-6': {
                 src: '../images/contact-hero.jpg',
                 caption: 'Fast & Easy - Instant Cash Offers'
+            },
+            'before-after-7': {
+                src: '../images/junkcars1.webp',
+                caption: 'Professional Service - Miami Junk Car Removal'
+            },
+            'before-after-8': {
+                src: '../images/junkcars2.webp',
+                caption: 'Instant Cash - Top Dollar for Your Car'
+            },
+            'before-after-9': {
+                src: '../images/junkcars3.webp',
+                caption: 'Free Towing - Professional Auto Removal'
+            },
+            'before-after-10': {
+                src: '../images/junkcars4.webp',
+                caption: 'Quick Pickup - Same Day Service Available'
             }
         };
         
