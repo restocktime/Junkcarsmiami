@@ -637,26 +637,33 @@
     
     // Initialize gallery slideshow
     document.addEventListener('DOMContentLoaded', function() {
-        initGallerySlideshow();
-        showGallerySlide(currentGallerySlideIndex);
-        startAutoSlide();
+        // Wait a bit for DOM to fully render
+        setTimeout(() => {
+            initGallerySlideshow();
+            showGallerySlide(currentGallerySlideIndex);
+            startAutoSlide();
+        }, 100);
     });
     
     function initGallerySlideshow() {
         // Add touch/swipe support for mobile
         const slideshow = document.getElementById('gallerySlideshow');
-        if (slideshow && window.innerWidth <= 768) {
+        if (slideshow) {
             let touchStartX = 0;
             let touchEndX = 0;
             
             slideshow.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            });
+                if (window.innerWidth <= 768) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }
+            }, { passive: true });
             
             slideshow.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleGallerySwipe();
-            });
+                if (window.innerWidth <= 768) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleGallerySwipe();
+                }
+            }, { passive: true });
             
             function handleGallerySwipe() {
                 const swipeThreshold = 50;
@@ -671,6 +678,8 @@
                 }
             }
         }
+        
+        console.log('Gallery slideshow initialized');
     }
     
     window.changeGallerySlide = function(direction) {
@@ -698,16 +707,23 @@
         const slideshow = document.getElementById('gallerySlideshow');
         const dots = document.querySelectorAll('.mobile-slideshow-dots .dot');
         
-        if (!slideshow || window.innerWidth > 768) return;
+        if (!slideshow) return;
         
-        // Move slides
-        const translateX = -(slideIndex - 1) * 100;
-        slideshow.style.transform = `translateX(${translateX}%)`;
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === slideIndex - 1);
-        });
+        // Only apply slideshow on mobile
+        if (window.innerWidth <= 768) {
+            // Move slides
+            const translateX = -(slideIndex - 1) * 100;
+            slideshow.style.transform = `translateX(${translateX}%)`;
+            console.log(`Moving to slide ${slideIndex}, translateX: ${translateX}%`);
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === slideIndex - 1);
+            });
+        } else {
+            // Reset transform for desktop
+            slideshow.style.transform = 'none';
+        }
     }
     
     function startAutoSlide() {
