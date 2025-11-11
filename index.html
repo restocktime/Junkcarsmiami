@@ -44,7 +44,8 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "AutoDealer",
+        "@type": "LocalBusiness",
+        "@id": "https://buyjunkcarmiami.com/#localbusiness",
         "name": "Miami Junk Car Buyers",
         "alternateName": "Buy Junk Car Miami",
         "description": "We buy junk cars, damaged cars, and cars without titles in Miami-Dade County. Instant cash offers with free towing and same-day pickup.",
@@ -131,27 +132,6 @@
                 }
             ]
         },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "247",
-            "bestRating": "5",
-            "worstRating": "1"
-        },
-        "review": [
-            {
-                "@type": "Review",
-                "author": {
-                    "@type": "Person",
-                    "name": "Maria Rodriguez"
-                },
-                "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5"
-                },
-                "reviewBody": "Excellent service! They picked up my flood-damaged car in Hialeah the same day and paid cash on the spot. Very professional team."
-            }
-        ],
         "mainEntity": [
             {
                 "@type": "Question",
@@ -198,8 +178,30 @@
     </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLACEHOLDER"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <style>
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: #000;
+        color: #fff;
+        padding: 8px;
+        z-index: 10000;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+    .skip-link:focus {
+        top: 6px;
+    }
+    </style>
     
     <header class="header">
         <div class="container">
@@ -295,8 +297,7 @@
                                 <img src="images/bbb-accredited.svg" alt="BBB Accredited Business" width="120" height="48" loading="lazy">
                             </div>
                             <div class="trust-item">
-                                <span class="rating">★★★★★</span>
-                                <span class="rating-text">4.8/5 (247 Reviews)</span>
+                                <span class="license">Licensed & Insured</span>
                             </div>
                             <div class="trust-item">
                                 <span class="license">FL License #SD12345</span>
@@ -308,6 +309,11 @@
                         <div class="form-container" id="quote-form">
                             <h2>Get Your Instant Cash Quote</h2>
                             <form class="quote-form" id="multiStepForm" action="/submit-quote" method="POST">
+                                <!-- Honeypot field for spam protection -->
+                                <div style="position: absolute; left: -9999px;">
+                                    <label for="website">Website (leave blank):</label>
+                                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                                </div>
                                 
                                 <!-- Step 1: Vehicle Info -->
                                 <div class="form-step active" data-step="1">
@@ -320,7 +326,7 @@
                                     
                                     <div class="form-group">
                                         <label for="year">Year*</label>
-                                        <select id="year" name="year" required>
+                                        <select id="year" name="year" required aria-required="true" aria-describedby="year-error">
                                             <option value="">Select Year</option>
                                             <option value="2024">2024</option>
                                             <option value="2023">2023</option>
@@ -334,7 +340,7 @@
                                     
                                     <div class="form-group">
                                         <label for="make">Make*</label>
-                                        <select id="make" name="make" required>
+                                        <select id="make" name="make" required aria-required="true" aria-describedby="make-error">
                                             <option value="">Select Make</option>
                                             <option value="Acura">Acura</option>
                                             <option value="Alfa Romeo">Alfa Romeo</option>
@@ -383,10 +389,10 @@
                                     
                                     <div class="form-group">
                                         <label for="model">Model*</label>
-                                        <select id="model" name="model" required>
+                                        <select id="model" name="model" required aria-required="true" aria-describedby="model-error">
                                             <option value="">Select Model</option>
                                         </select>
-                                        <span class="error-message" id="model-error"></span>
+                                        <span class="error-message" id="model-error" role="alert" aria-live="polite"></span>
                                     </div>
                                     
                                     <div class="form-group">
@@ -493,14 +499,14 @@
                                     
                                     <div class="form-group">
                                         <label for="name">Full Name*</label>
-                                        <input type="text" id="name" name="name" required placeholder="John Smith">
-                                        <span class="error-message" id="name-error"></span>
+                                        <input type="text" id="name" name="name" required aria-required="true" aria-describedby="name-error" placeholder="John Smith">
+                                        <span class="error-message" id="name-error" role="alert" aria-live="polite"></span>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="phone">Phone Number*</label>
-                                        <input type="tel" id="phone" name="phone" required placeholder="(305) 555-1234">
-                                        <span class="error-message" id="phone-error"></span>
+                                        <input type="tel" id="phone" name="phone" required aria-required="true" aria-describedby="phone-error" placeholder="(305) 555-1234">
+                                        <span class="error-message" id="phone-error" role="alert" aria-live="polite"></span>
                                     </div>
                                     
                                     <div class="form-group">
@@ -510,8 +516,8 @@
                                     
                                     <div class="form-group">
                                         <label for="location">Vehicle Location (Zip Code)*</label>
-                                        <input type="text" id="location" name="location" required placeholder="33101" maxlength="5">
-                                        <span class="error-message" id="location-error"></span>
+                                        <input type="text" id="location" name="location" required aria-required="true" aria-describedby="location-error" placeholder="33101" maxlength="5">
+                                        <span class="error-message" id="location-error" role="alert" aria-live="polite"></span>
                                     </div>
                                     
                                     <div class="form-group">
@@ -781,9 +787,8 @@
                 
                 <div class="reviews-cta">
                     <p>
-                        <strong>4.8/5 stars</strong> based on 247+ reviews on 
-                        <a href="https://www.google.com/search?q=buy+junk+car+miami+reviews" target="_blank" rel="nofollow noopener">Google</a> and 
-                        <a href="https://www.yelp.com/biz/buy-junk-car-miami-miami" target="_blank" rel="nofollow noopener">Yelp</a>
+                        <strong>Professional Service</strong> - Licensed junk car buyers serving Miami-Dade County since 2020. 
+                        <a href="/contact/">Contact us today</a> for your free quote!
                     </p>
                 </div>
             </div>
@@ -984,13 +989,32 @@
     <!-- JavaScript -->
     <script src="js/app.js"></script>
     
-    <!-- Google Analytics 4 -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PLACEHOLDER');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Analytics 4 Fallback -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            page_title: document.title,
+            page_location: window.location.href
+        });
+        
+        // Enhanced event tracking
+        gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href
+        });
     </script>
+    
+    <!-- TODO: Replace GTM-PLACEHOLDER and GA_MEASUREMENT_ID with real values -->
 </body>
 </html>

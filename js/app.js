@@ -269,13 +269,25 @@
         }
 
         async function submitQuoteRequest(data) {
-            // Simulate API call
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // In real implementation, make actual API call here
-                    resolve({ success: true });
-                }, 1500);
-            });
+            try {
+                const response = await fetch('/api/quote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                return result;
+            } catch (error) {
+                console.error('API call failed:', error);
+                throw error;
+            }
         }
 
         function showSuccessMessage() {

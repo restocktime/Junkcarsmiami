@@ -12,10 +12,64 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'BuyJunkCarMiami2024SecretKey!';
 
-// Security middleware
+// Security middleware with comprehensive headers
 app.use(helmet({
-    contentSecurityPolicy: false // Allow inline scripts for admin
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com"],
+            imgSrc: ["'self'", "data:", "https:"],
+            connectSrc: ["'self'", "https://www.google-analytics.com"]
+        }
+    },
+    crossOriginEmbedderPolicy: false,
+    hsts: {
+        maxAge: 31536000,
+        includeSubDomains: true,
+        preload: true
+    }
 }));
+
+// Additional security headers
+app.use((req, res, next) => {
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Permissions-Policy', 'microphone=(), camera=(), geolocation=(), payment=()');
+    next();
+});
+
+// Admin panel IP whitelist middleware
+const adminWhitelist = [
+    '127.0.0.1',
+    '::1',
+    'localhost'
+    // Add your IP addresses here, e.g., '192.168.1.100'
+];
+
+const checkAdminAccess = (req, res, next) => {
+    const clientIP = req.ip || req.connection.remoteAddress;
+    
+    // Allow if in whitelist or if ADMIN_BYPASS environment variable is set
+    if (adminWhitelist.includes(clientIP) || process.env.ADMIN_BYPASS === 'true') {
+        return next();
+    }
+    
+    console.warn(`Blocked admin access attempt from IP: ${clientIP}`);
+    res.status(403).json({ 
+        error: 'Access denied. Admin panel access is restricted.',
+        timestamp: new Date().toISOString()
+    });
+};
+
+// Apply admin security to all admin routes
+app.use('/api/auth/*', checkAdminAccess);
+app.use('/api/stats', checkAdminAccess);
+app.use('/api/pages/*', checkAdminAccess);
+app.use('/api/content/*', checkAdminAccess);
+app.use('/api/sitemap/*', checkAdminAccess);
 
 // Rate limiting
 const limiter = rateLimit({
@@ -356,6 +410,110 @@ app.post('/api/sitemap/generate', authenticateToken, async (req, res) => {
     } catch (error) {
         console.error('Sitemap generation error:', error);
         res.status(500).json({ error: 'Failed to generate sitemap' });
+    }
+});
+
+// Quote submission endpoint
+app.post('/api/quote', async (req, res) => {
+    try {
+        const {
+            year, make, model, vin, runs, title: hasTitle, damage, 
+            name, phone, email, location, comments, website
+        } = req.body;
+
+        // Honeypot spam check
+        if (website && website.trim() !== '') {
+            console.warn('Spam attempt detected via honeypot field:', req.ip);
+            return res.status(400).json({ 
+                error: 'Invalid form submission' 
+            });
+        }
+
+        // Basic validation
+        if (!name || !phone || !year || !make) {
+            return res.status(400).json({ 
+                error: 'Name, phone, year, and make are required' 
+            });
+        }
+
+        // Log the quote request (in production, save to database)
+        const quoteData = {
+            timestamp: new Date().toISOString(),
+            vehicle: { year, make, model, vin, runs, title: hasTitle, damage },
+            contact: { name, phone, email, location, comments },
+            ip: req.ip,
+            userAgent: req.get('User-Agent')
+        };
+
+        // Save to log file (in production, use proper database)
+        const logPath = path.join(__dirname, 'quotes.log');
+        await fs.appendFile(logPath, JSON.stringify(quoteData) + '\n');
+
+        console.log('New quote request:', {
+            name,
+            phone,
+            vehicle: `${year} ${make} ${model}`,
+            location
+        });
+
+        res.json({
+            success: true,
+            message: 'Quote request submitted successfully',
+            estimatedCallTime: '30-60 minutes',
+            nextSteps: [
+                'We will call you within 30-60 minutes',
+                'Have your keys and any paperwork ready',
+                'We can schedule same-day pickup'
+            ]
+        });
+
+    } catch (error) {
+        console.error('Quote submission error:', error);
+        res.status(500).json({ error: 'Failed to submit quote request' });
+    }
+});
+
+// Alternative form submission endpoint
+app.post('/api/submit', async (req, res) => {
+    // Redirect to the main quote endpoint
+    return app._router.handle(Object.assign(req, { url: '/api/quote' }), res);
+});
+
+// Contact form endpoint
+app.post('/api/contact', async (req, res) => {
+    try {
+        const { name, phone, email, message } = req.body;
+
+        if (!name || !phone) {
+            return res.status(400).json({ 
+                error: 'Name and phone are required' 
+            });
+        }
+
+        const contactData = {
+            timestamp: new Date().toISOString(),
+            name,
+            phone,
+            email,
+            message,
+            type: 'contact',
+            ip: req.ip
+        };
+
+        // Save to log file
+        const logPath = path.join(__dirname, 'contacts.log');
+        await fs.appendFile(logPath, JSON.stringify(contactData) + '\n');
+
+        console.log('New contact form:', { name, phone, email });
+
+        res.json({
+            success: true,
+            message: 'Contact form submitted successfully'
+        });
+
+    } catch (error) {
+        console.error('Contact form error:', error);
+        res.status(500).json({ error: 'Failed to submit contact form' });
     }
 });
 
