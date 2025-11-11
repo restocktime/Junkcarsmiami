@@ -1,0 +1,450 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://buyjunkcarmiami.com/#organization",
+      "name": "Buy Junk Car Miami",
+      "alternateName": [
+        "Miami Junk Car Buyers",
+        "Cash for Junk Cars Miami",
+        "Junk Car Removal Miami",
+        "Sell My Junk Car Miami"
+      ],
+      "description": "Licensed Florida auto dealer specializing in junk car removal and cash payments throughout Miami-Dade and Broward County. We buy any car, any condition - running or not.",
+      "url": "https://buyjunkcarmiami.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://buyjunkcarmiami.com/images/logo.png",
+        "width": 200,
+        "height": 60
+      },
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "https://buyjunkcarmiami.com/images/hero-junk-car-miami.jpg",
+          "caption": "Professional junk car removal service in Miami"
+        },
+        {
+          "@type": "ImageObject", 
+          "url": "https://buyjunkcarmiami.com/images/miami-junk-cars-gallery.jpg",
+          "caption": "Before and after photos of junk cars we've purchased"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "122 South Miami Avenue",
+        "addressLocality": "Miami",
+        "addressRegion": "FL",
+        "postalCode": "33130",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.7617,
+        "longitude": -80.1918
+      },
+      "telephone": "(305) 534-5991",
+      "email": "info@buyjunkcarmiami.com",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "(305) 534-5991",
+          "contactType": "customer service",
+          "areaServed": ["Miami-Dade County", "Broward County", "Florida"],
+          "availableLanguage": ["English", "Spanish"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday", 
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "08:00",
+            "closes": "22:00"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "(305) 534-5991",
+          "contactType": "sales",
+          "areaServed": ["Miami", "Miami Beach", "Doral", "Aventura", "Pembroke Pines"],
+          "availableLanguage": ["English", "Spanish"]
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday", 
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "08:00", 
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "08:00",
+          "closes": "22:00"
+        }
+      ],
+      "serviceArea": [
+        {
+          "@type": "City",
+          "name": "Miami",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Florida"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Miami Beach",
+          "containedInPlace": {
+            "@type": "State", 
+            "name": "Florida"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Doral",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Florida"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Aventura",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Florida"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Pembroke Pines",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Florida" 
+          }
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Miami-Dade County"
+        },
+        {
+          "@type": "AdministrativeArea", 
+          "name": "Broward County"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Junk Car Removal Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Junk Car Removal",
+              "description": "Free towing and immediate cash payment for junk cars"
+            },
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "100",
+              "maxPrice": "15000",
+              "priceCurrency": "USD"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service", 
+              "name": "No Title Car Purchase",
+              "description": "We buy cars without titles using legal alternatives"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Flood Damaged Car Removal",
+              "description": "Hurricane and flood damaged vehicle removal service"
+            }
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "23",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Maria Gonzalez"
+          },
+          "datePublished": "2024-10-15",
+          "description": "Fast service, fair price for my old Honda. They handled all the paperwork.",
+          "name": "Great experience selling junk car",
+          "reviewRating": {
+            "@type": "Rating",
+            "bestRating": "5",
+            "ratingValue": "5",
+            "worstRating": "1"
+          }
+        },
+        {
+          "@type": "Review", 
+          "author": {
+            "@type": "Person",
+            "name": "James Wilson"
+          },
+          "datePublished": "2024-09-22",
+          "description": "Called in the morning, had cash in hand by afternoon. Professional service.",
+          "name": "Quick and professional",
+          "reviewRating": {
+            "@type": "Rating",
+            "bestRating": "5",
+            "ratingValue": "5", 
+            "worstRating": "1"
+          }
+        }
+      ],
+      "hasMap": "https://maps.google.com/?cid=12345678901234567890",
+      "isAccessibleForFree": true,
+      "currenciesAccepted": "USD",
+      "paymentAccepted": ["Cash", "Check", "Bank Transfer"],
+      "priceRange": "$100-$15,000",
+      "slogan": "Miami's #1 Junk Car Buyers - Cash in Hand, Same Day Service",
+      "knowsAbout": [
+        "Automotive Recycling",
+        "Scrap Metal Processing", 
+        "Florida Title Laws",
+        "Vehicle Valuation",
+        "Hurricane Damage Assessment",
+        "Flood Car Evaluation"
+      ],
+      "memberOf": [
+        {
+          "@type": "Organization",
+          "name": "Florida Independent Automobile Dealers Association"
+        },
+        {
+          "@type": "Organization",
+          "name": "Automotive Recyclers Association"
+        }
+      ],
+      "owns": [
+        {
+          "@type": "Vehicle",
+          "name": "Tow Truck Fleet",
+          "description": "Professional towing vehicles for junk car removal"
+        }
+      ],
+      "brand": {
+        "@type": "Brand",
+        "name": "Buy Junk Car Miami",
+        "logo": "https://buyjunkcarmiami.com/images/logo.png"
+      },
+      "foundingDate": "2010",
+      "legalName": "Buy Junk Car Miami LLC",
+      "taxID": "XX-XXXXXXX",
+      "vatID": "FL-XXXXXXX",
+      "duns": "XXXXXXXXX"
+    },
+    {
+      "@type": "AutoDealer",
+      "@id": "https://buyjunkcarmiami.com/#autodealer",
+      "name": "Buy Junk Car Miami",
+      "url": "https://buyjunkcarmiami.com/",
+      "description": "Licensed Florida auto dealer specializing in purchasing junk, damaged, and unwanted vehicles for cash.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "122 South Miami Avenue",
+        "addressLocality": "Miami",
+        "addressRegion": "FL",
+        "postalCode": "33130",
+        "addressCountry": "US"
+      },
+      "telephone": "(305) 534-5991",
+      "dealerType": "Used Car Dealer",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Vehicle Purchase Services",
+        "itemListElement": [
+          {
+            "@type": "Vehicle",
+            "name": "Honda Vehicles",
+            "brand": {
+              "@type": "Brand",
+              "name": "Honda"
+            },
+            "vehicleConfiguration": "Any Condition"
+          },
+          {
+            "@type": "Vehicle",
+            "name": "Toyota Vehicles", 
+            "brand": {
+              "@type": "Brand",
+              "name": "Toyota"
+            },
+            "vehicleConfiguration": "Any Condition"
+          },
+          {
+            "@type": "Vehicle",
+            "name": "Ford Vehicles",
+            "brand": {
+              "@type": "Brand", 
+              "name": "Ford"
+            },
+            "vehicleConfiguration": "Any Condition"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://buyjunkcarmiami.com/#website",
+      "url": "https://buyjunkcarmiami.com/",
+      "name": "Buy Junk Car Miami",
+      "description": "Miami's premier junk car buyers offering cash for cars, free towing, and same-day service throughout South Florida.",
+      "publisher": {
+        "@id": "https://buyjunkcarmiami.com/#organization"
+      },
+      "inLanguage": ["en-US", "es-US"],
+      "copyrightYear": 2024,
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://buyjunkcarmiami.com/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://buyjunkcarmiami.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://buyjunkcarmiami.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2, 
+          "name": "Services",
+          "item": "https://buyjunkcarmiami.com/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Locations",
+          "item": "https://buyjunkcarmiami.com/locations/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://buyjunkcarmiami.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much do you pay for junk cars in Miami?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We pay $100-$15,000 for junk cars in Miami depending on make, model, year, condition, and current scrap metal prices. We provide free quotes over the phone and guarantee our offers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you buy cars without titles in Florida?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "Yes, we buy cars without titles in Florida using legal alternatives like duplicate title applications, affidavits of ownership, or court orders. Our licensed team handles all paperwork."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you serve in South Florida?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We serve all of Miami-Dade and Broward County including Miami, Miami Beach, Doral, Aventura, Pembroke Pines, Hialeah, Coral Gables, Fort Lauderdale, Hollywood, and surrounding areas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast can you pick up my junk car?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We offer same-day junk car pickup in most Miami areas. Call before 6 PM and we can usually pick up your car the same day with cash in hand."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://buyjunkcarmiami.com/#service-junk-car-removal",
+      "name": "Junk Car Removal Service",
+      "description": "Professional junk car removal with free towing and immediate cash payment throughout Miami-Dade and Broward County.",
+      "provider": {
+        "@id": "https://buyjunkcarmiami.com/#organization"
+      },
+      "areaServed": [
+        "Miami",
+        "Miami Beach", 
+        "Doral",
+        "Aventura",
+        "Pembroke Pines",
+        "Miami-Dade County",
+        "Broward County"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Junk Car Removal Options",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Same Day Pickup",
+            "description": "Same day junk car removal with cash payment",
+            "priceCurrency": "USD",
+            "availability": "InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Free Towing",
+            "description": "Free towing service included with all purchases",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        ]
+      },
+      "serviceType": "Automotive Service",
+      "category": "Junk Car Removal"
+    }
+  ]
+}

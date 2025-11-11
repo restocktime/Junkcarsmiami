@@ -1,0 +1,264 @@
+# .htaccess for Buy Junk Car Miami - Maximum SEO Performance
+# Last Updated: 2024-11-11
+
+# ========================================
+# SECURITY & PERFORMANCE HEADERS
+# ========================================
+
+<IfModule mod_headers.c>
+    # Security Headers for SEO Trust Signals
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # SEO Performance Headers
+    Header set Cache-Control "public, max-age=31536000" "expr=%{REQUEST_URI} =~ m#\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$#"
+    Header set Cache-Control "public, max-age=86400" "expr=%{REQUEST_URI} =~ m#\.(html|xml)$#"
+    
+    # Preload Critical Resources
+    Header add Link "</css/styles.css>; rel=preload; as=style"
+    Header add Link "</js/app.js>; rel=preload; as=script"
+    Header add Link "</images/logo.png>; rel=preload; as=image"
+</IfModule>
+
+# ========================================
+# COMPRESSION FOR FASTER LOADING
+# ========================================
+
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+</IfModule>
+
+# ========================================
+# SEO-FRIENDLY URL REDIRECTS
+# ========================================
+
+RewriteEngine On
+
+# Force HTTPS for SEO ranking boost
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Force www removal for consistent domain authority
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Trailing slash consistency for SEO
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [L,R=301]
+
+# ========================================
+# MOBILE-FIRST SEO OPTIMIZATIONS
+# ========================================
+
+# Mobile detection and optimization
+RewriteCond %{HTTP_USER_AGENT} "android|blackberry|googlebot-mobile|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos" [NC]
+RewriteRule ^(.*)$ - [E=mobile:1]
+
+# AMP page redirects (if implemented later)
+RewriteRule ^amp/(.*)$ /amp/$1 [L]
+
+# ========================================
+# LOCAL SEO REDIRECTS & CANONICALS
+# ========================================
+
+# Location-based redirects for better local SEO
+RewriteRule ^miami-junk-cars$ /locations/miami/ [R=301,L]
+RewriteRule ^miami-beach-junk-cars$ /locations/miami-beach/ [R=301,L]
+RewriteRule ^doral-junk-cars$ /locations/doral/ [R=301,L]
+RewriteRule ^aventura-junk-cars$ /locations/aventura/ [R=301,L]
+
+# Service-based SEO redirects
+RewriteRule ^cash-for-cars$ /services/junk-car-removal/ [R=301,L]
+RewriteRule ^sell-junk-car$ /services/junk-car-removal/ [R=301,L]
+RewriteRule ^junk-car-buyers$ /services/junk-car-removal/ [R=301,L]
+
+# Brand-based redirects
+RewriteRule ^honda-junk-cars$ /brands/honda/ [R=301,L]
+RewriteRule ^toyota-junk-cars$ /brands/toyota/ [R=301,L]
+RewriteRule ^ford-junk-cars$ /brands/ford/ [R=301,L]
+
+# ========================================
+# CONTENT TYPE OPTIMIZATION
+# ========================================
+
+# Proper MIME types for better SEO crawling
+AddType text/css .css
+AddType application/javascript .js
+AddType text/x-component .htc
+AddType application/x-font-ttf .ttf
+AddType application/x-font-woff .woff
+AddType application/x-font-woff2 .woff2
+AddType image/svg+xml .svg
+
+# ========================================
+# BROWSER CACHING FOR SEO SPEED
+# ========================================
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/x-font-woff "access plus 1 year"
+    
+    # HTML - Short cache for fresh content
+    ExpiresByType text/html "access plus 2 hours"
+    
+    # XML Sitemaps - Daily refresh
+    ExpiresByType application/xml "access plus 1 day"
+    ExpiresByType text/xml "access plus 1 day"
+</IfModule>
+
+# ========================================
+# ERROR PAGE SEO OPTIMIZATION
+# ========================================
+
+# Custom 404 page for better user experience and SEO
+ErrorDocument 404 /404.html
+
+# Custom 403 page
+ErrorDocument 403 /403.html
+
+# Custom 500 page
+ErrorDocument 500 /500.html
+
+# ========================================
+# HOTLINKING PROTECTION (SAVES BANDWIDTH)
+# ========================================
+
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?buyjunkcarmiami\.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?google\. [NC]
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?bing\. [NC]
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?facebook\. [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F]
+
+# ========================================
+# SEARCH ENGINE OPTIMIZATION RULES
+# ========================================
+
+# Remove index.php and index.html for cleaner URLs
+RewriteCond %{THE_REQUEST} /index\.php[\s?] [NC]
+RewriteRule ^(.*?)index\.php$ /$1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+RewriteRule ^(.*?)index\.html$ /$1 [R=301,L]
+
+# Remove .html extension for cleaner URLs
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)$ $1.html [L]
+
+# ========================================
+# SITEMAP ACCESSIBILITY
+# ========================================
+
+# Ensure sitemaps are easily accessible
+RewriteRule ^sitemap_index\.xml$ /sitemap-index.xml [R=301,L]
+RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
+RewriteRule ^robots\.txt$ /robots.txt [L]
+
+# ========================================
+# GOOGLE PAGESPEED OPTIMIZATION
+# ========================================
+
+<IfModule mod_pagespeed.c>
+    ModPagespeed on
+    
+    # Core filters for SEO performance
+    ModPagespeedEnableFilters rewrite_css
+    ModPagespeedEnableFilters rewrite_javascript
+    ModPagespeedEnableFilters rewrite_images
+    ModPagespeedEnableFilters lazyload_images
+    ModPagespeedEnableFilters defer_javascript
+    ModPagespeedEnableFilters inline_critical_css
+</IfModule>
+
+# ========================================
+# SECURITY FOR SEO TRUST
+# ========================================
+
+# Prevent access to sensitive files
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files robots.txt>
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Block access to system files
+RedirectMatch 404 /\..*$
+RedirectMatch 404 /composer\..*$
+RedirectMatch 404 /package\..*$
+RedirectMatch 404 /node_modules/.*$
+
+# ========================================
+# INTERNATIONAL SEO (HREFLANG READY)
+# ========================================
+
+# Spanish version redirects
+RewriteRule ^es/inicio$ /es/ [R=301,L]
+RewriteRule ^espanol$ /es/ [R=301,L]
+
+# Ready for future international expansion
+# RewriteRule ^fr/$ /fr/index.html [L]
+
+# ========================================
+# PERFORMANCE MONITORING HEADERS
+# ========================================
+
+<IfModule mod_headers.c>
+    # Add timing headers for performance monitoring
+    Header set Server-Timing "total;dur=0"
+    
+    # Preconnect to external resources
+    Header add Link "<https://fonts.googleapis.com>; rel=preconnect"
+    Header add Link "<https://www.google-analytics.com>; rel=preconnect"
+    Header add Link "<https://www.googletagmanager.com>; rel=preconnect"
+</IfModule>
+
+# End of SEO-optimized .htaccess

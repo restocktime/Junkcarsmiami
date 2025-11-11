@@ -1,369 +1,454 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://buyjunkcarmiami.com/about</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/admin</loc>
-    <lastmod>2025-11-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/blog/florida-car-title-laws</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/blog/honda-cvt-transmission-problems</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/blog/hurricane-season-car-damage-guide</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/blog</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/blog/scrap-metal-prices-miami-2024</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/blog/sell-car-without-title-florida</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/brands/chevrolet</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/brands/ford</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/brands/honda</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/brands</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/brands/nissan</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/brands/toyota</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/contact</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/blog</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/contacto</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/marcas</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/servicios</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/ubicaciones/coral-gables</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/ubicaciones/hialeah</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/ubicaciones</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/es/ubicaciones/miami</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/faq</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://buyjunkcarmiami.com/gallery</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+
+  <!-- Homepage - Maximum Priority -->
   <url>
     <loc>https://buyjunkcarmiami.com/</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- High-Converting Service Pages - Priority 0.95 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/services/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/aventura</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/services/junk-car-removal/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/coral-gables</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/services/no-title-cars/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/doral</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/services/flood-damaged-cars/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Primary Location Pages - Priority 0.9 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/locations/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/fort-lauderdale</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/locations/miami/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/hialeah</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/locations/miami-beach/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/hollywood</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/locations/doral/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/homestead</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/locations/aventura/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/locations/pembroke-pines/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Contact & Conversion Pages - Priority 0.9 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/contact/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/kendall</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/gallery/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- SEO-Rich Resource Pages - Priority 0.85 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/resources/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/little-havana</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/resources/florida-title-guide/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/miami</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/resources/scrap-metal-prices/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/miami-beach</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/resources/honda-cvt-problems/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/locations/pembroke-pines</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/resources/hurricane-prep/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/privacy</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/resources/florida-laws/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Popular Brand Pages - Priority 0.8 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/brands/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/resources/florida-laws</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/brands/honda/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/resources/florida-title-guide</loc>
-    <lastmod>2025-11-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/brands/toyota/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/resources/honda-cvt-problems</loc>
-    <lastmod>2025-11-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/brands/ford/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/resources/hurricane-prep</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/brands/chevrolet/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/resources</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/brands/nissan/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Vehicle Type Pages - Priority 0.8 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/vehicles/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/resources/scrap-metal-prices</loc>
-    <lastmod>2025-11-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/vehicles/cars/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/reviews</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/vehicles/suvs/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/services/accident-damaged-cars</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/vehicles/trucks/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/services/fire-damaged-cars</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buyjunkcarmiami.com/vehicles/vans/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Additional Service Pages - Priority 0.75 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/services/accident-damaged-cars/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/services/flood-damaged-cars</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/services/fire-damaged-cars/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/services</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/services/inherited-vehicles/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Secondary Location Pages - Priority 0.75 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/locations/hialeah/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/services/inherited-vehicles</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/locations/coral-gables/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/services/junk-car-removal</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/locations/kendall/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/services/no-title-cars</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/locations/fort-lauderdale/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/terms</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/locations/hollywood/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/vehicles/cars</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/locations/homestead/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/vehicles</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/locations/little-havana/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Blog/Content Pages - Priority 0.7 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/vehicles/suvs</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/blog/sell-car-without-title-florida/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/vehicles/trucks</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://buyjunkcarmiami.com/blog/scrap-metal-prices-miami-2024/</loc>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <mobile:mobile/>
   </url>
   <url>
-    <loc>https://buyjunkcarmiami.com/vehicles/vans</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://buyjunkcarmiami.com/blog/honda-cvt-transmission-problems/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
   </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/hurricane-season-car-damage-guide/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/florida-car-title-laws/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Support Pages - Priority 0.6 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/about/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/faq/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/reviews/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Spanish Language Pages - Priority 0.7 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/contacto/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/servicios/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/ubicaciones/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/ubicaciones/miami/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/ubicaciones/hialeah/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/ubicaciones/coral-gables/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/marcas/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/es/blog/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Legal Pages - Priority 0.3 -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/privacy/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://buyjunkcarmiami.com/terms/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <mobile:mobile/>
+  </url>
+
 </urlset>

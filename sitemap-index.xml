@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Main sitemap with all pages -->
+  <sitemap>
+    <loc>https://buyjunkcarmiami.com/sitemap.xml</loc>
+    <lastmod>2024-11-11</lastmod>
+  </sitemap>
+  
+  <!-- Images sitemap for better image SEO -->
+  <sitemap>
+    <loc>https://buyjunkcarmiami.com/sitemap-images.xml</loc>
+    <lastmod>2024-11-11</lastmod>
+  </sitemap>
+  
+  <!-- News/Blog sitemap for content -->
+  <sitemap>
+    <loc>https://buyjunkcarmiami.com/sitemap-news.xml</loc>
+    <lastmod>2024-11-11</lastmod>
+  </sitemap>
+  
+</sitemapindex>

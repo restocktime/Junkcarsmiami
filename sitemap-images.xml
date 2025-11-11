@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage with key images -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/hero-junk-car-miami.jpg</image:loc>
+      <image:caption>Professional junk car removal service in Miami</image:caption>
+      <image:title>Miami Junk Car Removal - Cash for Cars</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/miami-skyline-cars.jpg</image:loc>
+      <image:caption>Miami skyline with various cars we buy</image:caption>
+      <image:title>Buy Junk Cars Miami - All Makes and Models</image:title>
+    </image:image>
+  </url>
+
+  <!-- Gallery page with multiple images -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/gallery/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/gallery-1.jpg</image:loc>
+      <image:caption>Before and after junk car removal in Miami</image:caption>
+      <image:title>Miami Junk Car Gallery - Real Customer Photos</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/gallery-2.jpg</image:loc>
+      <image:caption>Cash payment for junk car in Miami</image:caption>
+      <image:title>Instant Cash Payment - Buy Junk Car Miami</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/939477fa-f5c0-4313-b136-2afa207a675f.JPG</image:loc>
+      <image:caption>Recent junk car pickup in Miami area</image:caption>
+      <image:title>Professional Car Removal Service Miami</image:title>
+    </image:image>
+  </url>
+
+  <!-- Service pages with relevant images -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/services/flood-damaged-cars/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/flood-damaged-car.jpg</image:loc>
+      <image:caption>Flood damaged car removal in Miami after hurricane</image:caption>
+      <image:title>Hurricane Flood Car Removal Miami</image:title>
+    </image:image>
+  </url>
+
+  <!-- Location pages with area-specific images -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/locations/miami-beach/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/miami-beach-junk-car.jpg</image:loc>
+      <image:caption>Junk car removal service in Miami Beach area</image:caption>
+      <image:title>Miami Beach Junk Car Buyers</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://buyjunkcarmiami.com/locations/doral/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/doral-car-removal.jpg</image:loc>
+      <image:caption>Professional car removal service in Doral, Florida</image:caption>
+      <image:title>Doral Junk Car Removal Service</image:title>
+    </image:image>
+  </url>
+
+  <!-- Brand pages with brand-specific images -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/brands/honda/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/honda-junk-car.jpg</image:loc>
+      <image:caption>Honda junk car removal and cash payment</image:caption>
+      <image:title>Buy Junk Honda Cars Miami</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://buyjunkcarmiami.com/brands/toyota/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/toyota-junk-car.jpg</image:loc>
+      <image:caption>Toyota junk car buyers in Miami</image:caption>
+      <image:title>Sell Junk Toyota Miami - Top Dollar</image:title>
+    </image:image>
+  </url>
+
+  <!-- Resource pages with informational images -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/resources/scrap-metal-prices/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <image:image>
+      <image:loc>https://buyjunkcarmiami.com/images/scrap-metal-prices.jpg</image:loc>
+      <image:caption>Current Miami scrap metal prices chart</image:caption>
+      <image:title>Miami Scrap Metal Prices 2024</image:title>
+    </image:image>
+  </url>
+
+</urlset>

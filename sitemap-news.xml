@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+
+  <!-- Blog/News content for fresh content signals -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/scrap-metal-prices-miami-2024/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Buy Junk Car Miami Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-11-11</news:publication_date>
+      <news:title>Miami Scrap Metal Prices - Live Market Rates November 2024</news:title>
+      <news:keywords>Miami scrap metal prices, junk car values, steel prices, aluminum prices</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/hurricane-season-car-damage-guide/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Buy Junk Car Miami Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-11-01</news:publication_date>
+      <news:title>Hurricane Season Car Damage Guide - Miami Vehicle Protection 2024</news:title>
+      <news:keywords>hurricane car damage, Miami vehicles, flood damage, storm preparation</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/honda-cvt-transmission-problems/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Buy Junk Car Miami Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-11-01</news:publication_date>
+      <news:title>Honda CVT Problems in Miami Heat - Complete Transmission Guide</news:title>
+      <news:keywords>Honda CVT problems, Miami heat, transmission issues, Honda repairs</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/sell-car-without-title-florida/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Buy Junk Car Miami Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-10-01</news:publication_date>
+      <news:title>How to Sell Car Without Title in Florida - Complete Legal Guide</news:title>
+      <news:keywords>sell car without title Florida, no title car sale, Florida DMV</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://buyjunkcarmiami.com/blog/florida-car-title-laws/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Buy Junk Car Miami Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-10-01</news:publication_date>
+      <news:title>Florida Car Title Laws Explained - Complete Legal Guide 2024</news:title>
+      <news:keywords>Florida title laws, vehicle ownership, Florida DHSMV, car titles</news:keywords>
+    </news:news>
+  </url>
+
+  <!-- Resource pages as news content -->
+  <url>
+    <loc>https://buyjunkcarmiami.com/resources/hurricane-prep/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://buyjunkcarmiami.com/resources/florida-laws/</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+</urlset>
