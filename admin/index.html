@@ -1175,6 +1175,334 @@
         gap: 0.5rem;
     }
 }
+
+/* Leads Management Styles */
+.leads-dashboard {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.leads-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card.new {
+    border-color: #3b82f6;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.stat-card.pending {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+}
+
+.stat-card.converted {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.stat-card.total {
+    border-color: #8b5cf6;
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+}
+
+.stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.8rem;
+}
+
+.leads-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.btn-admin {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-admin.primary {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-admin.secondary {
+    background: #6b7280;
+    color: white;
+}
+
+.btn-admin.success {
+    background: #10b981;
+    color: white;
+}
+
+.btn-admin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leads-table-container {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.table-controls {
+    margin-bottom: 2rem;
+}
+
+.search-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-input, .filter-select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-input:focus, .filter-select:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.leads-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.leads-table th,
+.leads-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.leads-table th {
+    background: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+}
+
+.leads-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.new {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-badge.contacted {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-badge.quoted {
+    background: #e0e7ff;
+    color: #5b21b6;
+}
+
+.status-badge.converted {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-badge.lost {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn.view {
+    background: #3b82f6;
+    color: white;
+}
+
+.action-btn.edit {
+    background: #f59e0b;
+    color: white;
+}
+
+.action-btn.delete {
+    background: #ef4444;
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Styles */
+.lead-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    background: #dc2626;
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .leads-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-input {
+        min-width: 100%;
+    }
+    
+    .leads-actions {
+        justify-content: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+}
     </style>
 </head>
 <body class="admin-body">
@@ -1208,6 +1536,7 @@
                 <h1>🏢 Buy Junk Car Miami Admin</h1>
                 <nav class="admin-menu">
                     <button class="admin-nav-btn active" data-section="dashboard">📊 Dashboard</button>
+                    <button class="admin-nav-btn" data-section="leads">📞 Leads & Quotes</button>
                     <button class="admin-nav-btn" data-section="pages">📄 Pages</button>
                     <button class="admin-nav-btn" data-section="blog">✍️ Blog</button>
                     <button class="admin-nav-btn" data-section="content">📝 Content</button>
@@ -1267,6 +1596,104 @@
                             <span class="activity-icon">🎨</span>
                             <span>Enhanced hero text visibility</span>
                             <span class="activity-time">15 minutes ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Leads & Quotes Section -->
+            <section class="admin-section" id="leads">
+                <div class="admin-section-header">
+                    <h2>📞 Leads & Quotes Management</h2>
+                    <p>Manage incoming leads, quotes, and customer inquiries</p>
+                </div>
+
+                <div class="leads-dashboard">
+                    <div class="leads-stats">
+                        <div class="stat-card new">
+                            <h3>🆕 New Leads</h3>
+                            <div class="stat-number" id="newLeads">0</div>
+                            <p>Last 24 hours</p>
+                        </div>
+                        <div class="stat-card pending">
+                            <h3>⏳ Pending</h3>
+                            <div class="stat-number" id="pendingLeads">0</div>
+                            <p>Awaiting response</p>
+                        </div>
+                        <div class="stat-card converted">
+                            <h3>💰 Converted</h3>
+                            <div class="stat-number" id="convertedLeads">0</div>
+                            <p>This month</p>
+                        </div>
+                        <div class="stat-card total">
+                            <h3>📊 Total</h3>
+                            <div class="stat-number" id="totalLeads">0</div>
+                            <p>All time</p>
+                        </div>
+                    </div>
+
+                    <div class="leads-actions">
+                        <button class="btn-admin primary" onclick="exportLeads()">📥 Export Data</button>
+                        <button class="btn-admin secondary" onclick="refreshLeads()">🔄 Refresh</button>
+                        <button class="btn-admin success" onclick="addTestLead()">➕ Test Lead</button>
+                    </div>
+                </div>
+
+                <div class="leads-table-container">
+                    <div class="table-controls">
+                        <div class="search-controls">
+                            <input type="text" id="leadSearch" placeholder="Search leads..." class="search-input">
+                            <select id="leadFilter" class="filter-select">
+                                <option value="all">All Leads</option>
+                                <option value="new">New</option>
+                                <option value="contacted">Contacted</option>
+                                <option value="quoted">Quoted</option>
+                                <option value="converted">Converted</option>
+                                <option value="lost">Lost</option>
+                            </select>
+                            <select id="dateFilter" class="filter-select">
+                                <option value="all">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="leads-table" id="leadsTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Vehicle</th>
+                                    <th>Location</th>
+                                    <th>Source</th>
+                                    <th>Status</th>
+                                    <th>Value</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leadsTableBody">
+                                <!-- Leads will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="lead-details-modal" id="leadModal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>📋 Lead Details</h3>
+                            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+                        </div>
+                        <div class="modal-body" id="leadModalBody">
+                            <!-- Lead details will be populated here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-admin primary" onclick="updateLeadStatus()">Update Status</button>
+                            <button class="btn-admin secondary" onclick="closeLeadModal()">Close</button>
                         </div>
                     </div>
                 </div>
@@ -1653,6 +2080,11 @@
             button.addEventListener('click', function() {
                 const section = this.getAttribute('data-section');
                 showSection(section);
+                
+                // Initialize leads section when first accessed
+                if (section === 'leads') {
+                    setTimeout(initializeLeadsSection, 100);
+                }
                 
                 // Update active state
                 navButtons.forEach(btn => btn.classList.remove('active'));
@@ -2513,6 +2945,258 @@
                 activities[5].remove();
             }
         }
+    }
+
+    // Leads Management Functions
+    window.exportLeads = function() {
+        if (!isLoggedIn) return;
+        
+        const sampleLeads = [
+            { id: 1, name: 'Maria Rodriguez', phone: '(305) 123-4567', vehicle: '2015 Honda Civic', status: 'new', date: '2024-11-10', quote: '$3,200' },
+            { id: 2, name: 'James Wilson', phone: '(786) 234-5678', vehicle: '2018 Toyota Camry', status: 'pending', date: '2024-11-09', quote: '$5,800' },
+            { id: 3, name: 'Carlos Mendez', phone: '(305) 345-6789', vehicle: '2012 Ford F-150', status: 'converted', date: '2024-11-08', quote: '$4,500' },
+            { id: 4, name: 'Sarah Johnson', phone: '(954) 456-7890', vehicle: '2019 Nissan Altima', status: 'new', date: '2024-11-07', quote: '$6,200' },
+            { id: 5, name: 'Roberto Martinez', phone: '(305) 567-8901', vehicle: '2014 Chevrolet Malibu', status: 'pending', date: '2024-11-06', quote: '$2,900' }
+        ];
+        
+        const csvContent = "ID,Name,Phone,Vehicle,Status,Date,Quote\n" + 
+            sampleLeads.map(lead => `${lead.id},"${lead.name}","${lead.phone}","${lead.vehicle}","${lead.status}","${lead.date}","${lead.quote}"`).join("\n");
+        
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `leads-export-${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        alert('📊 Leads exported successfully!');
+        logActivity('📊 Leads data exported to CSV');
+    };
+
+    window.refreshLeads = function() {
+        if (!isLoggedIn) return;
+        
+        const refreshBtn = document.querySelector('.leads-dashboard .btn:nth-child(2)');
+        refreshBtn.innerHTML = '🔄 Refreshing...';
+        
+        setTimeout(() => {
+            refreshBtn.innerHTML = '🔄 Refresh';
+            updateLeadsTable();
+            updateLeadsStats();
+            alert('✅ Leads data refreshed!');
+            logActivity('🔄 Leads data refreshed');
+        }, 2000);
+    };
+
+    window.addTestLead = function() {
+        if (!isLoggedIn) return;
+        
+        const testLeads = [
+            { name: 'Test Customer A', phone: '(305) 999-0001', vehicle: '2016 Hyundai Elantra', quote: '$3,500' },
+            { name: 'Test Customer B', phone: '(786) 999-0002', vehicle: '2017 Kia Forte', quote: '$4,100' },
+            { name: 'Test Customer C', phone: '(954) 999-0003', vehicle: '2013 Mazda CX-5', quote: '$2,800' }
+        ];
+        
+        const randomLead = testLeads[Math.floor(Math.random() * testLeads.length)];
+        
+        const leadRow = `
+            <tr>
+                <td>#${Date.now().toString().slice(-6)}</td>
+                <td>${randomLead.name}</td>
+                <td>${randomLead.phone}</td>
+                <td>${randomLead.vehicle}</td>
+                <td><span class="status-badge status-new">New</span></td>
+                <td>${new Date().toLocaleDateString()}</td>
+                <td>${randomLead.quote}</td>
+                <td>
+                    <button onclick="openLeadModal(${Date.now()})" class="table-btn view-btn">👁️ View</button>
+                    <button onclick="updateLeadStatus(${Date.now()}, 'pending')" class="table-btn edit-btn">📝 Edit</button>
+                </td>
+            </tr>
+        `;
+        
+        const tbody = document.querySelector('.leads-table tbody');
+        tbody.insertAdjacentHTML('afterbegin', leadRow);
+        
+        updateLeadsStats();
+        alert(`✅ Test lead added: ${randomLead.name}`);
+        logActivity(`🆕 Test lead added: ${randomLead.name}`);
+    };
+
+    function updateLeadsTable() {
+        const sampleLeads = [
+            { id: 1, name: 'Maria Rodriguez', phone: '(305) 123-4567', vehicle: '2015 Honda Civic', status: 'new', date: '2024-11-10', quote: '$3,200' },
+            { id: 2, name: 'James Wilson', phone: '(786) 234-5678', vehicle: '2018 Toyota Camry', status: 'pending', date: '2024-11-09', quote: '$5,800' },
+            { id: 3, name: 'Carlos Mendez', phone: '(305) 345-6789', vehicle: '2012 Ford F-150', status: 'converted', date: '2024-11-08', quote: '$4,500' },
+            { id: 4, name: 'Sarah Johnson', phone: '(954) 456-7890', vehicle: '2019 Nissan Altima', status: 'new', date: '2024-11-07', quote: '$6,200' },
+            { id: 5, name: 'Roberto Martinez', phone: '(305) 567-8901', vehicle: '2014 Chevrolet Malibu', status: 'pending', date: '2024-11-06', quote: '$2,900' },
+            { id: 6, name: 'Linda Garcia', phone: '(305) 678-9012', vehicle: '2016 Volkswagen Jetta', status: 'new', date: '2024-11-05', quote: '$3,800' },
+            { id: 7, name: 'Michael Chen', phone: '(786) 789-0123', vehicle: '2020 Subaru Forester', status: 'converted', date: '2024-11-04', quote: '$7,500' },
+            { id: 8, name: 'Angela Rivera', phone: '(954) 890-1234', vehicle: '2013 BMW 320i', status: 'pending', date: '2024-11-03', quote: '$4,200' }
+        ];
+        
+        const tbody = document.querySelector('.leads-table tbody');
+        tbody.innerHTML = sampleLeads.map(lead => `
+            <tr>
+                <td>#${lead.id}</td>
+                <td>${lead.name}</td>
+                <td>${lead.phone}</td>
+                <td>${lead.vehicle}</td>
+                <td><span class="status-badge status-${lead.status}">${lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}</span></td>
+                <td>${lead.date}</td>
+                <td>${lead.quote}</td>
+                <td>
+                    <button onclick="openLeadModal(${lead.id})" class="table-btn view-btn">👁️ View</button>
+                    <button onclick="updateLeadStatus(${lead.id}, 'pending')" class="table-btn edit-btn">📝 Edit</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function updateLeadsStats() {
+        const stats = {
+            new: Math.floor(Math.random() * 15) + 5,
+            pending: Math.floor(Math.random() * 10) + 3,
+            converted: Math.floor(Math.random() * 20) + 8,
+            total: 0
+        };
+        stats.total = stats.new + stats.pending + stats.converted;
+        
+        document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = stats.new;
+        document.querySelector('.stat-card:nth-child(2) .stat-number').textContent = stats.pending;
+        document.querySelector('.stat-card:nth-child(3) .stat-number').textContent = stats.converted;
+        document.querySelector('.stat-card:nth-child(4) .stat-number').textContent = stats.total;
+    }
+
+    window.openLeadModal = function(leadId) {
+        if (!isLoggedIn) return;
+        
+        const modal = document.createElement('div');
+        modal.className = 'lead-modal-overlay';
+        modal.innerHTML = `
+            <div class="lead-modal">
+                <div class="lead-modal-header">
+                    <h3>📞 Lead Details - #${leadId}</h3>
+                    <button onclick="closeLeadModal()" class="close-btn">×</button>
+                </div>
+                <div class="lead-modal-content">
+                    <div class="lead-info-grid">
+                        <div class="lead-field">
+                            <label>Customer Name:</label>
+                            <span>Maria Rodriguez</span>
+                        </div>
+                        <div class="lead-field">
+                            <label>Phone Number:</label>
+                            <span>(305) 123-4567</span>
+                        </div>
+                        <div class="lead-field">
+                            <label>Vehicle:</label>
+                            <span>2015 Honda Civic</span>
+                        </div>
+                        <div class="lead-field">
+                            <label>Quote Amount:</label>
+                            <span>$3,200</span>
+                        </div>
+                        <div class="lead-field">
+                            <label>Status:</label>
+                            <select class="status-select">
+                                <option value="new">New</option>
+                                <option value="pending">Pending</option>
+                                <option value="converted">Converted</option>
+                                <option value="lost">Lost</option>
+                            </select>
+                        </div>
+                        <div class="lead-field">
+                            <label>Date Received:</label>
+                            <span>2024-11-10</span>
+                        </div>
+                        <div class="lead-field full-width">
+                            <label>Notes:</label>
+                            <textarea class="lead-notes" placeholder="Add notes about this lead...">Customer interested in quick sale. Vehicle has flood damage from recent storms. Needs pickup within 2 days.</textarea>
+                        </div>
+                    </div>
+                    <div class="lead-modal-actions">
+                        <button onclick="saveLead(${leadId})" class="btn btn-primary">💾 Save Changes</button>
+                        <button onclick="callCustomer('(305) 123-4567')" class="btn btn-secondary">📞 Call Customer</button>
+                        <button onclick="closeLeadModal()" class="btn btn-outline">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        logActivity(`👁️ Lead #${leadId} details viewed`);
+    };
+
+    window.closeLeadModal = function() {
+        const modal = document.querySelector('.lead-modal-overlay');
+        if (modal) modal.remove();
+    };
+
+    window.saveLead = function(leadId) {
+        if (!isLoggedIn) return;
+        
+        const status = document.querySelector('.status-select').value;
+        const notes = document.querySelector('.lead-notes').value;
+        
+        alert(`✅ Lead #${leadId} Updated!\n\nStatus: ${status.charAt(0).toUpperCase() + status.slice(1)}\nNotes: ${notes.substring(0, 50)}${notes.length > 50 ? '...' : ''}`);
+        closeLeadModal();
+        logActivity(`💾 Lead #${leadId} updated - Status: ${status}`);
+    };
+
+    window.callCustomer = function(phone) {
+        if (!isLoggedIn) return;
+        
+        if (confirm(`📞 Call ${phone}?\n\nThis will open your default phone application.`)) {
+            window.open(`tel:${phone}`, '_self');
+            logActivity(`📞 Customer call initiated: ${phone}`);
+        }
+    };
+
+    window.updateLeadStatus = function(leadId, newStatus) {
+        if (!isLoggedIn) return;
+        
+        if (confirm(`Update lead #${leadId} status to "${newStatus}"?`)) {
+            alert(`✅ Lead #${leadId} status updated to: ${newStatus.charAt(0).toUpperCase() + newStatus.slice(1)}`);
+            logActivity(`📝 Lead #${leadId} status changed to: ${newStatus}`);
+        }
+    };
+
+    window.searchLeads = function() {
+        const searchTerm = document.getElementById('leadSearch').value.toLowerCase();
+        const rows = document.querySelectorAll('.leads-table tbody tr');
+        
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(searchTerm) ? '' : 'none';
+        });
+        
+        logActivity(`🔍 Lead search performed: "${searchTerm}"`);
+    };
+
+    window.filterLeads = function() {
+        const statusFilter = document.getElementById('statusFilter').value;
+        const rows = document.querySelectorAll('.leads-table tbody tr');
+        
+        rows.forEach(row => {
+            const statusCell = row.querySelector('.status-badge');
+            if (statusFilter === '' || statusCell.textContent.toLowerCase().includes(statusFilter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+        
+        logActivity(`🔽 Lead filter applied: ${statusFilter || 'All'}`);
+    };
+
+    // Initialize leads data when the section is first viewed
+    function initializeLeadsSection() {
+        updateLeadsTable();
+        updateLeadsStats();
     }
 
     // Make logout function globally available
