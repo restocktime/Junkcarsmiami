@@ -165,9 +165,6 @@ class MiamiJunkCarAdmin {
                     <button class="nav-btn" data-section="content">📝 Website Content</button>
                     <button class="nav-btn" data-section="pages">📄 Pages</button>
                     <button class="nav-btn" data-section="seo">🎯 SEO</button>
-                    <button class="nav-btn file-access-btn" onclick="admin.requestFileAccess()" id="fileAccessBtn">
-                        📁 Enable Live Editing
-                    </button>
                 </nav>
 
                 <main class="admin-main">
@@ -252,39 +249,16 @@ class MiamiJunkCarAdmin {
 
                     <section id="content" class="admin-section">
                         <div class="section-header">
-                            <h2>Website Content Editor</h2>
-                            <div class="live-indicator">🔴 LIVE - Changes Update Instantly</div>
-                        </div>
-                        <div class="content-editor">
-                            <div class="editor-tabs">
-                                <button class="tab-btn active" data-tab="homepage">🏠 Homepage</button>
-                                <button class="tab-btn" data-tab="services">🔧 Services</button>
-                                <button class="tab-btn" data-tab="locations">📍 Locations</button>
-                                <button class="tab-btn" data-tab="contact">📞 Contact</button>
+                            <h2>🔴 LIVE Website Content Editor</h2>
+                            <div class="section-actions">
+                                <button class="btn-primary" onclick="admin.refreshContent()">🔄 Refresh from Website</button>
+                                <button class="btn-secondary" onclick="admin.saveAllChanges()">💾 Save All Changes</button>
                             </div>
-                            <div class="editor-content">
-                                <div id="homepage" class="editor-panel active">
-                                    <h3>Homepage Content</h3>
-                                    <div class="form-group">
-                                        <label>Main Headline</label>
-                                        <input type="text" id="homeHeadline" class="content-input" data-target="homepage" data-field="headline">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Hero Description</label>
-                                        <textarea id="homeDescription" class="content-textarea" data-target="homepage" data-field="description"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Phone Number</label>
-                                        <input type="text" id="homePhone" class="content-input" data-target="homepage" data-field="phone">
-                                    </div>
-                                </div>
-                                <div id="services" class="editor-panel">
-                                    <h3>Services Page Content</h3>
-                                    <div class="form-group">
-                                        <label>Services Title</label>
-                                        <input type="text" id="servicesTitle" class="content-input" data-target="services" data-field="title">
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="live-editor-container" id="liveEditorContainer">
+                            <div class="loading-content">
+                                <div class="loading-spinner"></div>
+                                <p>Loading live website content...</p>
                             </div>
                         </div>
                     </section>
@@ -373,6 +347,8 @@ class MiamiJunkCarAdmin {
         // Load data when sections are accessed
         if (sectionName === 'pages') {
             this.loadPagesList();
+        } else if (sectionName === 'content') {
+            this.loadLiveContent();
         }
     }
 
@@ -755,6 +731,100 @@ class MiamiJunkCarAdmin {
         const url = filePath === 'index.html' ? '/' : `/${filePath.replace('/index.html', '/')}/`;
         window.open(url, '_blank');
         this.logActivity(`Page viewed: ${filePath}`);
+    }
+
+    // Live Content Management
+    async loadLiveContent() {
+        const container = document.getElementById('liveEditorContainer');
+        if (!container) return;
+
+        try {
+            // Show loading state
+            container.innerHTML = `
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <p>🔄 Fetching live website content...</p>
+                    <small>This may take a moment as we scan all your pages</small>
+                </div>
+            `;
+
+            // Initialize live editor if not already done
+            if (!window.liveEditor.websiteContent || Object.keys(window.liveEditor.websiteContent).length === 0) {
+                await window.liveEditor.init();
+            }
+
+            // Generate the live editor interface
+            const editorHTML = window.liveEditor.generateContentEditor();
+            
+            container.innerHTML = `
+                <div class="live-editor-header">
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span>Live Content Editor Active</span>
+                    </div>
+                    <div class="editor-stats">
+                        <span>📄 ${Object.keys(window.liveEditor.websiteContent).length} Pages Loaded</span>
+                        <span>🖼️ Images Detected</span>
+                        <span>📝 Real Content</span>
+                    </div>
+                </div>
+                ${editorHTML}
+            `;
+
+            this.logActivity('Live website content loaded for editing');
+            this.showUpdateNotification('✅ Live website content loaded successfully!');
+
+        } catch (error) {
+            console.error('Failed to load live content:', error);
+            container.innerHTML = `
+                <div class="error-content">
+                    <h3>❌ Failed to Load Content</h3>
+                    <p>Could not fetch live website content. This might be due to:</p>
+                    <ul>
+                        <li>CORS restrictions</li>
+                        <li>Files not accessible</li>
+                        <li>Network issues</li>
+                    </ul>
+                    <button class="btn-primary" onclick="admin.loadLiveContent()">🔄 Try Again</button>
+                </div>
+            `;
+        }
+    }
+
+    async refreshContent() {
+        this.showUpdateNotification('🔄 Refreshing content from website...');
+        
+        // Clear cached content
+        window.liveEditor.websiteContent = {};
+        
+        // Reload content
+        await this.loadLiveContent();
+        
+        this.logActivity('Website content refreshed');
+    }
+
+    async saveAllChanges() {
+        if (!window.liveEditor.websiteContent) {
+            this.showUpdateNotification('❌ No content loaded to save');
+            return;
+        }
+
+        const pages = Object.keys(window.liveEditor.websiteContent);
+        let savedCount = 0;
+
+        this.showUpdateNotification(`💾 Saving changes to ${pages.length} pages...`);
+
+        for (const pageName of pages) {
+            try {
+                await window.liveEditor.savePage(pageName);
+                savedCount++;
+            } catch (error) {
+                console.error(`Failed to save ${pageName}:`, error);
+            }
+        }
+
+        this.showUpdateNotification(`✅ Saved changes to ${savedCount}/${pages.length} pages`);
+        this.logActivity(`Bulk save completed: ${savedCount}/${pages.length} pages`);
     }
 }
 
