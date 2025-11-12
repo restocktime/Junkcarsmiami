@@ -1541,36 +1541,18 @@ p {
 }
 
 .service-card {
-  background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+  background: white;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  overflow: hidden;
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.service-card:hover::before {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .service-card.featured {
@@ -1744,134 +1726,54 @@ p {
   text-align: center;
 }
 
-/* Services Section - Add colorful background */
+/* Services Section */
 .services {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
-  position: relative;
-}
-
-.services::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
-  pointer-events: none;
+  background: #f0f9ff;
 }
 
 /* Why Choose Us Section */
 .why-choose-us {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #fef3c7 0%, #fef9e7 50%, #ffffff 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.why-choose-us::after {
-  content: '';
-  position: absolute;
-  top: -10%;
-  right: -10%;
-  width: 30%;
-  height: 120%;
-  background: linear-gradient(45deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
-  transform: rotate(15deg);
-  pointer-events: none;
+  background: #fef3c7;
 }
 
 /* How It Works Section */
 .how-it-works {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 50%, #ffffff 100%);
-  position: relative;
-}
-
-.how-it-works::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to top, rgba(147, 51, 234, 0.1) 0%, transparent 100%);
-  pointer-events: none;
+  background: #f3e8ff;
 }
 
 /* Price Guarantee Section */
 .guarantee {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #fef2f2 0%, #fff5f5 50%, #ffffff 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.guarantee::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -5%;
-  width: 25%;
-  height: 80%;
-  background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08) 0%, transparent 70%);
-  transform: translateY(-50%);
-  pointer-events: none;
+  background: #fef2f2;
 }
 
 /* About Section */
 .about {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #ffffff 100%);
-  position: relative;
-}
-
-.about::after {
-  content: '';
-  position: absolute;
-  bottom: -20%;
-  left: 60%;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.06) 0%, transparent 60%);
-  transform: rotate(-10deg);
-  pointer-events: none;
+  background: #ecfdf5;
 }
 
 /* Locations Section */
 .locations-section {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 50%, #ffffff 100%);
-  position: relative;
+  background: #eff6ff;
 }
 
 /* Quick Quote Section */
 .quick-quote {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #fdf4ff 0%, #fef7ff 50%, #ffffff 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.quick-quote::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  right: -10%;
-  width: 30%;
-  height: 60%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
-  pointer-events: none;
+  background: #fdf4ff;
 }
 
 /* Testimonials Section */
 .testimonials {
   padding: 4rem 0;
+  background: #f1f5f9;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 50%, #ffffff 100%);
 }
 
 .testimonials::after {
@@ -1903,19 +1805,11 @@ p {
 }
 
 .testimonial {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: white;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(59, 130, 246, 0.1);
-}
-
-.testimonial:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
 
 .stars {
@@ -2029,88 +1923,6 @@ p {
   font-size: 0.875rem;
 }
 
-/* Section Dividers */
-section:nth-child(even) {
-  position: relative;
-}
-
-section:nth-child(even)::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #10b981);
-  border-radius: 2px;
-}
-
-/* Step Cards Enhancement */
-.step {
-  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-  padding: 2rem;
-  border-radius: 16px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid transparent;
-  overflow: hidden;
-}
-
-.step::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #3b82f6, #10b981, #f59e0b, #ef4444);
-  border-radius: 18px;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.3s ease;
-}
-
-.step:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
-}
-
-.step:hover::before {
-  opacity: 1;
-}
-
-.step-number {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 auto 1.5rem;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-}
-
-.step:nth-child(2) .step-number {
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-}
-
-.step:nth-child(3) .step-number {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-}
-
-.step:nth-child(4) .step-number {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-}
 
 /* Footer */
 .footer {
