@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Content Admin - Miami Junk Car Buyers</title>
+    <meta name="description" content="User-friendly admin panel for editing actual website content">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    
+    <!-- Real Admin Styles -->
+    <link rel="stylesheet" href="real-admin.css">
+    
+    <style>
+        /* Critical CSS for instant loading */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7fafc;
+            min-height: 100vh;
+        }
+        
+        .startup-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .startup-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .startup-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Startup Loading Screen -->
+    <div class="startup-loading" id="startupScreen">
+        <div class="startup-spinner"></div>
+        <div class="startup-text">
+            <div>Real Content Admin System</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
+                Loading user-friendly content editor...
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Content (loaded by JavaScript) -->
+    <div id="adminContent"></div>
+
+    <!-- Real Admin JavaScript -->
+    <script src="real-admin.js"></script>
+    
+    <script>
+        // Initialize the real content admin system
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Real Content Admin System Starting...');
+            console.log('📝 User-Friendly Content Editor');
+            console.log('🎯 Pulls Real Website Content');
+            console.log('✏️ Easy Tab-Based Editing');
+            console.log('');
+            console.log('Login Details:');
+            console.log('Username: admin');
+            console.log('Password: BuyJunkCarMiami2024!');
+            console.log('');
+            console.log('🔥 This admin edits your REAL website content!');
+
+            // Wait for admin system to load, then hide startup screen
+            const checkAdminLoaded = () => {
+                if (window.realAdmin) {
+                    setTimeout(() => {
+                        const startupScreen = document.getElementById('startupScreen');
+                        if (startupScreen) {
+                            startupScreen.style.opacity = '0';
+                            startupScreen.style.transition = 'opacity 0.5s ease';
+                            setTimeout(() => {
+                                startupScreen.style.display = 'none';
+                            }, 500);
+                        }
+                    }, 800); // Give it a moment to show the loading
+                } else {
+                    setTimeout(checkAdminLoaded, 100);
+                }
+            };
+            
+            checkAdminLoaded();
+        });
+
+        // Global error handling
+        window.addEventListener('error', function(e) {
+            console.error('Real Admin Error:', e.error);
+        });
+
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            console.log(`⚡ Real admin loaded in ${Math.round(loadTime)}ms`);
+        });
+
+        // Auto-save functionality
+        let autoSaveInterval;
+        function startAutoSave() {
+            autoSaveInterval = setInterval(() => {
+                if (window.realAdmin && window.realAdmin.leads) {
+                    window.realAdmin.saveLeads();
+                    console.log('💾 Auto-saved lead data');
+                }
+            }, 60000); // Auto-save every minute
+        }
+
+        function stopAutoSave() {
+            if (autoSaveInterval) {
+                clearInterval(autoSaveInterval);
+            }
+        }
+
+        // Start auto-save when loaded
+        window.addEventListener('load', startAutoSave);
+        window.addEventListener('beforeunload', stopAutoSave);
+
+        // Keyboard shortcuts for power users
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + S = Save current page
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                if (window.realAdmin && window.realAdmin.isAuthenticated) {
+                    const activeTab = document.querySelector('.nav-tab.active');
+                    if (activeTab) {
+                        const section = activeTab.dataset.section;
+                        window.realAdmin.savePage(section);
+                    }
+                }
+            }
+            
+            // Ctrl/Cmd + P = Preview current page  
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                if (window.realAdmin && window.realAdmin.isAuthenticated) {
+                    const activeTab = document.querySelector('.nav-tab.active');
+                    if (activeTab) {
+                        const section = activeTab.dataset.section;
+                        window.realAdmin.previewPage(section);
+                    }
+                }
+            }
+            
+            // Ctrl/Cmd + 1-8 = Switch between tabs
+            if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '8') {
+                e.preventDefault();
+                if (window.realAdmin && window.realAdmin.isAuthenticated) {
+                    const tabs = ['home', 'services', 'locations', 'brands', 'gallery', 'blog', 'contact', 'leads'];
+                    const tabIndex = parseInt(e.key) - 1;
+                    if (tabs[tabIndex]) {
+                        window.realAdmin.showSection(tabs[tabIndex]);
+                    }
+                }
+            }
+        });
+
+        // Form change detection for unsaved changes warning
+        let hasUnsavedChanges = false;
+
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('real-input') || e.target.classList.contains('real-textarea')) {
+                hasUnsavedChanges = true;
+                
+                // Visual feedback for changes
+                e.target.style.borderLeft = '4px solid #10b981';
+                e.target.style.backgroundColor = '#f0fff4';
+                
+                // Reset after a few seconds
+                setTimeout(() => {
+                    e.target.style.borderLeft = '';
+                    e.target.style.backgroundColor = '';
+                }, 3000);
+            }
+        });
+
+        // Warn about unsaved changes
+        window.addEventListener('beforeunload', function(e) {
+            if (hasUnsavedChanges && window.realAdmin && window.realAdmin.isAuthenticated) {
+                e.preventDefault();
+                e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+                return 'You have unsaved changes. Are you sure you want to leave?';
+            }
+        });
+
+        // Mark changes as saved when save actions occur
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-save') || e.target.textContent.includes('Save')) {
+                hasUnsavedChanges = false;
+            }
+        });
+
+        // Service worker for offline functionality (optional)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./real-admin-sw.js')
+                .then(registration => {
+                    console.log('📱 Real Admin service worker registered');
+                })
+                .catch(error => {
+                    // Fail silently - service worker is optional
+                });
+        }
+    </script>
+    
+    <!-- Quick Help Overlay (Hidden by default) -->
+    <div id="helpOverlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; padding: 2rem;">
+        <div style="background: white; border-radius: 16px; max-width: 500px; margin: 2rem auto; padding: 2rem;">
+            <h2 style="margin-top: 0;">🎯 Real Content Admin Help</h2>
+            <div style="margin: 1.5rem 0;">
+                <h3>Keyboard Shortcuts:</h3>
+                <ul style="margin: 0.5rem 0;">
+                    <li><strong>Ctrl/Cmd + S</strong> - Save current page</li>
+                    <li><strong>Ctrl/Cmd + P</strong> - Preview current page</li>
+                    <li><strong>Ctrl/Cmd + 1-8</strong> - Switch tabs</li>
+                </ul>
+            </div>
+            <div style="margin: 1.5rem 0;">
+                <h3>Features:</h3>
+                <ul style="margin: 0.5rem 0;">
+                    <li>✏️ Edit real website content</li>
+                    <li>👁️ Preview changes instantly</li>
+                    <li>💾 Auto-save every minute</li>
+                    <li>📱 Mobile-friendly interface</li>
+                </ul>
+            </div>
+            <button onclick="document.getElementById('helpOverlay').style.display='none'" 
+                    style="background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500;">
+                Got it!
+            </button>
+        </div>
+    </div>
+</body>
+</html>

@@ -144,18 +144,49 @@ class LiveWebsiteEditor {
         return sections;
     }
 
-    // Extract phone numbers
+    // Extract phone numbers (filter to business numbers only)
     extractPhoneNumbers(html) {
         const phoneRegex = /\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g;
         const matches = html.match(phoneRegex) || [];
-        return [...new Set(matches)]; // Remove duplicates
+        
+        // Your business phone numbers only
+        const businessNumbers = ['(305) 534-5991', '305-534-5991', '3055345991'];
+        
+        // Filter to only include business numbers, not examples or placeholders
+        const filteredNumbers = matches.filter(phone => {
+            const cleanPhone = phone.replace(/[^\d]/g, '');
+            return businessNumbers.some(businessPhone => {
+                const cleanBusiness = businessPhone.replace(/[^\d]/g, '');
+                return cleanPhone === cleanBusiness;
+            });
+        });
+        
+        // Remove duplicates and return formatted business number
+        const uniqueNumbers = [...new Set(filteredNumbers)];
+        
+        // If we found business numbers, return them, otherwise return the main business number
+        return uniqueNumbers.length > 0 ? uniqueNumbers : ['(305) 534-5991'];
     }
 
-    // Extract email addresses
+    // Extract email addresses (filter to business emails only)
     extractEmails(html) {
         const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
         const matches = html.match(emailRegex) || [];
-        return [...new Set(matches)]; // Remove duplicates
+        
+        // Your business email only
+        const businessEmails = ['buyjunkcarmiami@gmail.com'];
+        
+        // Filter to only include business emails, not examples
+        const filteredEmails = matches.filter(email => 
+            businessEmails.includes(email.toLowerCase()) || 
+            email.toLowerCase().includes('buyjunkcarmiami')
+        );
+        
+        // Remove duplicates and return business email
+        const uniqueEmails = [...new Set(filteredEmails)];
+        
+        // If we found business emails, return them, otherwise return the main business email
+        return uniqueEmails.length > 0 ? uniqueEmails : ['buyjunkcarmiami@gmail.com'];
     }
 
     // Generate live content editor HTML
@@ -217,24 +248,20 @@ class LiveWebsiteEditor {
 
                     <!-- Contact Information -->
                     <div class="editor-group">
-                        <h4>📞 Contact Information</h4>
+                        <h4>📞 Business Contact Information</h4>
                         <div class="form-row">
-                            <label>Phone Numbers</label>
-                            <div class="phone-list">
-                                ${parsed.phone.map(phone => `
-                                    <input type="text" data-field="phone" data-page="${pageName}" 
-                                           value="${phone}" class="live-input phone-input">
-                                `).join('')}
-                            </div>
+                            <label>Main Business Phone Number</label>
+                            <div class="contact-note">This will update your phone number across the entire website</div>
+                            <input type="text" data-field="phone" data-page="${pageName}" 
+                                   value="${parsed.phone[0] || '(305) 534-5991'}" class="live-input phone-input"
+                                   placeholder="(305) 534-5991">
                         </div>
                         <div class="form-row">
-                            <label>Email Addresses</label>
-                            <div class="email-list">
-                                ${parsed.email.map(email => `
-                                    <input type="email" data-field="email" data-page="${pageName}" 
-                                           value="${email}" class="live-input email-input">
-                                `).join('')}
-                            </div>
+                            <label>Main Business Email</label>
+                            <div class="contact-note">This will update your email across the entire website</div>
+                            <input type="email" data-field="email" data-page="${pageName}" 
+                                   value="${parsed.email[0] || 'buyjunkcarmiami@gmail.com'}" class="live-input email-input"
+                                   placeholder="buyjunkcarmiami@gmail.com">
                         </div>
                     </div>
 
@@ -389,22 +416,34 @@ class LiveWebsiteEditor {
             );
         }
 
-        // Update phone numbers
-        if (changes.phone) {
-            changes.phone.forEach((newPhone, index) => {
-                // Replace phone numbers in order they appear
-                updatedHTML = updatedHTML.replace(/\(\d{3}\)\s\d{3}-\d{4}/, newPhone);
+        // Update phone numbers (replace all instances of business phone)
+        if (changes.phone && changes.phone[0]) {
+            const newPhone = changes.phone[0];
+            const phoneVariations = [
+                /\(305\)\s534-5991/g,
+                /305-534-5991/g,
+                /3055345991/g,
+                /\+13055345991/g
+            ];
+            
+            // Replace all variations of the business phone number
+            phoneVariations.forEach(regex => {
+                updatedHTML = updatedHTML.replace(regex, newPhone);
             });
+            
+            // Also update tel: links
+            updatedHTML = updatedHTML.replace(/tel:\+?1?3055345991/g, `tel:+1${newPhone.replace(/[^\d]/g, '')}`);
         }
 
-        // Update emails
-        if (changes.email) {
-            changes.email.forEach((newEmail, index) => {
-                updatedHTML = updatedHTML.replace(
-                    /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/, 
-                    newEmail
-                );
-            });
+        // Update emails (replace all instances of business email)
+        if (changes.email && changes.email[0]) {
+            const newEmail = changes.email[0];
+            
+            // Replace all instances of the business email
+            updatedHTML = updatedHTML.replace(/buyjunkcarmiami@gmail\.com/g, newEmail);
+            
+            // Also update mailto: links
+            updatedHTML = updatedHTML.replace(/mailto:buyjunkcarmiami@gmail\.com/g, `mailto:${newEmail}`);
         }
 
         return updatedHTML;
