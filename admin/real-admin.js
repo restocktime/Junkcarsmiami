@@ -111,15 +111,17 @@ class RealContentAdmin {
             'contact': { file: '/contact/', name: 'Contact' }
         };
 
-        // Use placeholder content that's always available since we can't reliably fetch from live site
+        // Load saved content from localStorage first, then use placeholders
+        const savedContent = JSON.parse(localStorage.getItem('real_admin_content') || '{}');
+        
         for (const [key, page] of Object.entries(pages)) {
             this.realContent[key] = {
                 ...page,
                 html: '',
-                content: this.getPlaceholderContent(key),
-                lastUpdated: new Date().toISOString()
+                content: savedContent[key]?.content || this.getPlaceholderContent(key),
+                lastUpdated: savedContent[key]?.lastUpdated || new Date().toISOString()
             };
-            console.log(`✅ Loaded content for ${page.name}`);
+            console.log(`✅ Loaded content for ${page.name}${savedContent[key] ? ' (with saved changes)' : ''}`);
         }
     }
 
@@ -886,7 +888,58 @@ class RealContentAdmin {
     }
 
     savePage(page) {
-        this.showNotification(`💾 Saved ${page} page changes`);
+        try {
+            const pageContent = {};
+            
+            if (page === 'home') {
+                pageContent.title = document.getElementById('home-title')?.value || '';
+                pageContent.metaDescription = document.getElementById('home-meta')?.value || '';
+                pageContent.h1 = document.getElementById('home-h1')?.value || '';
+                pageContent.heroSubtitle = document.getElementById('home-subtitle')?.value || '';
+                
+                // Save section content
+                const sections = [];
+                document.querySelectorAll('[id^="home-section-"][id$="-heading"]').forEach((heading, index) => {
+                    const content = document.getElementById(`home-section-${index}-content`)?.value || '';
+                    if (heading.value || content) {
+                        sections.push({
+                            id: `section-${index}`,
+                            heading: heading.value,
+                            content: content
+                        });
+                    }
+                });
+                pageContent.sections = sections;
+                
+                // Keep existing images
+                pageContent.images = this.realContent.home?.content?.images || this.getPlaceholderContent('home').images;
+            }
+            
+            if (page === 'services') {
+                pageContent.title = document.getElementById('services-title')?.value || '';
+                pageContent.h1 = document.getElementById('services-h1')?.value || '';
+            }
+            
+            // Update the stored content
+            if (!this.realContent[page]) {
+                this.realContent[page] = {};
+            }
+            this.realContent[page].content = { ...this.realContent[page].content, ...pageContent };
+            
+            // Save to localStorage
+            localStorage.setItem('real_admin_content', JSON.stringify(this.realContent));
+            
+            this.showNotification(`✅ ${page.charAt(0).toUpperCase() + page.slice(1)} page saved successfully!`);
+            
+            // Refresh the display with updated content
+            setTimeout(() => {
+                this.showSection(page);
+            }, 500);
+            
+        } catch (error) {
+            console.error('Save error:', error);
+            this.showNotification(`❌ Error saving ${page} page`);
+        }
     }
 
     addLead() {
