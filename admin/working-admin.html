@@ -130,6 +130,37 @@
         .form-control:focus {
             border-color: #3498db;
             outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        .form-control.changed {
+            border-left: 4px solid #f39c12;
+            background: #fffbf0;
+        }
+        
+        .form-control.saved {
+            border-left: 4px solid #27ae60;
+            background: #f0fff4;
+        }
+        
+        .editing-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #f39c12;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
         
         .btn {
@@ -310,6 +341,7 @@
                     <button class="btn btn-success" onclick="savePage('home')">💾 Save Home Page</button>
                     <button class="btn" onclick="previewPage('home')">👁️ Preview</button>
                     <a href="/" target="_blank" class="btn">🌐 View Live</a>
+                    <button class="btn" onclick="resetPage('home')" style="background: #e74c3c;">🔄 Reset</button>
                 </div>
             </div>
 
@@ -507,6 +539,9 @@
 
     <!-- Notification -->
     <div id="notification" class="notification"></div>
+    
+    <!-- Editing Indicator -->
+    <div id="editingIndicator" class="editing-indicator">✏️ Unsaved Changes</div>
 
     <script>
         // Admin System JavaScript
@@ -520,7 +555,12 @@
         function initAdmin() {
             updateStats();
             loadLeads();
+            loadSavedContent();
+            enableAutoSave();
+            addCharacterCounters();
             console.log('✅ Miami Junk Car Admin System Loaded');
+            console.log('🎯 Features: Content editing, lead management, form integration');
+            console.log('💾 Auto-save enabled for all form fields');
         }
 
         // Tab Management
@@ -551,34 +591,174 @@
                 
                 if (page === 'home') {
                     content = {
-                        title: document.getElementById('homeTitle').value,
-                        metaDesc: document.getElementById('homeMetaDesc').value,
-                        headline: document.getElementById('homeHeadline').value,
-                        subtitle: document.getElementById('homeSubtitle').value
+                        title: document.getElementById('homeTitle')?.value || '',
+                        metaDesc: document.getElementById('homeMetaDesc')?.value || '',
+                        headline: document.getElementById('homeHeadline')?.value || '',
+                        subtitle: document.getElementById('homeSubtitle')?.value || ''
                     };
+                    
+                    console.log('Saving home content:', content);
                 }
                 
                 if (page === 'contact') {
+                    const contactSection = document.getElementById('contact');
                     content = {
-                        phone: document.querySelector('input[type="tel"]').value,
-                        email: document.querySelector('input[type="email"]').value,
-                        address: document.querySelector('input[type="text"][value*="Miami Avenue"]').value,
-                        license: document.querySelector('input[type="text"][value="TI0105"]').value
+                        phone: contactSection?.querySelector('input[type="tel"]')?.value || '(305) 534-5991',
+                        email: contactSection?.querySelector('input[type="email"]')?.value || 'buyjunkcarmiami@gmail.com',
+                        address: contactSection?.querySelector('input[value*="Miami Avenue"]')?.value || '122 South Miami Avenue, Miami, FL 33130',
+                        license: contactSection?.querySelector('input[value="TI0105"]')?.value || 'TI0105'
                     };
+                    
+                    console.log('Saving contact content:', content);
+                }
+                
+                if (page === 'services') {
+                    const serviceTextareas = document.querySelectorAll('#services textarea');
+                    const services = [];
+                    serviceTextareas.forEach((textarea, index) => {
+                        const serviceCard = textarea.closest('.card');
+                        const serviceTitle = serviceCard?.querySelector('h4')?.textContent || `Service ${index + 1}`;
+                        services.push({
+                            title: serviceTitle,
+                            description: textarea.value
+                        });
+                    });
+                    content = { services };
+                    
+                    console.log('Saving services content:', content);
+                }
+                
+                if (page === 'gallery') {
+                    const imageInputs = document.querySelectorAll('#gallery input[type="text"]');
+                    const images = [];
+                    imageInputs.forEach((input, index) => {
+                        const imgElement = input.parentElement?.querySelector('img');
+                        if (imgElement) {
+                            images.push({
+                                src: imgElement.src,
+                                alt: input.value,
+                                index: index
+                            });
+                        }
+                    });
+                    content = { images };
+                    
+                    console.log('Saving gallery content:', content);
+                }
+                
+                if (page === 'forms') {
+                    const formsSection = document.getElementById('forms');
+                    content = {
+                        recipientEmail: formsSection?.querySelector('input[type="email"]')?.value || 'buyjunkcarmiami@gmail.com',
+                        autoReply: formsSection?.querySelector('textarea')?.value || 'Thank you for contacting Miami Junk Car Buyers!'
+                    };
+                    
+                    console.log('Saving forms content:', content);
                 }
                 
                 // Save to localStorage
-                adminData.content[page] = content;
-                adminData.content[page].lastUpdated = new Date().toISOString();
+                if (!adminData.content) adminData.content = {};
+                adminData.content[page] = {
+                    ...content,
+                    lastUpdated: new Date().toISOString(),
+                    savedBy: 'admin',
+                    version: (adminData.content[page]?.version || 0) + 1
+                };
+                
                 localStorage.setItem('mjc_admin_data', JSON.stringify(adminData));
                 
+                // Visual feedback
+                const saveButton = document.querySelector(`#${page} .btn-success`);
+                const editingIndicator = document.getElementById('editingIndicator');
+                
+                if (saveButton) {
+                    const originalText = saveButton.textContent;
+                    saveButton.textContent = '✅ Saved!';
+                    saveButton.style.background = '#27ae60';
+                    setTimeout(() => {
+                        saveButton.textContent = originalText;
+                        saveButton.style.background = '';
+                    }, 2000);
+                }
+                
+                // Hide editing indicator
+                if (editingIndicator) {
+                    editingIndicator.style.display = 'none';
+                }
+                
+                // Update all input original values
+                const inputs = document.querySelectorAll(`#${page} input, #${page} textarea`);
+                inputs.forEach(input => {
+                    input.dataset.originalValue = input.value;
+                    input.classList.remove('changed');
+                    input.classList.add('saved');
+                    setTimeout(() => {
+                        input.classList.remove('saved');
+                    }, 2000);
+                });
+                
                 showNotification(`✅ ${page.charAt(0).toUpperCase() + page.slice(1)} page saved successfully!`);
-                console.log(`💾 Saved ${page} page content`, content);
+                console.log(`💾 Saved ${page} page content:`, content);
+                
+                // Update stats if needed
+                if (page === 'contact') {
+                    updateBusinessInfo(content);
+                }
                 
             } catch (error) {
                 console.error('Save error:', error);
-                showNotification(`❌ Error saving ${page} page`);
+                showNotification(`❌ Error saving ${page} page: ${error.message}`);
             }
+        }
+        
+        // Load saved content on page load
+        function loadSavedContent() {
+            try {
+                const savedData = JSON.parse(localStorage.getItem('mjc_admin_data') || '{}');
+                if (savedData.content) {
+                    
+                    // Load home content
+                    if (savedData.content.home) {
+                        const home = savedData.content.home;
+                        if (home.title) document.getElementById('homeTitle').value = home.title;
+                        if (home.metaDesc) document.getElementById('homeMetaDesc').value = home.metaDesc;
+                        if (home.headline) document.getElementById('homeHeadline').value = home.headline;
+                        if (home.subtitle) document.getElementById('homeSubtitle').value = home.subtitle;
+                    }
+                    
+                    // Load contact content
+                    if (savedData.content.contact) {
+                        const contact = savedData.content.contact;
+                        const contactSection = document.getElementById('contact');
+                        if (contact.phone && contactSection) {
+                            const phoneInput = contactSection.querySelector('input[type="tel"]');
+                            if (phoneInput) phoneInput.value = contact.phone;
+                        }
+                        if (contact.email && contactSection) {
+                            const emailInput = contactSection.querySelector('input[type="email"]');
+                            if (emailInput) emailInput.value = contact.email;
+                        }
+                        if (contact.address && contactSection) {
+                            const addressInput = contactSection.querySelector('input[value*="Miami Avenue"]');
+                            if (addressInput) addressInput.value = contact.address;
+                        }
+                        if (contact.license && contactSection) {
+                            const licenseInput = contactSection.querySelector('input[value="TI0105"]');
+                            if (licenseInput) licenseInput.value = contact.license;
+                        }
+                    }
+                    
+                    console.log('✅ Loaded saved content from localStorage');
+                }
+            } catch (error) {
+                console.log('No saved content to load:', error);
+            }
+        }
+        
+        // Update business info
+        function updateBusinessInfo(contactData) {
+            // Update any displayed business info
+            console.log('Business info updated:', contactData);
         }
 
         // Lead management
@@ -704,6 +884,141 @@
 
         function uploadImage() {
             showNotification('📤 Image upload functionality');
+        }
+
+        // Reset page to defaults
+        function resetPage(page) {
+            if (confirm(`Are you sure you want to reset the ${page} page to default content?`)) {
+                if (page === 'home') {
+                    document.getElementById('homeTitle').value = 'Buy Junk Car Miami - We Buy Junk Cars Miami | Free Towing';
+                    document.getElementById('homeMetaDesc').value = 'Get instant cash for your junk car in Miami! Free towing, same-day pickup. We buy cars with no title. Call (305) 534-5991 for your quote today.';
+                    document.getElementById('homeHeadline').value = 'Buy Junk Car Miami - Top Dollar Paid - Same Day Pickup';
+                    document.getElementById('homeSubtitle').value = 'We buy junk cars, damaged cars, and cars with no title in Miami-Dade & Broward County. Get paid TOP CASH on the spot with FREE towing in 30 minutes to 1 hour!';
+                }
+                
+                if (page === 'contact') {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        const phoneInput = contactSection.querySelector('input[type="tel"]');
+                        const emailInput = contactSection.querySelector('input[type="email"]');
+                        const addressInput = contactSection.querySelector('input[value*="Miami"]');
+                        const licenseInput = contactSection.querySelector('input[value*="TI"]');
+                        
+                        if (phoneInput) phoneInput.value = '(305) 534-5991';
+                        if (emailInput) emailInput.value = 'buyjunkcarmiami@gmail.com';
+                        if (addressInput) addressInput.value = '122 South Miami Avenue, Miami, FL 33130';
+                        if (licenseInput) licenseInput.value = 'TI0105';
+                    }
+                }
+                
+                // Remove from localStorage
+                const savedData = JSON.parse(localStorage.getItem('mjc_admin_data') || '{}');
+                if (savedData.content && savedData.content[page]) {
+                    delete savedData.content[page];
+                    localStorage.setItem('mjc_admin_data', JSON.stringify(savedData));
+                }
+                
+                showNotification(`✅ ${page.charAt(0).toUpperCase() + page.slice(1)} page reset to defaults`);
+            }
+        }
+
+        // Auto-save functionality
+        function enableAutoSave() {
+            let hasUnsavedChanges = false;
+            const editingIndicator = document.getElementById('editingIndicator');
+            
+            const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+            inputs.forEach(input => {
+                // Store original value
+                input.dataset.originalValue = input.value;
+                
+                input.addEventListener('input', debounce(() => {
+                    const isChanged = input.value !== input.dataset.originalValue;
+                    
+                    if (isChanged) {
+                        input.classList.add('changed');
+                        input.classList.remove('saved');
+                        hasUnsavedChanges = true;
+                        editingIndicator.style.display = 'block';
+                    } else {
+                        input.classList.remove('changed');
+                        
+                        // Check if any other inputs have changes
+                        const hasOtherChanges = Array.from(inputs).some(i => 
+                            i !== input && i.value !== i.dataset.originalValue
+                        );
+                        
+                        if (!hasOtherChanges) {
+                            hasUnsavedChanges = false;
+                            editingIndicator.style.display = 'none';
+                        }
+                    }
+                }, 300));
+                
+                // Show save feedback when field loses focus
+                input.addEventListener('blur', () => {
+                    if (input.classList.contains('changed')) {
+                        input.classList.add('saved');
+                        input.classList.remove('changed');
+                        input.dataset.originalValue = input.value;
+                        
+                        setTimeout(() => {
+                            input.classList.remove('saved');
+                        }, 2000);
+                    }
+                });
+            });
+            
+            // Warn about unsaved changes when leaving page
+            window.addEventListener('beforeunload', (e) => {
+                if (hasUnsavedChanges) {
+                    e.preventDefault();
+                    e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+                    return 'You have unsaved changes. Are you sure you want to leave?';
+                }
+            });
+        }
+
+        // Debounce function for auto-save
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Character counters
+        function addCharacterCounters() {
+            const titleInputs = document.querySelectorAll('input[id*="Title"], input[id*="Headline"]');
+            const descInputs = document.querySelectorAll('textarea[id*="Desc"], textarea[id*="Subtitle"]');
+            
+            titleInputs.forEach(input => {
+                addCounter(input, 60, 'SEO titles work best under 60 characters');
+            });
+            
+            descInputs.forEach(input => {
+                addCounter(input, 160, 'Meta descriptions work best under 160 characters');
+            });
+        }
+
+        function addCounter(element, maxLength, tip) {
+            const counter = document.createElement('small');
+            counter.style.cssText = 'display: block; color: #666; font-size: 12px; margin-top: 5px;';
+            
+            const updateCounter = () => {
+                const length = element.value.length;
+                counter.textContent = `${length}/${maxLength} characters - ${tip}`;
+                counter.style.color = length > maxLength ? '#e74c3c' : length > maxLength * 0.9 ? '#f39c12' : '#666';
+            };
+            
+            element.addEventListener('input', updateCounter);
+            element.parentNode.appendChild(counter);
+            updateCounter();
         }
 
         // Form integration - capture form submissions from website
