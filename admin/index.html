@@ -3082,9 +3082,15 @@
     // Global variables for real data
     let currentLeads = [];
     let authToken = localStorage.getItem('adminToken') || '';
+    let useLocalStorage = !window.location.protocol.startsWith('http') || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-    // API Helper Functions
+    // API Helper Functions with localStorage fallback
     async function apiCall(endpoint, method = 'GET', data = null) {
+        // Always try localStorage first if we detect we're not on a proper server
+        if (useLocalStorage) {
+            return handleLocalStorageAPI(endpoint, method, data);
+        }
+
         const options = {
             method: method,
             headers: {
@@ -3108,17 +3114,94 @@
         
         try {
             const response = await fetch(`/admin/api.php${endpoint}`, options);
-            const result = await response.json();
             
-            if (!response.ok) {
-                throw new Error(result.error || 'API call failed');
+            // If we get HTML back instead of JSON, PHP isn't working
+            const contentType = response.headers.get('content-type') || '';
+            if (contentType.includes('text/html') || !response.ok) {
+                console.log('PHP API not available, switching to localStorage mode');
+                useLocalStorage = true;
+                return handleLocalStorageAPI(endpoint, method, data);
             }
             
+            const result = await response.json();
             return result;
         } catch (error) {
-            console.error('API Error:', error);
-            alert('Error: ' + error.message);
-            return null;
+            console.log('API Error, falling back to localStorage:', error.message);
+            useLocalStorage = true;
+            return handleLocalStorageAPI(endpoint, method, data);
+        }
+    }
+
+    function handleLocalStorageAPI(endpoint, method, data) {
+        const action = endpoint.split('action=')[1]?.split('&')[0];
+        
+        switch (action) {
+            case 'login':
+                if (data?.username === 'admin' && data?.password === 'BuyJunkCarMiami2024!') {
+                    authToken = 'local-admin-token';
+                    localStorage.setItem('adminToken', authToken);
+                    return { success: true, token: authToken, message: 'Login successful (localStorage mode)' };
+                }
+                return { error: 'Invalid credentials' };
+                
+            case 'get_leads':
+                const leads = JSON.parse(localStorage.getItem('adminLeads') || '[]');
+                if (leads.length === 0) {
+                    // Add some sample data
+                    const sampleLeads = [
+                        {
+                            id: '1731445123456',
+                            name: 'Maria Rodriguez',
+                            phone: '(305) 123-4567', 
+                            email: 'maria.r@email.com',
+                            vehicle: '2015 Honda Civic',
+                            status: 'new',
+                            quote: '$3,200',
+                            location: 'Miami',
+                            timestamp: '2024-11-11 15:32:03'
+                        }
+                    ];
+                    localStorage.setItem('adminLeads', JSON.stringify(sampleLeads));
+                    return { success: true, leads: sampleLeads };
+                }
+                return { success: true, leads: leads };
+                
+            case 'save_lead':
+                let existingLeads = JSON.parse(localStorage.getItem('adminLeads') || '[]');
+                const leadIndex = existingLeads.findIndex(lead => lead.id === data.id);
+                if (leadIndex !== -1) {
+                    existingLeads[leadIndex] = data;
+                } else {
+                    existingLeads.push(data);
+                }
+                localStorage.setItem('adminLeads', JSON.stringify(existingLeads));
+                return { success: true, message: 'Lead saved (localStorage mode)' };
+                
+            case 'get_pages':
+                return { 
+                    success: true, 
+                    pages: [
+                        { name: 'home', path: 'index.html', modified: new Date().toISOString().split('T')[0] },
+                        { name: 'services', path: 'services/index.html', modified: new Date().toISOString().split('T')[0] },
+                        { name: 'locations', path: 'locations/index.html', modified: new Date().toISOString().split('T')[0] },
+                        { name: 'contact', path: 'contact/index.html', modified: new Date().toISOString().split('T')[0] }
+                    ]
+                };
+                
+            case 'get_page_content':
+                alert('⚠️ Page editing requires a PHP server.\n\nTo enable full functionality:\n1. Install XAMPP, WAMP, or MAMP\n2. Place website in htdocs folder\n3. Start Apache server\n4. Access via http://localhost');
+                return { error: 'Page editing requires PHP server' };
+                
+            case 'save_page':
+                alert('⚠️ Page saving requires a PHP server.');
+                return { error: 'Page saving requires PHP server' };
+                
+            case 'create_page':
+                alert('⚠️ Page creation requires a PHP server.');
+                return { error: 'Page creation requires PHP server' };
+                
+            default:
+                return { error: 'Unknown action' };
         }
     }
 
@@ -3508,7 +3591,13 @@
     // Show welcome message in console
     console.log('🚀 Miami Junk Car Buyers Admin Portal initialized successfully!');
     console.log('👤 Login credentials: admin / BuyJunkCarMiami2024!');
-    console.log('📝 Live admin panel connected to real website data.');
+    
+    if (useLocalStorage) {
+        console.log('⚠️ Running in localStorage mode - Lead management works, page editing requires PHP server');
+        console.log('💡 To enable full functionality, set up XAMPP/WAMP and access via http://localhost');
+    } else {
+        console.log('✅ Live admin panel connected to real website data via PHP API');
+    }
 
 })();
     </script>
