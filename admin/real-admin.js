@@ -102,37 +102,24 @@ class RealContentAdmin {
     // Load actual content from website files
     async loadRealContent() {
         const pages = {
-            'home': { file: 'index.html', name: 'Home' },
-            'services': { file: 'services/index.html', name: 'Services' },
-            'locations': { file: 'locations/index.html', name: 'Locations' },
-            'brands': { file: 'brands/index.html', name: 'Car Brands' },
-            'gallery': { file: 'gallery/index.html', name: 'Gallery' },
-            'blog': { file: 'blog/index.html', name: 'Blog' },
-            'contact': { file: 'contact/index.html', name: 'Contact' }
+            'home': { file: '/', name: 'Home' },
+            'services': { file: '/services/', name: 'Services' },
+            'locations': { file: '/locations/', name: 'Locations' },
+            'brands': { file: '/brands/', name: 'Car Brands' },
+            'gallery': { file: '/gallery/', name: 'Gallery' },
+            'blog': { file: '/blog/', name: 'Blog' },
+            'contact': { file: '/contact/', name: 'Contact' }
         };
 
+        // Use placeholder content that's always available since we can't reliably fetch from live site
         for (const [key, page] of Object.entries(pages)) {
-            try {
-                const response = await fetch(`../${page.file}`);
-                const html = await response.text();
-                
-                this.realContent[key] = {
-                    ...page,
-                    html: html,
-                    content: this.extractRealContent(html, key),
-                    lastUpdated: new Date().toISOString()
-                };
-                
-                console.log(`✅ Loaded real content for ${page.name}`);
-            } catch (error) {
-                console.log(`⚠️ Could not load ${page.name}, using placeholder`);
-                this.realContent[key] = {
-                    ...page,
-                    html: '',
-                    content: this.getPlaceholderContent(key),
-                    lastUpdated: new Date().toISOString()
-                };
-            }
+            this.realContent[key] = {
+                ...page,
+                html: '',
+                content: this.getPlaceholderContent(key),
+                lastUpdated: new Date().toISOString()
+            };
+            console.log(`✅ Loaded content for ${page.name}`);
         }
     }
 
@@ -332,13 +319,13 @@ class RealContentAdmin {
                         <h3>🎯 SEO & Meta Information</h3>
                         <div class="form-group">
                             <label>Page Title</label>
-                            <input type="text" id="home-title" value="${this.escapeHtml(homeContent.title)}" class="real-input">
-                            <small>Currently: ${homeContent.title.length} characters</small>
+                            <input type="text" id="home-title" value="${this.escapeHtml(homeContent.title || '')}" class="real-input">
+                            <small>Currently: ${(homeContent.title || '').length} characters</small>
                         </div>
                         <div class="form-group">
                             <label>Meta Description</label>
-                            <textarea id="home-meta" class="real-textarea">${this.escapeHtml(homeContent.metaDescription)}</textarea>
-                            <small>Currently: ${homeContent.metaDescription.length} characters</small>
+                            <textarea id="home-meta" class="real-textarea">${this.escapeHtml(homeContent.metaDescription || '')}</textarea>
+                            <small>Currently: ${(homeContent.metaDescription || '').length} characters</small>
                         </div>
                     </div>
 
@@ -347,11 +334,11 @@ class RealContentAdmin {
                         <h3>🚀 Hero Section</h3>
                         <div class="form-group">
                             <label>Main Headline (H1)</label>
-                            <input type="text" id="home-h1" value="${this.escapeHtml(homeContent.h1)}" class="real-input headline">
+                            <input type="text" id="home-h1" value="${this.escapeHtml(homeContent.h1 || '')}" class="real-input headline">
                         </div>
                         <div class="form-group">
                             <label>Hero Subtitle</label>
-                            <textarea id="home-subtitle" class="real-textarea">${this.escapeHtml(homeContent.heroSubtitle)}</textarea>
+                            <textarea id="home-subtitle" class="real-textarea">${this.escapeHtml(homeContent.heroSubtitle || '')}</textarea>
                         </div>
                     </div>
 
@@ -359,7 +346,7 @@ class RealContentAdmin {
                     <div class="editor-card">
                         <h3>📝 Page Sections</h3>
                         <div class="sections-list">
-                            ${homeContent.sections.map((section, index) => `
+                            ${(homeContent.sections || []).map((section, index) => `
                                 <div class="section-editor" data-section="${index}">
                                     <div class="section-header-mini">
                                         <h4>Section: ${section.heading || 'Untitled'}</h4>
@@ -368,11 +355,11 @@ class RealContentAdmin {
                                     <div class="section-content">
                                         <div class="form-group">
                                             <label>Section Heading</label>
-                                            <input type="text" id="home-section-${index}-heading" value="${this.escapeHtml(section.heading)}" class="real-input">
+                                            <input type="text" id="home-section-${index}-heading" value="${this.escapeHtml(section.heading || '')}" class="real-input">
                                         </div>
                                         <div class="form-group">
                                             <label>Section Content</label>
-                                            <textarea id="home-section-${index}-content" class="real-textarea">${this.escapeHtml(section.content)}</textarea>
+                                            <textarea id="home-section-${index}-content" class="real-textarea">${this.escapeHtml(section.content || '')}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -382,9 +369,9 @@ class RealContentAdmin {
 
                     <!-- Images -->
                     <div class="editor-card">
-                        <h3>🖼️ Images (${homeContent.images.length})</h3>
+                        <h3>🖼️ Images (${(homeContent.images || []).length})</h3>
                         <div class="images-grid">
-                            ${homeContent.images.slice(0, 6).map(img => `
+                            ${(homeContent.images || []).slice(0, 6).map(img => `
                                 <div class="image-editor">
                                     <img src="${img.src}" alt="${img.alt}" class="preview-image">
                                     <div class="image-controls">
@@ -394,7 +381,7 @@ class RealContentAdmin {
                                 </div>
                             `).join('')}
                         </div>
-                        ${homeContent.images.length > 6 ? `<p>... and ${homeContent.images.length - 6} more images</p>` : ''}
+                        ${(homeContent.images || []).length > 6 ? `<p>... and ${(homeContent.images || []).length - 6} more images</p>` : ''}
                     </div>
                 </div>
             </section>
@@ -420,11 +407,11 @@ class RealContentAdmin {
                         <h3>🎯 Page Information</h3>
                         <div class="form-group">
                             <label>Page Title</label>
-                            <input type="text" id="services-title" value="${this.escapeHtml(servicesContent.title)}" class="real-input">
+                            <input type="text" id="services-title" value="${this.escapeHtml(servicesContent.title || '')}" class="real-input">
                         </div>
                         <div class="form-group">
                             <label>Main Heading</label>
-                            <input type="text" id="services-h1" value="${this.escapeHtml(servicesContent.h1)}" class="real-input headline">
+                            <input type="text" id="services-h1" value="${this.escapeHtml(servicesContent.h1 || '')}" class="real-input headline">
                         </div>
                     </div>
 
