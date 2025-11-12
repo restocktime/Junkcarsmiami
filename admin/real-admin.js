@@ -200,26 +200,54 @@ class RealContentAdmin {
         const placeholders = {
             'home': {
                 title: 'Buy Junk Car Miami - We Buy Junk Cars Miami | Free Towing',
-                metaDescription: 'Get instant cash for your junk car in Miami! Free towing, same-day pickup.',
+                metaDescription: 'Get instant cash for your junk car in Miami! Free towing, same-day pickup. We buy cars with no title. Call (305) 534-5991 for your quote today.',
                 h1: 'Buy Junk Car Miami - Top Dollar Paid - Same Day Pickup',
-                heroSubtitle: 'We buy junk cars, damaged cars, and cars with no title in Miami-Dade & Broward County.',
+                heroSubtitle: 'We buy junk cars, damaged cars, and cars with no title in Miami-Dade & Broward County. Get paid TOP CASH on the spot with FREE towing in 30 minutes to 1 hour!',
+                images: [
+                    { id: 'logo', src: 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dd565359-4078-4930-a1c8-f4c76a128285.png', alt: 'Buy Junk Car Miami Logo' },
+                    { id: 'img1', src: 'images/AdobeStock_373569463_Preview.jpeg', alt: 'Junk car removal Miami' },
+                    { id: 'img2', src: 'images/AdobeStock_332654481_Preview.jpeg', alt: 'Cash for junk cars' },
+                    { id: 'img3', src: 'images/AdobeStock_222819268_Preview.jpeg', alt: 'Miami junk car buyer' },
+                    { id: 'img4', src: 'images/AdobeStock_1548310032_Preview.jpeg', alt: 'Sell junk car Miami' },
+                    { id: 'img5', src: 'images/939477fa-f5c0-4313-b136-2afa207a675f.JPG', alt: 'Real junk car pickup Miami' },
+                    { id: 'img6', src: 'images/junkcars1.webp', alt: 'Miami junk car removal' },
+                    { id: 'img7', src: 'images/junkcars2.webp', alt: 'Cash for junk cars' },
+                    { id: 'img8', src: 'images/junkcars3.webp', alt: 'Miami towing service' }
+                ],
                 sections: [
-                    { id: 'hero', heading: 'Get Cash For Your Junk Car', content: 'Same day pickup with free towing' },
-                    { id: 'services', heading: 'Our Services', content: 'We buy all types of vehicles in any condition' }
+                    { id: 'hero', heading: 'Buy Junk Car Miami - Top Dollar Paid - Same Day Pickup', content: 'We buy junk cars, damaged cars, and cars with no title in Miami-Dade & Broward County. Get paid TOP CASH on the spot with FREE towing in 30 minutes to 1 hour!' },
+                    { id: 'features', heading: 'Why Choose Us', content: '💰 Instant Cash Payment | 🚛 Free Towing Service | 📋 No Title? No Problem | ⏰ Same Day Pickup' },
+                    { id: 'trust', heading: 'Licensed & Insured', content: 'FL License #TI0105 | BBB Accredited Business' }
                 ]
             },
             'services': {
-                title: 'Services - Miami Junk Car Buyers',
-                h1: 'Our Junk Car Services',
+                title: 'Junk Car Services Miami - Cash for Cars | Miami Junk Car Buyers',
+                metaDescription: 'Professional junk car removal services in Miami. We buy cars without titles, flood damaged, accident damaged, and inherited vehicles.',
+                h1: 'Junk Car Removal Services in Miami',
+                heroSubtitle: 'We buy all types of vehicles in any condition - running or not, with or without title.',
+                images: [
+                    { id: 'service1', src: 'images/AdobeStock_373569463_Preview.jpeg', alt: 'Junk car removal service' },
+                    { id: 'service2', src: 'images/AdobeStock_332654481_Preview.jpeg', alt: 'Cash for junk cars service' }
+                ],
                 sections: [
-                    { id: 'main', heading: 'Professional Car Buying Services', content: 'We offer comprehensive junk car removal services' }
+                    { id: 'junk-removal', heading: 'Junk Car Removal', content: 'Free towing and removal of junk vehicles with cash payment on the spot' },
+                    { id: 'no-title', heading: 'Cars Without Title', content: 'We buy cars without titles using legal Florida procedures' },
+                    { id: 'flood-cars', heading: 'Flood Damaged Cars', content: 'Specialized removal of flood and hurricane damaged vehicles' },
+                    { id: 'accident-cars', heading: 'Accident Damaged Cars', content: 'We purchase vehicles damaged in accidents, regardless of extent' },
+                    { id: 'fire-damaged', heading: 'Fire Damaged Cars', content: 'Safe removal and purchase of fire damaged vehicles' }
                 ]
             },
             'contact': {
-                title: 'Contact - Miami Junk Car Buyers',
-                h1: 'Contact Us',
+                title: 'Contact Miami Junk Car Buyers - Get Your Quote Today',
+                metaDescription: 'Contact Miami Junk Car Buyers for instant cash quotes. Call (305) 534-5991 or email buyjunkcarmiami@gmail.com. Licensed & insured.',
+                h1: 'Contact Miami Junk Car Buyers',
+                heroSubtitle: 'Get your instant cash quote today. We are available 8am-10pm daily.',
+                images: [
+                    { id: 'contact1', src: 'images/contact-hero.jpg', alt: 'Contact Miami Junk Car Buyers' }
+                ],
                 sections: [
-                    { id: 'contact-info', heading: 'Get In Touch', content: 'Call us at (305) 534-5991' }
+                    { id: 'contact-info', heading: 'Get In Touch', content: 'Phone: (305) 534-5991 | Email: buyjunkcarmiami@gmail.com | Address: 122 South Miami Avenue, Miami, FL 33130' },
+                    { id: 'hours', heading: 'Business Hours', content: 'Open 8am-10pm Daily | Same day pickup available' }
                 ]
             }
         };
@@ -227,6 +255,7 @@ class RealContentAdmin {
         return placeholders[pageType] || {
             title: `${pageType.charAt(0).toUpperCase() + pageType.slice(1)} - Miami Junk Car Buyers`,
             h1: `${pageType.charAt(0).toUpperCase() + pageType.slice(1)}`,
+            images: [],
             sections: []
         };
     }
@@ -529,10 +558,51 @@ class RealContentAdmin {
                             </div>
                         </div>
                         <div class="gallery-grid">
-                            <!-- Images will be loaded here -->
+                            <!-- Actual website images -->
                             <div class="gallery-item">
-                                <img src="https://via.placeholder.com/200x150?text=Sample+Image" alt="Sample">
+                                <img src="../images/AdobeStock_373569463_Preview.jpeg" alt="Junk car removal Miami" class="preview-image">
                                 <div class="image-controls">
+                                    <input type="text" placeholder="Alt text" value="Junk car removal Miami" class="real-input small">
+                                    <button class="btn-small">✏️ Edit</button>
+                                    <button class="btn-small danger">🗑️ Delete</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../images/AdobeStock_332654481_Preview.jpeg" alt="Cash for junk cars Miami" class="preview-image">
+                                <div class="image-controls">
+                                    <input type="text" placeholder="Alt text" value="Cash for junk cars Miami" class="real-input small">
+                                    <button class="btn-small">✏️ Edit</button>
+                                    <button class="btn-small danger">🗑️ Delete</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../images/939477fa-f5c0-4313-b136-2afa207a675f.JPG" alt="Real junk car pickup Miami" class="preview-image">
+                                <div class="image-controls">
+                                    <input type="text" placeholder="Alt text" value="Real junk car pickup Miami" class="real-input small">
+                                    <button class="btn-small">✏️ Edit</button>
+                                    <button class="btn-small danger">🗑️ Delete</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../images/junkcars1.webp" alt="Miami junk car removal service" class="preview-image">
+                                <div class="image-controls">
+                                    <input type="text" placeholder="Alt text" value="Miami junk car removal service" class="real-input small">
+                                    <button class="btn-small">✏️ Edit</button>
+                                    <button class="btn-small danger">🗑️ Delete</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../images/junkcars2.webp" alt="Cash for cars Miami" class="preview-image">
+                                <div class="image-controls">
+                                    <input type="text" placeholder="Alt text" value="Cash for cars Miami" class="real-input small">
+                                    <button class="btn-small">✏️ Edit</button>
+                                    <button class="btn-small danger">🗑️ Delete</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../images/junkcars3.webp" alt="Miami towing service" class="preview-image">
+                                <div class="image-controls">
+                                    <input type="text" placeholder="Alt text" value="Miami towing service" class="real-input small">
                                     <button class="btn-small">✏️ Edit</button>
                                     <button class="btn-small danger">🗑️ Delete</button>
                                 </div>
