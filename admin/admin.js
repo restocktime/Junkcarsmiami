@@ -136,7 +136,11 @@ class MiamiJunkCarAdmin {
     }
 
     showDashboard() {
-        document.body.innerHTML = this.getDashboardHTML();
+        // Try to find admin panel div, otherwise use body
+        const adminPanel = document.getElementById('adminPanel');
+        const container = adminPanel || document.body;
+        
+        container.innerHTML = this.getDashboardHTML();
         this.loadDashboardData();
         this.setupDashboardEvents();
     }
@@ -352,10 +356,19 @@ class MiamiJunkCarAdmin {
     }
 
     showSection(sectionName) {
+        // Remove active class from all sections
         document.querySelectorAll('.admin-section').forEach(section => {
             section.classList.remove('active');
         });
-        document.getElementById(sectionName).classList.add('active');
+        
+        // Add active class to target section
+        const targetSection = document.getElementById(sectionName);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        } else {
+            console.error(`Section not found: ${sectionName}`);
+            return;
+        }
 
         // Load data when sections are accessed
         if (sectionName === 'pages') {
@@ -364,11 +377,20 @@ class MiamiJunkCarAdmin {
     }
 
     showTab(tabName) {
+        // Remove active from all tabs and panels
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelectorAll('.editor-panel').forEach(panel => panel.classList.remove('active'));
         
-        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-        document.getElementById(tabName).classList.add('active');
+        // Add active to selected tab and panel
+        const targetTab = document.querySelector(`[data-tab="${tabName}"]`);
+        const targetPanel = document.getElementById(tabName);
+        
+        if (targetTab && targetPanel) {
+            targetTab.classList.add('active');
+            targetPanel.classList.add('active');
+        } else {
+            console.error(`Tab or panel not found: ${tabName}`);
+        }
     }
 
     // Lead Management
@@ -634,10 +656,12 @@ class MiamiJunkCarAdmin {
                 this.updateFileAccessUI(true);
                 this.showUpdateNotification('✅ File system access granted! Live editing enabled.');
                 this.logActivity('File system access granted - live editing enabled');
+            } else {
+                this.showUpdateNotification('ℹ️ File access cancelled. Admin still works in simulation mode.');
             }
         } catch (error) {
-            console.error('File access failed:', error);
-            this.showUpdateNotification('❌ File access denied. Using simulation mode.');
+            console.log('File access error:', error.message);
+            this.showUpdateNotification('ℹ️ File access not available. Using simulation mode.');
         }
     }
 

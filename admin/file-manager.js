@@ -34,10 +34,14 @@ class WebsiteFileManager {
                 mode: 'readwrite'
             });
             
-            console.log('📁 File system access granted');
+            console.log('✅ File system access granted - Live editing enabled!');
             return true;
         } catch (error) {
-            console.error('File system access denied:', error);
+            if (error.name === 'AbortError') {
+                console.log('ℹ️ File system access cancelled by user');
+            } else {
+                console.log('ℹ️ File system access not available - using simulation mode');
+            }
             return false;
         }
     }

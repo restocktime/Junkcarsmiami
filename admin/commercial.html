@@ -12,7 +12,6 @@
     
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     
     <style>
@@ -64,7 +63,7 @@
     </div>
 
     <!-- Admin Panel Content (loaded by JavaScript) -->
-    <div id="adminPanel" style="display: none;"></div>
+    <div id="adminPanel"></div>
 
     <!-- Scripts -->
     <script src="file-manager.js"></script>
@@ -73,19 +72,27 @@
     <script>
         // Initialize the commercial admin system
         document.addEventListener('DOMContentLoaded', function() {
-            // Hide loading screen after admin system loads
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loadingScreen');
-                const adminPanel = document.getElementById('adminPanel');
-                
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
+            // Wait for admin system to fully load
+            const checkAdminLoaded = () => {
+                if (window.admin) {
+                    // Hide loading screen after admin system loads
                     setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                        adminPanel.style.display = 'block';
-                    }, 300);
+                        const loadingScreen = document.getElementById('loadingScreen');
+                        
+                        if (loadingScreen) {
+                            loadingScreen.style.opacity = '0';
+                            setTimeout(() => {
+                                loadingScreen.style.display = 'none';
+                            }, 300);
+                        }
+                    }, 500);
+                } else {
+                    // Check again in 100ms if admin not loaded yet
+                    setTimeout(checkAdminLoaded, 100);
                 }
-            }, 1500);
+            };
+            
+            checkAdminLoaded();
 
             // System status logging
             console.log('🚀 Miami Junk Car Buyers - Commercial Admin System');
