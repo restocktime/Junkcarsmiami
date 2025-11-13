@@ -8,58 +8,68 @@
     
     // Configuration
     const CONFIG = {
-        adminStorage: 'mjc_admin_data',
-        emailEndpoint: 'https://formspree.io/f/YOUR_FORM_ID', // Replace with actual endpoint
+        adminEndpoint: '/admin/database.php',
         businessEmail: 'buyjunkcarmiami@gmail.com',
         businessPhone: '(305) 534-5991'
     };
 
     // Lead capture function
-    function captureFormLead(formData) {
+    async function captureFormLead(formData) {
         try {
-            // Get existing admin data
-            let adminData = JSON.parse(localStorage.getItem(CONFIG.adminStorage)) || {
-                leads: [],
-                content: {},
-                settings: {}
-            };
-
-            // Create new lead
-            const lead = {
-                id: Date.now(),
-                date: new Date().toLocaleDateString(),
-                time: new Date().toLocaleTimeString(),
-                name: formData.name || 'Website Visitor',
-                phone: formData.phone || 'Not provided',
-                email: formData.email || 'Not provided',
-                vehicle: getVehicleInfo(formData),
+            // Create standardized lead data
+            const leadData = {
+                action: 'capture_form',
+                name: formData.name || formData['customer-name'] || 'Website Visitor',
+                phone: formData.phone || formData['customer-phone'] || 'Not provided',
+                email: formData.email || formData['customer-email'] || '',
+                year: formData.year || formData['vehicle-year'] || '',
+                make: formData.make || formData['vehicle-make'] || '',
+                model: formData.model || formData['vehicle-model'] || '',
+                condition: formData.condition || formData['vehicle-condition'] || '',
                 location: formData.location || getLocationFromPage(),
-                message: formData.message || '',
-                status: 'new',
+                message: formData.message || formData['additional-info'] || '',
                 source: 'website_form',
-                page: window.location.pathname,
-                referrer: document.referrer || 'Direct',
-                userAgent: navigator.userAgent,
-                created: new Date().toISOString(),
-                priority: calculatePriority(formData)
+                page_url: window.location.href,
+                referrer: document.referrer || 'Direct'
             };
 
-            // Add lead to admin data
-            adminData.leads.unshift(lead);
+            console.log('🚀 Sending lead to database:', leadData);
 
-            // Keep only last 1000 leads to prevent storage bloat
-            if (adminData.leads.length > 1000) {
-                adminData.leads = adminData.leads.slice(0, 1000);
+            // Send to database
+            const response = await fetch(CONFIG.adminEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(leadData)
+            });
+
+            const result = await response.json();
+            
+            if (result.success) {
+                console.log('✅ Lead saved to database with ID:', result.lead_id);
+                return { ...leadData, id: result.lead_id, priority: 'medium' };
+            } else {
+                throw new Error(result.error || 'Database save failed');
             }
-
-            // Save to localStorage
-            localStorage.setItem(CONFIG.adminStorage, JSON.stringify(adminData));
-
-            console.log('✅ Lead captured and saved to admin:', lead);
-            return lead;
 
         } catch (error) {
             console.error('❌ Error capturing lead:', error);
+            
+            // Fallback to localStorage for offline storage
+            try {
+                const adminData = JSON.parse(localStorage.getItem('mjc_offline_leads')) || [];
+                adminData.push({
+                    ...formData,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending_sync'
+                });
+                localStorage.setItem('mjc_offline_leads', JSON.stringify(adminData));
+                console.log('📱 Lead saved offline for later sync');
+            } catch (fallbackError) {
+                console.error('❌ Offline storage also failed:', fallbackError);
+            }
+            
             return null;
         }
     }
@@ -180,33 +190,68 @@ This lead was automatically captured from your website.
     }
 
     // Form submission handler
-    function handleFormSubmission(event) {
-        const form = event.target;
-        const formData = new FormData(form);
-        const data = {};
+    async function handleFormSubmission(event) {
+        event.preventDefault();
         
-        // Convert FormData to object
-        for (let [key, value] of formData.entries()) {
-            data[key] = value;
+        const form = event.target;
+        const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+        const originalText = submitButton ? (submitButton.textContent || submitButton.value) : '';
+        
+        // Show loading state
+        if (submitButton) {
+            submitButton.disabled = true;
+            if (submitButton.textContent !== undefined) {
+                submitButton.textContent = 'Sending...';
+            } else {
+                submitButton.value = 'Sending...';
+            }
         }
 
-        // Capture the lead
-        const lead = captureFormLead(data);
-        
-        if (lead) {
-            // Send notifications
-            sendEmailNotification(lead);
-            sendWhatsAppNotification(lead);
+        try {
+            const formData = new FormData(form);
+            const data = {};
             
-            // Show success message to user
-            showSuccessMessage();
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            // Capture the lead
+            const lead = await captureFormLead(data);
             
-            // Optional: redirect to thank you page
-            setTimeout(() => {
-                if (window.location.pathname !== '/thank-you/') {
-                    // window.location.href = '/thank-you/';
+            if (lead) {
+                // Send notifications
+                sendEmailNotification(lead);
+                sendWhatsAppNotification(lead);
+                
+                // Show success message to user
+                showSuccessMessage();
+                
+                // Reset form
+                form.reset();
+                
+                // Optional: redirect to thank you page
+                setTimeout(() => {
+                    if (window.location.pathname !== '/thank-you/') {
+                        // window.location.href = '/thank-you/';
+                    }
+                }, 2000);
+            } else {
+                throw new Error('Failed to save lead');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showErrorMessage();
+        } finally {
+            // Restore button
+            if (submitButton) {
+                submitButton.disabled = false;
+                if (submitButton.textContent !== undefined) {
+                    submitButton.textContent = originalText;
+                } else {
+                    submitButton.value = originalText;
                 }
-            }, 2000);
+            }
         }
     }
 
@@ -246,6 +291,44 @@ This lead was automatically captured from your website.
                 message.parentNode.removeChild(message);
             }
         }, 5000);
+    }
+
+    // Show error message to user
+    function showErrorMessage() {
+        const message = document.createElement('div');
+        message.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #e74c3c;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                z-index: 10000;
+                max-width: 350px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                animation: slideIn 0.3s ease;
+            ">
+                <strong>⚠️ Submission Error</strong><br>
+                Please try again or call us at ${CONFIG.businessPhone}
+            </div>
+            <style>
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            </style>
+        `;
+        
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            if (message.parentNode) {
+                message.parentNode.removeChild(message);
+            }
+        }, 7000);
     }
 
     // Initialize form integration
