@@ -9,6 +9,7 @@
     // Configuration
     const CONFIG = {
         adminEndpoint: '/admin/database.php',
+        fallbackEndpoint: '/admin/fallback.php',
         businessEmail: 'buyjunkcarmiami@gmail.com',
         businessPhone: '(305) 534-5991'
     };
@@ -35,16 +36,40 @@
 
             console.log('🚀 Sending lead to database:', leadData);
 
-            // Send to database
-            const response = await fetch(CONFIG.adminEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(leadData)
-            });
+            // Try primary endpoint first
+            let result;
+            try {
+                const response = await fetch(CONFIG.adminEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(leadData)
+                });
 
-            const result = await response.json();
+                if (response.ok) {
+                    result = await response.json();
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (primaryError) {
+                console.log('Primary endpoint failed, trying fallback:', primaryError);
+                
+                // Try fallback endpoint
+                const fallbackResponse = await fetch(CONFIG.fallbackEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(leadData)
+                });
+
+                if (fallbackResponse.ok) {
+                    result = await fallbackResponse.json();
+                } else {
+                    throw new Error('Both endpoints failed');
+                }
+            }
             
             if (result.success) {
                 console.log('✅ Lead saved to database with ID:', result.lead_id);
