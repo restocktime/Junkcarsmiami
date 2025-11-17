@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars for Sale - Buy Junk Car Miami</title>
+    <meta name="description" content="Browse our inventory of quality used cars for sale in Miami. Great prices, reliable vehicles, and excellent customer service.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .car-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        
+        .car-image {
+            aspect-ratio: 16/9;
+            background: #f3f4f6;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .car-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .car-status.sold {
+            background: #dc2626;
+        }
+        
+        .car-info {
+            padding: 1.5rem;
+        }
+        
+        .car-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        
+        .car-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .car-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .car-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-tag {
+            background: #e5e7eb;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+        
+        .filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .filter-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6b7280;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <i class="fas fa-car"></i>
+                        <span>Buy Junk Car Miami</span>
+                    </a>
+                </div>
+                <nav class="nav-menu">
+                    <a href="/">Home</a>
+                    <a href="/services/">Services</a>
+                    <a href="/cars-for-sale.html" class="active">Cars for Sale</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="tel:+13055345991" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> (305) 534-5991
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 0;">
+        <div class="container">
+            <h1 style="color: white; margin-bottom: 1rem;">Cars for Sale</h1>
+            <p style="color: white; font-size: 1.25rem;">Quality used vehicles at great prices</p>
+        </div>
+    </section>
+
+    <section style="padding: 4rem 0;">
+        <div class="container">
+            <!-- Filters -->
+            <div class="filters">
+                <h3 style="margin-bottom: 1rem;">Filter Cars</h3>
+                <div class="filter-group">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Make</label>
+                        <select id="filterMake" class="form-control" onchange="filterCars()">
+                            <option value="">All Makes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Max Price</label>
+                        <select id="filterPrice" class="form-control" onchange="filterCars()">
+                            <option value="">Any Price</option>
+                            <option value="5000">Under $5,000</option>
+                            <option value="10000">Under $10,000</option>
+                            <option value="15000">Under $15,000</option>
+                            <option value="20000">Under $20,000</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Year</label>
+                        <select id="filterYear" class="form-control" onchange="filterCars()">
+                            <option value="">Any Year</option>
+                            <option value="2020">2020 or Newer</option>
+                            <option value="2015">2015 or Newer</option>
+                            <option value="2010">2010 or Newer</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cars Grid -->
+            <div id="carsContainer">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #10b981;"></i>
+                    <p style="margin-top: 1rem;">Loading cars...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Buy Junk Car Miami. All rights reserved.</p>
+            <p>Licensed & Insured • License #TI0105</p>
+        </div>
+    </footer>
+
+    <script>
+        const SUPABASE_URL = 'https://ccukjascbxmfbfalprib.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXNjYnhtZmJmYWxwcmliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODM2NzYsImV4cCI6MjA3ODk1OTY3Nn0.m4mQNDbSSRJYbKEDTIXWSAjW6K2ReUJQbA4q3xyxu0E';
+        
+        let allCars = [];
+        
+        async function loadCars() {
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/cars_for_sale?status=eq.available&order=created_at.desc`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+                
+                if (response.ok) {
+                    allCars = await response.json();
+                    populateFilters();
+                    renderCars(allCars);
+                } else {
+                    throw new Error('Failed to load cars');
+                }
+            } catch (error) {
+                console.error('Error loading cars:', error);
+                document.getElementById('carsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #f59e0b;"></i>
+                        <h2 style="margin-top: 1rem;">Unable to Load Inventory</h2>
+                        <p>Please try again later or call us at (305) 534-5991</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function populateFilters() {
+            const makes = [...new Set(allCars.map(car => car.make))].sort();
+            const makeSelect = document.getElementById('filterMake');
+            makes.forEach(make => {
+                const option = document.createElement('option');
+                option.value = make;
+                option.textContent = make;
+                makeSelect.appendChild(option);
+            });
+        }
+        
+        function filterCars() {
+            const make = document.getElementById('filterMake').value;
+            const maxPrice = document.getElementById('filterPrice').value;
+            const minYear = document.getElementById('filterYear').value;
+            
+            let filtered = allCars;
+            
+            if (make) {
+                filtered = filtered.filter(car => car.make === make);
+            }
+            
+            if (maxPrice) {
+                filtered = filtered.filter(car => car.price <= parseFloat(maxPrice));
+            }
+            
+            if (minYear) {
+                filtered = filtered.filter(car => car.year >= parseInt(minYear));
+            }
+            
+            renderCars(filtered);
+        }
+        
+        function renderCars(cars) {
+            const container = document.getElementById('carsContainer');
+            
+            if (cars.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-car" style="font-size: 3rem; color: #cbd5e0;"></i>
+                        <h2 style="margin-top: 1rem;">No Cars Available</h2>
+                        <p>Check back soon for new inventory!</p>
+                        <a href="tel:+13055345991" class="btn btn-primary" style="margin-top: 1rem;">
+                            <i class="fas fa-phone"></i> Call Us: (305) 534-5991
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '<div class="cars-grid">';
+            
+            cars.forEach(car => {
+                html += `
+                    <div class="car-card">
+                        <div class="car-image">
+                            ${car.image_url ? `
+                                <img src="${car.image_url}" alt="${car.title}" onerror="this.src='/images/junkcars1.webp'">
+                            ` : `
+                                <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                                    <i class="fas fa-car" style="font-size: 4rem; color: #cbd5e0;"></i>
+                                </div>
+                            `}
+                            <div class="car-status">${car.status.toUpperCase()}</div>
+                        </div>
+                        <div class="car-info">
+                            <h3 class="car-title">${car.title}</h3>
+                            <div class="car-price">$${parseFloat(car.price).toLocaleString()}</div>
+                            <div class="car-details">
+                                <div><i class="fas fa-tachometer-alt"></i> ${car.mileage ? car.mileage.toLocaleString() + ' mi' : 'N/A'}</div>
+                                <div><i class="fas fa-palette"></i> ${car.color || 'N/A'}</div>
+                                <div><i class="fas fa-cog"></i> ${car.transmission || 'N/A'}</div>
+                                <div><i class="fas fa-gas-pump"></i> ${car.fuel_type || 'N/A'}</div>
+                            </div>
+                            ${car.features && car.features.length > 0 ? `
+                                <div class="car-features">
+                                    ${car.features.slice(0, 3).map(f => `<span class="feature-tag">${f}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                            ${car.description ? `
+                                <p style="color: #6b7280; font-size: 0.875rem; margin-bottom: 1rem;">
+                                    ${car.description.substring(0, 100)}${car.description.length > 100 ? '...' : ''}
+                                </p>
+                            ` : ''}
+                            <a href="tel:+13055345991" class="btn btn-primary" style="width: 100%; text-align: center;">
+                                <i class="fas fa-phone"></i> Call About This Car
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        
+        // Load cars on page load
+        loadCars();
+    </script>
+</body>
+</html>
