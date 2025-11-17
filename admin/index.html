@@ -609,16 +609,34 @@
                 created_at: lead.created || lead.timestamp || new Date().toISOString()
             }));
             
-            // Sort by date (newest first)
-            allLeads.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            // Remove duplicates by phone number (keep first occurrence)
+            const uniqueLeads = [];
+            const seenPhones = new Set();
             
-            currentData.leads = allLeads;
+            allLeads.forEach(lead => {
+                if (!seenPhones.has(lead.phone)) {
+                    uniqueLeads.push(lead);
+                    seenPhones.add(lead.phone);
+                }
+            });
+            
+            // Sort by date (newest first)
+            uniqueLeads.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            
+            // Save cleaned website leads back to localStorage
+            const cleanedWebsiteLeads = uniqueLeads.filter(lead => lead.source === 'Website Form');
+            if (cleanedWebsiteLeads.length !== websiteLeads.length) {
+                localStorage.setItem('mjc_website_leads', JSON.stringify(cleanedWebsiteLeads));
+                console.log(`🧹 Cleaned up ${websiteLeads.length - cleanedWebsiteLeads.length} duplicate leads`);
+            }
+            
+            currentData.leads = uniqueLeads;
             renderLeadsTable();
             
             // Update stats
-            updateStatsFromLeads(allLeads);
+            updateStatsFromLeads(uniqueLeads);
             
-            if (allLeads.length === 0) {
+            if (uniqueLeads.length === 0) {
                 // Show empty state
                 document.getElementById('leadsTable').innerHTML = `
                     <div class="empty-state">

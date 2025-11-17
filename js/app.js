@@ -319,10 +319,11 @@
             try {
                 const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads') || '[]');
                 
-                // Check if this lead already exists (by ID or phone number)
+                // Check if this lead already exists (by phone number in last 5 minutes)
+                const fiveMinutesAgo = Date.now() - (5 * 60 * 1000);
                 const isDuplicate = existingLeads.some(existingLead => 
-                    existingLead.id === lead.id || 
-                    (existingLead.phone === lead.phone && existingLead.timestamp === lead.timestamp)
+                    existingLead.phone === lead.phone && 
+                    new Date(existingLead.timestamp).getTime() > fiveMinutesAgo
                 );
                 
                 if (!isDuplicate) {
@@ -331,42 +332,16 @@
                     console.log('✅ Lead saved to localStorage');
                     console.log('📊 Total leads in storage:', existingLeads.length);
                 } else {
-                    console.log('ℹ️ Duplicate lead detected, not saving again');
+                    console.log('ℹ️ Duplicate lead detected (same phone in last 5 minutes), not saving again');
                 }
             } catch (storageError) {
                 console.error('Failed to save to localStorage:', storageError);
             }
 
-            // Try to send to backend API with timeout
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-                
-                const response = await fetch('/api/quote', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(lead),
-                    signal: controller.signal
-                });
+            // Skip backend API call to prevent freezing
+            console.log('ℹ️ Lead saved locally (backend API disabled to prevent freezing)');
 
-                clearTimeout(timeoutId);
-
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log('✅ Lead sent to backend');
-                    return result;
-                }
-            } catch (apiError) {
-                if (apiError.name === 'AbortError') {
-                    console.log('ℹ️ Backend request timed out, lead saved locally');
-                } else {
-                    console.log('ℹ️ Backend not available, lead saved locally');
-                }
-            }
-
-            // Return success even if backend fails (lead is in localStorage)
+            // Return success immediately
             return {
                 success: true,
                 message: 'Quote request submitted successfully',
@@ -376,6 +351,11 @@
 
         function showSuccessMessage() {
             const formContainer = document.querySelector('.form-container');
+            if (!formContainer) {
+                console.error('Form container not found');
+                return;
+            }
+            
             formContainer.innerHTML = `
                 <div style="text-align: center; padding: 2rem;">
                     <div style="font-size: 3rem; color: #48bb78; margin-bottom: 1rem;">✓</div>
@@ -383,12 +363,12 @@
                     <p>Thank you! We'll contact you within 30 minutes with your official quote.</p>
                     <p><strong>Next Steps:</strong></p>
                     <ul style="text-align: left; margin: 1rem 0;">
-                        <li>Expect a call from (305) 555-1234</li>
+                        <li>Expect a call from (305) 534-5991</li>
                         <li>Have your keys and any paperwork ready</li>
                         <li>We'll schedule your free pickup</li>
                     </ul>
                     <div style="margin-top: 2rem;">
-                        <a href="tel:+13055551234" class="btn btn-primary">Call Now: (305) 555-1234</a>
+                        <a href="tel:+13055345991" class="btn btn-primary">Call Now: (305) 534-5991</a>
                     </div>
                 </div>
             `;
