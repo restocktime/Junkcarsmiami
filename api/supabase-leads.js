@@ -1,8 +1,8 @@
 // Real Database Solution - Supabase (PostgreSQL)
 // Works across ALL devices, stores in real database
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://your-project.supabase.co';
-const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || 'your-anon-key';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || 'https://ccukjascbxmfbfalprib.supabase.co';
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXNjYnhtZmJmYWxwcmliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODM2NzYsImV4cCI6MjA3ODk1OTY3Nn0.m4mQNDbSSRJYbKEDTIXWSAjW6K2ReUJQbA4q3xyxu0E';
 
 module.exports = async (req, res) => {
   // CORS headers
