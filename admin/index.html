@@ -714,8 +714,10 @@
 
     <!-- Add Car Modal -->
     <div id="addCarModal" class="modal">
-        <div class="modal-content" style="max-width: 800px;">
-            <h3>Add Car to Inventory</h3>
+        <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+            <div style="position: sticky; top: 0; background: white; padding-bottom: 1rem; border-bottom: 2px solid #e5e7eb; margin-bottom: 1rem; z-index: 10;">
+                <h3 style="margin: 0;">Add Car to Inventory</h3>
+            </div>
             <form id="carForm" onsubmit="saveCar(event)">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-group">
@@ -780,9 +782,14 @@
                     <textarea name="description" class="form-control" rows="4" placeholder="Describe the car's condition, features, history..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Image URL</label>
-                    <input type="url" name="image_url" class="form-control" placeholder="https://example.com/car-image.jpg">
-                    <span class="help-text">Paste image URL or upload to /images/ folder first</span>
+                    <label>Car Image *</label>
+                    <input type="file" id="carImageUpload" accept="image/*" class="form-control" style="padding: 0.5rem;">
+                    <span class="help-text">Upload a photo of the car (JPG, PNG, WEBP)</span>
+                    <div id="imagePreview" style="margin-top: 1rem; display: none;">
+                        <img id="previewImg" style="max-width: 200px; border-radius: 8px; border: 2px solid #e5e7eb;">
+                        <p style="margin-top: 0.5rem; font-size: 0.875rem; color: #6b7280;">Image ready to upload</p>
+                    </div>
+                    <input type="hidden" name="image_url" id="imageUrlField">
                 </div>
                 <div class="form-group">
                     <label>Features (comma separated)</label>
@@ -2294,8 +2301,28 @@
         function showAddCarModal() {
             document.getElementById('carForm').reset();
             document.querySelector('#carForm input[name="id"]').value = '';
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('imageUrlField').value = '';
             document.getElementById('addCarModal').style.display = 'block';
         }
+        
+        // Image upload preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('carImageUpload');
+            if (imageUpload) {
+                imageUpload.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            document.getElementById('previewImg').src = e.target.result;
+                            document.getElementById('imagePreview').style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
         
         async function editCar(carId) {
             try {
@@ -2340,6 +2367,32 @@
             const formData = new FormData(form);
             const carId = formData.get('id');
             
+            // Handle image upload first
+            let imageUrl = formData.get('image_url');
+            const imageFile = document.getElementById('carImageUpload').files[0];
+            
+            if (imageFile) {
+                try {
+                    // Convert image to base64 and store in Supabase
+                    const reader = new FileReader();
+                    const base64Promise = new Promise((resolve) => {
+                        reader.onload = () => resolve(reader.result);
+                        reader.readAsDataURL(imageFile);
+                    });
+                    
+                    const base64Image = await base64Promise;
+                    
+                    // For now, store base64 in database (simple solution)
+                    // Alternative: Upload to Supabase Storage bucket
+                    imageUrl = base64Image;
+                    
+                    console.log('✅ Image processed');
+                } catch (error) {
+                    console.error('Image upload error:', error);
+                    alert('⚠️ Image upload failed, but car will be saved without image');
+                }
+            }
+            
             const carData = {
                 year: parseInt(formData.get('year')),
                 make: formData.get('make'),
@@ -2352,7 +2405,7 @@
                 fuel_type: formData.get('fuel_type') || null,
                 condition: formData.get('condition') || null,
                 description: formData.get('description') || null,
-                image_url: formData.get('image_url') || null,
+                image_url: imageUrl,
                 features: formData.get('features') ? formData.get('features').split(',').map(f => f.trim()) : [],
                 title: `${formData.get('year')} ${formData.get('make')} ${formData.get('model')}`,
                 status: 'available',
