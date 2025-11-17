@@ -315,38 +315,52 @@
                 source: 'Website Form'
             };
 
-            // Save to localStorage for admin panel (prevent duplicates)
+            console.log('📝 Submitting lead to server...');
+
+            // Send to PHP backend with timeout
             try {
-                const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads') || '[]');
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
                 
-                // Check if this lead already exists (by phone number in last 5 minutes)
-                const fiveMinutesAgo = Date.now() - (5 * 60 * 1000);
-                const isDuplicate = existingLeads.some(existingLead => 
-                    existingLead.phone === lead.phone && 
-                    new Date(existingLead.timestamp).getTime() > fiveMinutesAgo
-                );
-                
-                if (!isDuplicate) {
-                    existingLeads.unshift(lead); // Add to beginning
-                    localStorage.setItem('mjc_website_leads', JSON.stringify(existingLeads));
-                    console.log('✅ Lead saved to localStorage');
-                    console.log('📊 Total leads in storage:', existingLeads.length);
+                const response = await fetch('/api/submit-lead.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(lead),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('✅ Lead saved to server:', result);
+                    return result;
                 } else {
-                    console.log('ℹ️ Duplicate lead detected (same phone in last 5 minutes), not saving again');
+                    throw new Error(`Server error: ${response.status}`);
                 }
-            } catch (storageError) {
-                console.error('Failed to save to localStorage:', storageError);
+            } catch (error) {
+                console.error('❌ Failed to save to server:', error);
+                
+                // Fallback: Save to localStorage as backup
+                try {
+                    const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads_backup') || '[]');
+                    existingLeads.unshift(lead);
+                    localStorage.setItem('mjc_website_leads_backup', JSON.stringify(existingLeads));
+                    console.log('💾 Lead saved to localStorage as backup');
+                } catch (storageError) {
+                    console.error('Failed to save backup:', storageError);
+                }
+                
+                // Still return success - lead is saved as backup
+                return {
+                    success: true,
+                    message: 'Quote request submitted (saved as backup)',
+                    leadId: lead.id,
+                    backup: true
+                };
             }
-
-            // Skip backend API call to prevent freezing
-            console.log('ℹ️ Lead saved locally (backend API disabled to prevent freezing)');
-
-            // Return success immediately
-            return {
-                success: true,
-                message: 'Quote request submitted successfully',
-                leadId: lead.id
-            };
         }
 
         function showSuccessMessage() {

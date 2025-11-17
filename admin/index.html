@@ -570,14 +570,37 @@
 
         // Load leads
         async function loadLeads() {
-            const result = await apiCall('action=leads');
-            if (result.success) {
-                currentData.leads = result.leads;
-                renderLeadsTable();
-            } else {
-                // Fallback to localStorage leads
-                loadOfflineLeads();
+            try {
+                // Try to fetch from PHP API
+                const response = await fetch('/api/get-leads.php');
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        currentData.leads = result.leads.map(lead => ({
+                            ...lead,
+                            created_at: lead.timestamp || lead.created_at
+                        }));
+                        
+                        // Update stats
+                        if (result.stats) {
+                            document.getElementById('totalLeads').textContent = result.stats.total_leads;
+                            document.getElementById('newLeads').textContent = result.stats.new_leads;
+                            document.getElementById('todayLeads').textContent = result.stats.today_leads;
+                            document.getElementById('highPriorityLeads').textContent = result.stats.high_priority_leads;
+                        }
+                        
+                        renderLeadsTable();
+                        console.log('✅ Loaded leads from server:', currentData.leads.length);
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load from server:', error);
             }
+            
+            // Fallback to localStorage leads
+            console.log('ℹ️ Falling back to localStorage');
+            loadOfflineLeads();
         }
 
         function loadOfflineLeads() {
