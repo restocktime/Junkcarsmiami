@@ -380,14 +380,77 @@
                 padding-top: 4rem;
             }
         }
+        
+        /* Login Screen */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .login-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-header h1 {
+            font-size: 1.8rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-header p {
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+    <!-- Login Screen - SHOWN BY DEFAULT -->
+    <div id="loginScreen" class="login-screen" style="display: flex;">
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-car" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;"></i>
+                <h1>Admin Login</h1>
+                <p>Buy Junk Car Miami</p>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" class="form-control" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" class="form-control" required autocomplete="current-password">
+                </div>
+                <div id="loginError" style="color: #dc2626; margin-bottom: 1rem; display: none;"></div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            <div style="margin-top: 1.5rem; text-align: center; font-size: 0.875rem; color: #6b7280;">
+                <p>Default credentials:</p>
+                <p><strong>Username:</strong> admin</p>
+                <p><strong>Password:</strong> Miami2024!</p>
+            </div>
+        </div>
+    </div>
+    
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu" style="display: none;">
         <i class="fas fa-bars"></i>
     </button>
     
-    <div class="admin-container">
+    <div class="admin-container" id="adminPanel" style="display: none;">
         <div class="sidebar" id="sidebar">
             <div class="logo">
                 <h1><i class="fas fa-car"></i> Admin Panel</h1>
@@ -415,9 +478,14 @@
         <div class="main-content">
             <div class="header">
                 <h2>Buy Junk Car Miami - Admin Dashboard</h2>
-                <button class="refresh-btn" onclick="refreshData()">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button class="refresh-btn" onclick="refreshData()" title="Refresh data">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="btn btn-secondary" onclick="logout()" style="padding: 0.5rem 1rem;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
             </div>
 
             <!-- Dashboard Section -->
@@ -687,6 +755,71 @@
         console.log('✅ Supabase client loaded');
     </script>
     <script>
+        // Login system
+        const ADMIN_CREDENTIALS = {
+            'admin': 'Miami2024!',
+            'isaac': 'Miami2024!'
+        };
+        
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            // Check credentials
+            if (ADMIN_CREDENTIALS[username] && ADMIN_CREDENTIALS[username] === password) {
+                // Save login session
+                sessionStorage.setItem('mjc_admin_logged_in', 'true');
+                sessionStorage.setItem('mjc_admin_user', username);
+                
+                // Show admin panel
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'flex';
+                document.querySelector('.mobile-menu-toggle').style.display = 'block';
+                
+                // Load initial data
+                loadStats();
+                
+                console.log('✅ Login successful');
+            } else {
+                errorDiv.textContent = '❌ Invalid username or password';
+                errorDiv.style.display = 'block';
+                document.getElementById('password').value = '';
+            }
+        }
+        
+        // Check if already logged in
+        function checkLogin() {
+            const isLoggedIn = sessionStorage.getItem('mjc_admin_logged_in');
+            
+            if (isLoggedIn === 'true') {
+                // User has valid session, show admin panel
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'flex';
+                document.querySelector('.mobile-menu-toggle').style.display = 'block';
+                loadStats();
+            } else {
+                // No valid session, ensure login screen is visible
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('adminPanel').style.display = 'none';
+                document.querySelector('.mobile-menu-toggle').style.display = 'none';
+            }
+        }
+        
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.removeItem('mjc_admin_logged_in');
+                sessionStorage.removeItem('mjc_admin_user');
+                location.reload();
+            }
+        }
+        
+        // Check login on page load - CRITICAL: This enforces login
+        window.addEventListener('DOMContentLoaded', checkLogin);
+        
         // Mobile menu toggle
         function toggleMobileMenu() {
             const sidebar = document.getElementById('sidebar');
