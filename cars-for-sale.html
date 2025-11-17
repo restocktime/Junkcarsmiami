@@ -3,29 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cars for Sale - Buy Junk Car Miami</title>
-    <meta name="description" content="Browse our inventory of quality used cars for sale in Miami. Great prices, reliable vehicles, and excellent customer service.">
+    <title>Cars for Sale Miami - Quality Used Cars | Buy Junk Car Miami</title>
+    <meta name="description" content="Browse our inventory of quality used cars for sale in Miami. Great prices, reliable vehicles, and excellent customer service. Licensed dealer TI0105.">
+    <link rel="canonical" href="https://buyjunkcarmiami.com/cars-for-sale.html">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <style>
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+        }
+        
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 2rem;
             padding: 2rem 0;
         }
         
         .car-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
         
         .car-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
         }
         
         .car-image {
@@ -69,9 +89,12 @@
         }
         
         .car-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #10b981;
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
         }
         
@@ -101,10 +124,17 @@
         
         .filters {
             background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .filters h3 {
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
         
         .filter-group {
@@ -126,41 +156,85 @@
     </style>
 </head>
 <body>
-    <header class="header">
+    <!-- Header -->
+    <header class="header" role="banner">
         <div class="container">
-            <div class="header-content">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
                 <div class="logo">
-                    <a href="/">
-                        <i class="fas fa-car"></i>
+                    <a href="/" aria-label="Buy Junk Car Miami Home">
+                        <i class="fas fa-car" aria-hidden="true"></i>
                         <span>Buy Junk Car Miami</span>
                     </a>
                 </div>
-                <nav class="nav-menu">
-                    <a href="/">Home</a>
-                    <a href="/services/">Services</a>
-                    <a href="/cars-for-sale.html" class="active">Cars for Sale</a>
-                    <a href="/contact/">Contact</a>
-                    <a href="tel:+13055345991" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> (305) 534-5991
-                    </a>
-                </nav>
-            </div>
+                
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/cars-for-sale.html" class="active">🚗 Cars for Sale</a></li>
+                    <li><a href="/locations/">Locations</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li class="nav-cta">
+                        <a href="tel:+13055345991" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> (305) 534-5991
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 0;">
-        <div class="container">
-            <h1 style="color: white; margin-bottom: 1rem;">Cars for Sale</h1>
-            <p style="color: white; font-size: 1.25rem;">Quality used vehicles at great prices</p>
-        </div>
-    </section>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" role="banner">
+            <div class="hero-video-container">
+                <video autoplay muted loop playsinline class="hero-video" aria-hidden="true">
+                    <source src="/videos/AdobeStock_90790068.mov" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="container hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Quality Cars</span> for Sale in Miami
+                </h1>
+                <p class="hero-subtitle">
+                    Browse our inventory of reliable used vehicles at unbeatable prices
+                </p>
+                <div class="hero-features">
+                    <div class="feature-badge">
+                        <i class="fas fa-certificate"></i>
+                        <span>Licensed Dealer</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Quality Inspected</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Great Prices</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section style="padding: 4rem 0;">
-        <div class="container">
-            <!-- Filters -->
-            <div class="filters">
-                <h3 style="margin-bottom: 1rem;">Filter Cars</h3>
-                <div class="filter-group">
+        <!-- Cars Inventory Section -->
+        <section class="section" style="padding: 4rem 0; background: #f8fafc;">
+            <div class="container">
+                <!-- Section Header -->
+                <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                    <h2 class="section-title">Available Vehicles</h2>
+                    <p class="section-subtitle">Find your perfect car from our quality inventory</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <h3 style="margin-bottom: 1rem;"><i class="fas fa-filter"></i> Filter Cars</h3>
+                    <div class="filter-group">
                     <div>
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Make</label>
                         <select id="filterMake" class="form-control" onchange="filterCars()">
@@ -189,20 +263,73 @@
                 </div>
             </div>
 
-            <!-- Cars Grid -->
-            <div id="carsContainer">
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #10b981;"></i>
-                    <p style="margin-top: 1rem;">Loading cars...</p>
+                <!-- Cars Grid -->
+                <div id="carsContainer">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #10b981;"></i>
+                        <p style="margin-top: 1rem;">Loading cars...</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Don't See What You're Looking For?</h2>
+                    <p>Call us today! We're constantly updating our inventory with quality vehicles.</p>
+                    <div class="cta-buttons">
+                        <a href="tel:+13055345991" class="btn btn-primary btn-lg">
+                            <i class="fas fa-phone"></i> Call (305) 534-5991
+                        </a>
+                        <a href="/contact/" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Buy Junk Car Miami. All rights reserved.</p>
-            <p>Licensed & Insured • License #TI0105</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Buy Junk Car Miami</h3>
+                    <p>Licensed & Insured Dealer</p>
+                    <p>License #TI0105</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/services/">Services</a></li>
+                        <li><a href="/cars-for-sale.html">Cars for Sale</a></li>
+                        <li><a href="/locations/">Locations</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> (305) 534-5991</p>
+                    <p><i class="fas fa-envelope"></i> buyjunkcarmiami@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 122 South Miami Avenue<br>Miami, FL 33130</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Buy Junk Car Miami. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="/privacy/">Privacy Policy</a>
+                    <a href="/terms/">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -338,6 +465,33 @@
         
         // Load cars on page load
         loadCars();
+    </script>
+
+    <!-- Mobile Navigation Script -->
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (navMenu && navToggle &&
+                !navToggle.contains(e.target) &&
+                !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
     </script>
 </body>
 </html>
