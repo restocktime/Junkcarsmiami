@@ -1402,7 +1402,59 @@
     </footer>
     
     <!-- JavaScript -->
-    <script src="./admin/supabase-client.js"></script>
+    <script>
+        // Direct Supabase client - inline
+        const SUPABASE_URL = 'https://ccukjascbxmfbfalprib.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXNjYnhtZmJmYWxwcmliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODM2NzYsImV4cCI6MjA3ODk1OTY3Nn0.m4mQNDbSSRJYbKEDTIXWSAjW6K2ReUJQbA4q3xyxu0E';
+
+        window.SupabaseClient = {
+            async addLead(lead) {
+                try {
+                    const dbLead = {
+                        name: lead.name,
+                        phone: lead.phone,
+                        email: lead.email || '',
+                        vehicle: lead.vehicle || '',
+                        year: lead.year || '',
+                        make: lead.make || '',
+                        model: lead.model || '',
+                        vin: lead.vin || '',
+                        condition: lead.condition || '',
+                        has_title: lead.hasTitle || '',
+                        damage: lead.damage || '',
+                        location: lead.location || 'Miami',
+                        zip: lead.zip || '',
+                        comments: lead.comments || '',
+                        status: 'new',
+                        priority: 'high',
+                        source: lead.source || 'Website Form'
+                    };
+
+                    const response = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=representation'
+                        },
+                        body: JSON.stringify(dbLead)
+                    });
+
+                    if (!response.ok) {
+                        const error = await response.text();
+                        throw new Error(`HTTP ${response.status}: ${error}`);
+                    }
+
+                    const savedLead = await response.json();
+                    return { success: true, message: 'Lead saved to database', lead: savedLead[0] };
+                } catch (error) {
+                    console.error('Supabase error:', error);
+                    return { success: false, error: error.message };
+                }
+            }
+        };
+    </script>
     <script src="./js/app.js"></script>
     
     <!-- Google Tag Manager -->
