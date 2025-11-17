@@ -113,6 +113,7 @@
 
         let currentStep = 1;
         const totalSteps = form.querySelectorAll('.form-step').length;
+        let isSubmitting = false; // Prevent duplicate submissions
 
         // Next button handlers
         const nextButtons = form.querySelectorAll('.btn-next');
@@ -232,19 +233,34 @@
         async function handleFormSubmit(e) {
             e.preventDefault();
             
+            // Prevent duplicate submissions
+            if (isSubmitting) {
+                console.log('⚠️ Form already submitting, please wait...');
+                return;
+            }
+            
             if (!validateStep(currentStep)) {
                 return;
             }
 
             const submitButton = form.querySelector('.btn-submit');
+            if (!submitButton) {
+                console.error('Submit button not found');
+                return;
+            }
+            
             const originalText = submitButton.textContent;
             
+            // Lock submission
+            isSubmitting = true;
             submitButton.textContent = 'Submitting...';
             submitButton.disabled = true;
 
             try {
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
+                
+                console.log('📝 Submitting form data:', data);
                 
                 // Add form submission event for analytics
                 if (typeof gtag !== 'undefined') {
@@ -254,17 +270,22 @@
                     });
                 }
 
-                // In a real implementation, you would send this to your server
+                // Submit the quote request (only once)
                 await submitQuoteRequest(data);
                 
+                // Show success message
                 showSuccessMessage();
                 
             } catch (error) {
                 console.error('Form submission error:', error);
                 showErrorMessage();
-            } finally {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
+                
+                // Re-enable button on error
+                isSubmitting = false;
+                if (submitButton) {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }
             }
         }
 
@@ -294,25 +315,43 @@
                 source: 'Website Form'
             };
 
-            // Save to localStorage for admin panel
+            // Save to localStorage for admin panel (prevent duplicates)
             try {
                 const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads') || '[]');
-                existingLeads.unshift(lead); // Add to beginning
-                localStorage.setItem('mjc_website_leads', JSON.stringify(existingLeads));
-                console.log('✅ Lead saved to localStorage');
+                
+                // Check if this lead already exists (by ID or phone number)
+                const isDuplicate = existingLeads.some(existingLead => 
+                    existingLead.id === lead.id || 
+                    (existingLead.phone === lead.phone && existingLead.timestamp === lead.timestamp)
+                );
+                
+                if (!isDuplicate) {
+                    existingLeads.unshift(lead); // Add to beginning
+                    localStorage.setItem('mjc_website_leads', JSON.stringify(existingLeads));
+                    console.log('✅ Lead saved to localStorage');
+                    console.log('📊 Total leads in storage:', existingLeads.length);
+                } else {
+                    console.log('ℹ️ Duplicate lead detected, not saving again');
+                }
             } catch (storageError) {
                 console.error('Failed to save to localStorage:', storageError);
             }
 
-            // Try to send to backend API
+            // Try to send to backend API with timeout
             try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+                
                 const response = await fetch('/api/quote', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(lead)
+                    body: JSON.stringify(lead),
+                    signal: controller.signal
                 });
+
+                clearTimeout(timeoutId);
 
                 if (response.ok) {
                     const result = await response.json();
@@ -320,7 +359,11 @@
                     return result;
                 }
             } catch (apiError) {
-                console.log('ℹ️ Backend not available, lead saved locally');
+                if (apiError.name === 'AbortError') {
+                    console.log('ℹ️ Backend request timed out, lead saved locally');
+                } else {
+                    console.log('ℹ️ Backend not available, lead saved locally');
+                }
             }
 
             // Return success even if backend fails (lead is in localStorage)
