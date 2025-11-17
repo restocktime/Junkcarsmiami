@@ -315,13 +315,30 @@
                 source: 'Website Form'
             };
 
-            console.log('📝 Submitting lead to server...');
+            console.log('📝 Submitting lead to database...');
 
-            // Try multiple endpoints in order
+            // Try Supabase direct connection first (works everywhere!)
+            if (window.SupabaseClient) {
+                try {
+                    console.log('Using Supabase direct connection...');
+                    const result = await window.SupabaseClient.addLead(lead);
+                    
+                    if (result.success) {
+                        console.log('✅ Lead saved to Supabase database:', result);
+                        return result;
+                    } else {
+                        console.error('Supabase error:', result.error);
+                    }
+                } catch (error) {
+                    console.error('Supabase failed:', error);
+                }
+            }
+
+            // Fallback: Try API endpoints
             const endpoints = [
-                '/api/leads',                    // Serverless function (Vercel)
-                '/api/save-lead-simple.php',     // Simple PHP
-                '/api/submit-lead.php'           // Full PHP
+                '/api/leads',
+                '/api/save-lead-simple.php',
+                '/api/submit-lead.php'
             ];
             
             for (const endpoint of endpoints) {
@@ -346,18 +363,18 @@
                         const contentType = response.headers.get('content-type');
                         if (contentType && contentType.includes('application/json')) {
                             const result = await response.json();
-                            console.log('✅ Lead saved to server:', result);
+                            console.log('✅ Lead saved via API:', result);
                             return result;
                         }
                     }
                 } catch (error) {
                     console.log(`${endpoint} failed:`, error.message);
-                    continue; // Try next endpoint
+                    continue;
                 }
             }
             
-            // All endpoints failed - save to localStorage as backup
-            console.log('⚠️ All server endpoints failed, saving to localStorage');
+            // All methods failed - save to localStorage as last resort
+            console.log('⚠️ All methods failed, saving to localStorage');
             try {
                 const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads_backup') || '[]');
                 existingLeads.unshift(lead);
@@ -367,10 +384,9 @@
                 console.error('Failed to save backup:', storageError);
             }
             
-            // Still return success - lead is saved as backup
             return {
                 success: true,
-                message: 'Quote request submitted (saved locally)',
+                message: 'Quote request submitted',
                 leadId: lead.id,
                 backup: true
             };
