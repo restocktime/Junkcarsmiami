@@ -639,18 +639,17 @@
         // Load leads
         async function loadLeads() {
             const leadsTable = document.getElementById('leadsTable');
-            leadsTable.innerHTML = '<div class="loading">Loading leads from server...</div>';
+            leadsTable.innerHTML = '<div class="loading">Loading leads...</div>';
             
+            // Try multiple methods to load leads
+            
+            // Method 1: Try PHP API (if deployed)
             try {
-                // Try to fetch from PHP API
-                console.log('📡 Fetching leads from /api/get-leads.php...');
+                console.log('📡 Trying PHP API...');
                 const response = await fetch('/api/get-leads.php');
                 
-                console.log('Response status:', response.status);
-                
-                if (response.ok) {
+                if (response.ok && response.headers.get('content-type')?.includes('application/json')) {
                     const result = await response.json();
-                    console.log('API Response:', result);
                     
                     if (result.success) {
                         currentData.leads = result.leads.map(lead => ({
@@ -658,60 +657,43 @@
                             created_at: lead.timestamp || lead.created_at
                         }));
                         
-                        // Update stats
-                        if (result.stats) {
-                            document.getElementById('totalLeads').textContent = result.stats.total_leads;
-                            document.getElementById('newLeads').textContent = result.stats.new_leads;
-                            document.getElementById('todayLeads').textContent = result.stats.today_leads;
-                            document.getElementById('highPriorityLeads').textContent = result.stats.high_priority_leads;
-                        }
-                        
+                        updateStatsFromLeads(currentData.leads);
                         renderLeadsTable();
-                        console.log('✅ Loaded leads from server:', currentData.leads.length);
-                        
-                        // Show success message
-                        if (currentData.leads.length === 0) {
-                            leadsTable.innerHTML = `
-                                <div class="empty-state">
-                                    <i class="fas fa-inbox" style="font-size: 3rem; color: #cbd5e0; margin-bottom: 1rem;"></i>
-                                    <h3>No Leads Yet</h3>
-                                    <p>✅ Connected to server successfully!</p>
-                                    <p>Leads from your website forms will appear here automatically.</p>
-                                    <p style="margin-top: 1rem; color: #718096;">
-                                        <small>Server: ${window.location.hostname}</small>
-                                    </p>
-                                </div>
-                            `;
-                        }
+                        console.log('✅ Loaded from PHP API:', currentData.leads.length);
                         return;
                     }
-                } else {
-                    throw new Error(`Server returned ${response.status}: ${response.statusText}`);
                 }
             } catch (error) {
-                console.error('❌ Failed to load from server:', error);
-                
-                // Show error message with details
-                leadsTable.innerHTML = `
-                    <div class="empty-state" style="background: #fef3c7; border: 1px solid #f59e0b; padding: 2rem; border-radius: 8px;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #f59e0b; margin-bottom: 1rem;"></i>
-                        <h3>Cannot Connect to Server</h3>
-                        <p><strong>Error:</strong> ${error.message}</p>
-                        <p style="margin-top: 1rem;">This usually means:</p>
-                        <ul style="text-align: left; margin: 1rem auto; max-width: 400px;">
-                            <li>PHP files not uploaded to server</li>
-                            <li>API endpoint not accessible</li>
-                            <li>Server configuration issue</li>
-                        </ul>
-                        <p style="margin-top: 1rem;">
-                            <strong>Test API:</strong> <a href="/api/test.php" target="_blank" style="color: #dc2626;">Click here</a>
-                        </p>
-                        <button onclick="loadOfflineLeads()" class="btn btn-secondary" style="margin-top: 1rem;">
-                            Load from localStorage (Backup)
-                        </button>
-                    </div>
-                `;
+                console.log('ℹ️ PHP API not available:', error.message);
             }
+            
+            // Method 2: Try direct JSON file
+            try {
+                console.log('📡 Trying direct JSON file...');
+                const response = await fetch('/admin/data/leads.json');
+                
+                if (response.ok) {
+                    const leads = await response.json();
+                    
+                    if (Array.isArray(leads)) {
+                        currentData.leads = leads.map(lead => ({
+                            ...lead,
+                            created_at: lead.timestamp || lead.created_at
+                        }));
+                        
+                        updateStatsFromLeads(currentData.leads);
+                        renderLeadsTable();
+                        console.log('✅ Loaded from JSON file:', currentData.leads.length);
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.log('ℹ️ JSON file not available:', error.message);
+            }
+            
+            // Method 3: Load from localStorage
+            console.log('📡 Loading from localStorage...');
+            loadOfflineLeads();
         }
 
         function loadOfflineLeads() {

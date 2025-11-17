@@ -317,50 +317,62 @@
 
             console.log('📝 Submitting lead to server...');
 
-            // Send to PHP backend with timeout
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-                
-                const response = await fetch('/api/submit-lead.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(lead),
-                    signal: controller.signal
-                });
-
-                clearTimeout(timeoutId);
-
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log('✅ Lead saved to server:', result);
-                    return result;
-                } else {
-                    throw new Error(`Server error: ${response.status}`);
-                }
-            } catch (error) {
-                console.error('❌ Failed to save to server:', error);
-                
-                // Fallback: Save to localStorage as backup
+            // Try simple endpoint first, then full endpoint
+            const endpoints = [
+                '/api/save-lead-simple.php',
+                '/api/submit-lead.php'
+            ];
+            
+            for (const endpoint of endpoints) {
                 try {
-                    const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads_backup') || '[]');
-                    existingLeads.unshift(lead);
-                    localStorage.setItem('mjc_website_leads_backup', JSON.stringify(existingLeads));
-                    console.log('💾 Lead saved to localStorage as backup');
-                } catch (storageError) {
-                    console.error('Failed to save backup:', storageError);
+                    console.log(`Trying ${endpoint}...`);
+                    
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 8000);
+                    
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(lead),
+                        signal: controller.signal
+                    });
+
+                    clearTimeout(timeoutId);
+
+                    if (response.ok) {
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            const result = await response.json();
+                            console.log('✅ Lead saved to server:', result);
+                            return result;
+                        }
+                    }
+                } catch (error) {
+                    console.log(`${endpoint} failed:`, error.message);
+                    continue; // Try next endpoint
                 }
-                
-                // Still return success - lead is saved as backup
-                return {
-                    success: true,
-                    message: 'Quote request submitted (saved as backup)',
-                    leadId: lead.id,
-                    backup: true
-                };
             }
+            
+            // All endpoints failed - save to localStorage as backup
+            console.log('⚠️ All server endpoints failed, saving to localStorage');
+            try {
+                const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads_backup') || '[]');
+                existingLeads.unshift(lead);
+                localStorage.setItem('mjc_website_leads_backup', JSON.stringify(existingLeads));
+                console.log('💾 Lead saved to localStorage as backup');
+            } catch (storageError) {
+                console.error('Failed to save backup:', storageError);
+            }
+            
+            // Still return success - lead is saved as backup
+            return {
+                success: true,
+                message: 'Quote request submitted (saved locally)',
+                leadId: lead.id,
+                backup: true
+            };
         }
 
         function showSuccessMessage() {
