@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/api/leads",
-      "destination": "/api/leads-handler.js"
+      "destination": "/api/supabase-leads.js"
     }
   ],
   "redirects": [
