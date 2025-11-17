@@ -317,10 +317,11 @@
 
             console.log('📝 Submitting lead to server...');
 
-            // Try simple endpoint first, then full endpoint
+            // Try multiple endpoints in order
             const endpoints = [
-                '/api/save-lead-simple.php',
-                '/api/submit-lead.php'
+                '/api/leads',                    // Serverless function (Vercel)
+                '/api/save-lead-simple.php',     // Simple PHP
+                '/api/submit-lead.php'           // Full PHP
             ];
             
             for (const endpoint of endpoints) {

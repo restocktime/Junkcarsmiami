@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/leads",
+      "destination": "/api/leads-handler.js"
+    }
+  ],
   "redirects": [
     {
       "source": "/(.*)",

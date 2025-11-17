@@ -642,56 +642,55 @@
             leadsTable.innerHTML = '<div class="loading">Loading leads...</div>';
             
             // Try multiple methods to load leads
+            const endpoints = [
+                '/api/leads',              // Serverless function (Vercel)
+                '/api/get-leads.php',      // PHP API
+                '/admin/data/leads.json'   // Direct JSON file
+            ];
             
-            // Method 1: Try PHP API (if deployed)
-            try {
-                console.log('📡 Trying PHP API...');
-                const response = await fetch('/api/get-leads.php');
-                
-                if (response.ok && response.headers.get('content-type')?.includes('application/json')) {
-                    const result = await response.json();
+            for (const endpoint of endpoints) {
+                try {
+                    console.log(`📡 Trying ${endpoint}...`);
+                    const response = await fetch(endpoint);
                     
-                    if (result.success) {
-                        currentData.leads = result.leads.map(lead => ({
-                            ...lead,
-                            created_at: lead.timestamp || lead.created_at
-                        }));
+                    if (response.ok && response.headers.get('content-type')?.includes('application/json')) {
+                        const data = await response.json();
                         
-                        updateStatsFromLeads(currentData.leads);
-                        renderLeadsTable();
-                        console.log('✅ Loaded from PHP API:', currentData.leads.length);
-                        return;
+                        // Handle different response formats
+                        let leads = [];
+                        if (data.success && data.leads) {
+                            leads = data.leads;
+                        } else if (Array.isArray(data)) {
+                            leads = data;
+                        }
+                        
+                        if (leads.length >= 0) {
+                            currentData.leads = leads.map(lead => ({
+                                ...lead,
+                                created_at: lead.timestamp || lead.created_at
+                            }));
+                            
+                            // Update stats
+                            if (data.stats) {
+                                document.getElementById('totalLeads').textContent = data.stats.total_leads;
+                                document.getElementById('newLeads').textContent = data.stats.new_leads;
+                                document.getElementById('todayLeads').textContent = data.stats.today_leads;
+                                document.getElementById('highPriorityLeads').textContent = data.stats.high_priority_leads;
+                            } else {
+                                updateStatsFromLeads(currentData.leads);
+                            }
+                            
+                            renderLeadsTable();
+                            console.log(`✅ Loaded from ${endpoint}:`, currentData.leads.length, 'leads');
+                            return;
+                        }
                     }
+                } catch (error) {
+                    console.log(`ℹ️ ${endpoint} not available:`, error.message);
                 }
-            } catch (error) {
-                console.log('ℹ️ PHP API not available:', error.message);
             }
             
-            // Method 2: Try direct JSON file
-            try {
-                console.log('📡 Trying direct JSON file...');
-                const response = await fetch('/admin/data/leads.json');
-                
-                if (response.ok) {
-                    const leads = await response.json();
-                    
-                    if (Array.isArray(leads)) {
-                        currentData.leads = leads.map(lead => ({
-                            ...lead,
-                            created_at: lead.timestamp || lead.created_at
-                        }));
-                        
-                        updateStatsFromLeads(currentData.leads);
-                        renderLeadsTable();
-                        console.log('✅ Loaded from JSON file:', currentData.leads.length);
-                        return;
-                    }
-                }
-            } catch (error) {
-                console.log('ℹ️ JSON file not available:', error.message);
-            }
-            
-            // Method 3: Load from localStorage
+            // All methods failed - load from localStorage
             console.log('📡 Loading from localStorage...');
             loadOfflineLeads();
         }
