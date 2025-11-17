@@ -1554,25 +1554,102 @@
             }
         }
 
-        // Load images
+        // Load images - scan actual images folder
         async function loadImages() {
-            try {
-                const response = await fetch('/api/get-images.php');
-                if (response.ok) {
-                    const result = await response.json();
-                    if (result.success) {
-                        currentData.images = result.images;
-                        renderImagesGrid();
-                        console.log('✅ Loaded images:', result.count);
-                        return;
-                    }
+            console.log('📸 Loading images from /images/ folder...');
+            
+            // List of known images in your images folder
+            const imageFiles = [
+                'junkcars1.webp',
+                'junkcars2.webp',
+                'junkcars3.webp',
+                'junkcars4.webp',
+                'logo.png',
+                'logo.svg',
+                'bbb-accredited.png',
+                'bbb-accredited.svg',
+                'contact-hero.jpg',
+                'miami-locations.jpg',
+                'services-background.png',
+                'AdobeStock_1548310032_Preview.jpeg',
+                'AdobeStock_222819268_Preview.jpeg',
+                'AdobeStock_332654481_Preview.jpeg',
+                'AdobeStock_373569463_Preview.jpeg',
+                'AdobeStock_773417243.jpeg',
+                '939477fa-f5c0-4313-b136-2afa207a675f.JPG',
+                'IMG_5954.HEIC'
+            ];
+            
+            const images = [];
+            
+            // Check each image
+            for (const filename of imageFiles) {
+                const path = `/images/${filename}`;
+                try {
+                    // Try to load the image to verify it exists
+                    const img = new Image();
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = reject;
+                        img.src = path;
+                    });
+                    
+                    // Get file extension
+                    const ext = filename.split('.').pop().toLowerCase();
+                    const type = ext === 'svg' ? 'svg' : ext === 'png' ? 'png' : ext === 'jpg' || ext === 'jpeg' ? 'jpeg' : ext === 'webp' ? 'webp' : 'image';
+                    
+                    images.push({
+                        filename: filename,
+                        path: path,
+                        type: type,
+                        size: 0 // Size unknown for static files
+                    });
+                    
+                    console.log(`✅ Found: ${filename}`);
+                } catch (error) {
+                    console.log(`⚠️ Not found: ${filename}`);
                 }
-            } catch (error) {
-                console.error('Failed to load images:', error);
             }
             
-            // Show error state
-            document.getElementById('imagesGrid').innerHTML = '<div class="empty-state">Failed to load images</div>';
+            // Also check gallery subfolder
+            const galleryImages = ['gallery-1.jpg', 'gallery-2.jpg', 'gallery-3.jpg'];
+            for (const filename of galleryImages) {
+                const path = `/images/gallery/${filename}`;
+                try {
+                    const img = new Image();
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = reject;
+                        img.src = path;
+                    });
+                    
+                    images.push({
+                        filename: `gallery/${filename}`,
+                        path: path,
+                        type: 'jpeg',
+                        size: 0
+                    });
+                    
+                    console.log(`✅ Found: gallery/${filename}`);
+                } catch (error) {
+                    // Gallery image doesn't exist, skip
+                }
+            }
+            
+            currentData.images = images;
+            
+            if (images.length > 0) {
+                renderImagesGrid();
+                console.log(`✅ Loaded ${images.length} images`);
+            } else {
+                document.getElementById('imagesGrid').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-images" style="font-size: 3rem; color: #cbd5e0; margin-bottom: 1rem;"></i>
+                        <h3>No Images Found</h3>
+                        <p>No images found in /images/ folder</p>
+                    </div>
+                `;
+            }
         }
 
         function renderImagesGrid() {
@@ -1586,7 +1663,7 @@
             let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; padding: 1rem;">';
             
             currentData.images.forEach(image => {
-                const sizeKB = Math.round(image.size / 1024);
+                const sizeInfo = image.size > 0 ? `${Math.round(image.size / 1024)} KB` : 'Size unknown';
                 html += `
                     <div style="border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; background: white;">
                         <div style="aspect-ratio: 1; background: #f9fafb; display: flex; align-items: center; justify-content: center; overflow: hidden;">
@@ -1599,7 +1676,7 @@
                                 ${image.filename}
                             </div>
                             <div style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.5rem;">
-                                ${sizeKB} KB • ${image.type.toUpperCase()}
+                                ${sizeInfo} • ${image.type.toUpperCase()}
                             </div>
                             <div style="display: flex; gap: 0.5rem;">
                                 <button onclick="copyImagePath('${image.path}')" class="btn btn-secondary" style="flex: 1; padding: 0.5rem; font-size: 0.75rem;">
