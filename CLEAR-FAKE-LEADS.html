@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Fake Leads - Buy Junk Car Miami</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #dc2626; }
+        button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover { background: #b91c1c; }
+        .success { background: #10b981; }
+        .success:hover { background: #059669; }
+        .info {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .result.success { background: #d1fae5; color: #065f46; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧹 Clear Fake Leads</h1>
+        
+        <div class="info">
+            <strong>⚠️ Problem:</strong> You have 823 fake leads in localStorage from testing.<br>
+            These are NOT real customer leads - they're just test data.
+        </div>
+        
+        <p><strong>What this will do:</strong></p>
+        <ul>
+            <li>Clear all localStorage leads (823 fake leads)</li>
+            <li>Keep only REAL leads from Supabase database</li>
+            <li>Fix the admin panel showing wrong numbers</li>
+            <li>Won't affect any real customer data</li>
+        </ul>
+        
+        <p><strong>Current localStorage data:</strong></p>
+        <div id="current-data" style="background: #f9fafb; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px;">
+            Loading...
+        </div>
+        
+        <button onclick="clearAllLeads()">🗑️ Clear All Fake Leads</button>
+        <button class="success" onclick="location.href='/admin/'">✓ Go to Admin Panel</button>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Show current data
+        function showCurrentData() {
+            const websiteLeads = JSON.parse(localStorage.getItem('mjc_website_leads') || '[]');
+            const offlineLeads = JSON.parse(localStorage.getItem('mjc_offline_leads') || '[]');
+            const adminData = JSON.parse(localStorage.getItem('mjc_admin_data') || '{"leads":[]}');
+            const backupLeads = JSON.parse(localStorage.getItem('mjc_website_leads_backup') || '[]');
+            
+            const total = websiteLeads.length + offlineLeads.length + adminData.leads.length + backupLeads.length;
+            
+            document.getElementById('current-data').innerHTML = `
+                Website Leads: ${websiteLeads.length}<br>
+                Offline Leads: ${offlineLeads.length}<br>
+                Admin Leads: ${adminData.leads.length}<br>
+                Backup Leads: ${backupLeads.length}<br>
+                <strong>TOTAL: ${total} fake leads</strong>
+            `;
+        }
+        
+        function clearAllLeads() {
+            if (!confirm('Are you sure? This will clear all localStorage leads.\n\nReal leads in Supabase database will NOT be affected.')) {
+                return;
+            }
+            
+            try {
+                // Clear all localStorage lead data
+                localStorage.removeItem('mjc_website_leads');
+                localStorage.removeItem('mjc_offline_leads');
+                localStorage.removeItem('mjc_admin_data');
+                localStorage.removeItem('mjc_website_leads_backup');
+                localStorage.removeItem('mjc_content');
+                
+                // Show success
+                const result = document.getElementById('result');
+                result.className = 'result success show';
+                result.innerHTML = `
+                    <strong>✅ Success!</strong><br>
+                    All fake leads cleared from localStorage.<br>
+                    <br>
+                    <strong>Next steps:</strong><br>
+                    1. Go to Admin Panel<br>
+                    2. You should see 0 leads (or only real Supabase leads)<br>
+                    3. Test the form on your website<br>
+                    4. New leads will go to Supabase database only
+                `;
+                
+                // Update display
+                showCurrentData();
+                
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+        
+        // Load on page load
+        showCurrentData();
+    </script>
+</body>
+</html>

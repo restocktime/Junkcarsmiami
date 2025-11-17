@@ -276,6 +276,9 @@
                 // Show success message
                 showSuccessMessage();
                 
+                // Reset submission lock after success
+                isSubmitting = false;
+                
             } catch (error) {
                 console.error('Form submission error:', error);
                 showErrorMessage();
@@ -401,23 +404,12 @@
                 }
             }
             
-            // All methods failed - save to localStorage as last resort
-            console.log('⚠️ All methods failed, saving to localStorage');
-            try {
-                const existingLeads = JSON.parse(localStorage.getItem('mjc_website_leads_backup') || '[]');
-                existingLeads.unshift(lead);
-                localStorage.setItem('mjc_website_leads_backup', JSON.stringify(existingLeads));
-                console.log('💾 Lead saved to localStorage as backup');
-            } catch (storageError) {
-                console.error('Failed to save backup:', storageError);
-            }
+            // All methods failed - DO NOT save to localStorage (causes fake leads)
+            console.error('⚠️ All submission methods failed. Lead NOT saved.');
+            console.error('Please check Supabase connection or API endpoints.');
             
-            return {
-                success: true,
-                message: 'Quote request submitted',
-                leadId: lead.id,
-                backup: true
-            };
+            // Throw error so user knows submission failed
+            throw new Error('Unable to submit lead. Please try again or call us directly.');
         }
 
         function showSuccessMessage() {
