@@ -289,6 +289,28 @@
             }
         }
 
+        async function sendEmailNotification(lead) {
+            try {
+                console.log('📧 Sending email notification...');
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(lead)
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('✅ Email notification sent:', result);
+                } else {
+                    console.log('⚠️ Email notification failed:', response.status);
+                }
+            } catch (error) {
+                console.log('⚠️ Email notification error:', error.message);
+            }
+        }
+
         async function submitQuoteRequest(data) {
             // Create lead object
             const lead = {
@@ -325,6 +347,12 @@
                     
                     if (result.success) {
                         console.log('✅ Lead saved to Supabase database:', result);
+                        
+                        // Send email notification (don't wait for it)
+                        sendEmailNotification(lead).catch(err => {
+                            console.log('⚠️ Email notification failed (non-critical):', err.message);
+                        });
+                        
                         return result;
                     } else {
                         console.error('Supabase error:', result.error);
