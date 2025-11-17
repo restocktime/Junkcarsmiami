@@ -616,6 +616,69 @@
                     <div class="loading">Loading business info...</div>
                 </div>
             </div>
+                <div class="section-header">
+                    <h3>Create New Service Page</h3>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 8px;">
+                    <form id="createPageForm" onsubmit="createNewPage(event)">
+                        <div class="form-group">
+                            <label>Page Title *</label>
+                            <input type="text" name="title" class="form-control" placeholder="e.g., Junk Car Removal in Hialeah" required>
+                            <span class="help-text">This will be the H1 heading and page title</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>URL Slug *</label>
+                            <input type="text" name="slug" class="form-control" placeholder="e.g., hialeah-junk-car-removal" required>
+                            <span class="help-text">URL will be: /services/your-slug/</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Meta Description *</label>
+                            <textarea name="description" class="form-control" rows="3" placeholder="Brief description for search engines (150-160 characters)" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Page Type</label>
+                            <select name="pageType" class="form-control">
+                                <option value="service">Service Page</option>
+                                <option value="location">Location Page</option>
+                                <option value="brand">Car Brand Page</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Main Content</label>
+                            <textarea name="content" class="form-control" rows="8" placeholder="Main page content (HTML allowed)"></textarea>
+                            <span class="help-text">You can use HTML tags for formatting</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone" class="form-control" value="(305) 534-5991">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Create Page
+                        </button>
+                    </form>
+                    
+                    <div id="pageCreationResult" style="margin-top: 1rem; display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Business Section -->
+            <div id="business" class="content-section">
+                <div class="section-header">
+                    <h3>Business Information</h3>
+                    <button class="btn btn-primary" onclick="saveBusinessInfo()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+                <div id="businessForm">
+                    <div class="loading">Loading business info...</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1369,26 +1432,53 @@
 
         async function saveContent() {
             const section = document.getElementById('contentSection').value;
-            if (!section) return;
+            if (!section) {
+                alert('Please select a section to edit');
+                return;
+            }
 
-            const data = {
-                action: 'update_content',
+            const updatedContent = {
                 section: section,
                 title: document.getElementById('contentTitle').value,
                 content: document.getElementById('contentText').value,
-                meta_description: document.getElementById('contentMeta').value
+                meta_description: document.getElementById('contentMeta').value,
+                updated_at: new Date().toISOString()
             };
 
             try {
-                const result = await apiCall('', data, 'POST');
-                if (result.success) {
-                    alert('Content updated successfully!');
-                    await loadContent();
+                // Save to Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/website_content`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'resolution=merge-duplicates'
+                    },
+                    body: JSON.stringify(updatedContent)
+                });
+
+                if (response.ok) {
+                    // Update in memory
+                    if (!currentData.content) {
+                        currentData.content = {};
+                    }
+                    currentData.content[section] = updatedContent;
+                    
+                    alert('✅ Content saved successfully to database!');
+                    console.log('✅ Content saved to Supabase:', section);
                 } else {
-                    alert('Error updating content: ' + result.error);
+                    throw new Error(`HTTP ${response.status}`);
                 }
             } catch (error) {
-                alert('Error saving content');
+                console.error('Error saving content:', error);
+                // Fallback to localStorage
+                if (!currentData.content) {
+                    currentData.content = {};
+                }
+                currentData.content[section] = updatedContent;
+                localStorage.setItem('mjc_website_content', JSON.stringify(currentData.content));
+                alert('⚠️ Saved to browser storage (database unavailable).\n\nContent saved locally but won\'t appear on live site until database is configured.');
             }
         }
 
@@ -1488,26 +1578,42 @@
         }
         
         async function saveBusinessInfo() {
-            const data = {
-                action: 'update_business',
+            const businessData = {
                 name: document.getElementById('businessName').value,
                 phone: document.getElementById('businessPhone').value,
                 email: document.getElementById('businessEmail').value,
                 address: document.getElementById('businessAddress').value,
                 license: document.getElementById('businessLicense').value,
-                hours: document.getElementById('businessHours').value
+                hours: document.getElementById('businessHours').value,
+                updated_at: new Date().toISOString()
             };
 
             try {
-                const result = await apiCall('', data, 'POST');
-                if (result.success) {
-                    alert('Business information updated successfully!');
-                    await loadBusiness();
+                // Save to Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/business_info`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'resolution=merge-duplicates'
+                    },
+                    body: JSON.stringify(businessData)
+                });
+
+                if (response.ok) {
+                    currentData.business = businessData;
+                    alert('✅ Business information saved successfully to database!');
+                    console.log('✅ Business info saved to Supabase');
                 } else {
-                    alert('Error updating business info: ' + result.error);
+                    throw new Error(`HTTP ${response.status}`);
                 }
             } catch (error) {
-                alert('Error saving business information');
+                console.error('Error saving business info:', error);
+                // Fallback to localStorage
+                currentData.business = businessData;
+                localStorage.setItem('mjc_business_info', JSON.stringify(businessData));
+                alert('⚠️ Saved to browser storage (database unavailable).\n\nBusiness info saved locally but won\'t appear on live site until database is configured.');
             }
         }
 
