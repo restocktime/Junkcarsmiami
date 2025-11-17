@@ -451,13 +451,10 @@ app.post('/api/sitemap/generate', authenticateToken, async (req, res) => {
 // Quote submission endpoint
 app.post('/api/quote', async (req, res) => {
     try {
-        const {
-            year, make, model, vin, runs, title: hasTitle, damage, 
-            name, phone, email, location, comments, website
-        } = req.body;
+        const lead = req.body;
 
         // Honeypot spam check
-        if (website && website.trim() !== '') {
+        if (lead.website && lead.website.trim() !== '') {
             console.warn('Spam attempt detected via honeypot field:', req.ip);
             return res.status(400).json({ 
                 error: 'Invalid form submission' 
@@ -465,35 +462,85 @@ app.post('/api/quote', async (req, res) => {
         }
 
         // Basic validation
-        if (!name || !phone || !year || !make) {
+        if (!lead.name || !lead.phone) {
             return res.status(400).json({ 
-                error: 'Name, phone, year, and make are required' 
+                error: 'Name and phone are required' 
             });
         }
 
-        // Log the quote request (in production, save to database)
-        const quoteData = {
-            timestamp: new Date().toISOString(),
-            vehicle: { year, make, model, vin, runs, title: hasTitle, damage },
-            contact: { name, phone, email, location, comments },
+        // Ensure lead has required fields
+        const leadData = {
+            id: lead.id || Date.now().toString(),
+            name: lead.name,
+            phone: lead.phone,
+            email: lead.email || '',
+            vehicle: lead.vehicle || `${lead.year || ''} ${lead.make || ''} ${lead.model || ''}`.trim(),
+            year: lead.year || '',
+            make: lead.make || '',
+            model: lead.model || '',
+            vin: lead.vin || '',
+            condition: lead.condition || lead.runs || '',
+            hasTitle: lead.hasTitle || lead.title || '',
+            damage: lead.damage || '',
+            location: lead.location || 'Miami',
+            zip: lead.zip || '',
+            comments: lead.comments || '',
+            status: 'new',
+            priority: 'high',
+            quote: '',
+            notes: '',
+            timestamp: lead.timestamp || new Date().toISOString(),
+            source: lead.source || 'Website Form',
             ip: req.ip,
             userAgent: req.get('User-Agent')
         };
 
-        // Save to log file (in production, use proper database)
-        const logPath = path.join(__dirname, 'quotes.log');
-        await fs.appendFile(logPath, JSON.stringify(quoteData) + '\n');
+        // Save to leads.json file
+        const leadsFilePath = path.join(SITE_ROOT, 'admin', 'data', 'leads.json');
+        
+        try {
+            // Ensure directory exists
+            await fs.ensureDir(path.dirname(leadsFilePath));
+            
+            // Read existing leads
+            let leads = [];
+            if (await fs.pathExists(leadsFilePath)) {
+                const fileContent = await fs.readFile(leadsFilePath, 'utf8');
+                leads = JSON.parse(fileContent);
+            }
+            
+            // Add new lead to beginning
+            leads.unshift(leadData);
+            
+            // Keep only last 1000 leads
+            if (leads.length > 1000) {
+                leads = leads.slice(0, 1000);
+            }
+            
+            // Save back to file
+            await fs.writeFile(leadsFilePath, JSON.stringify(leads, null, 4));
+            
+            console.log('✅ New lead saved:', {
+                id: leadData.id,
+                name: leadData.name,
+                phone: leadData.phone,
+                vehicle: leadData.vehicle,
+                location: leadData.location
+            });
+            
+        } catch (fileError) {
+            console.error('Failed to save lead to file:', fileError);
+            // Continue anyway - we'll log it
+        }
 
-        console.log('New quote request:', {
-            name,
-            phone,
-            vehicle: `${year} ${make} ${model}`,
-            location
-        });
+        // Also save to log file for backup
+        const logPath = path.join(__dirname, 'quotes.log');
+        await fs.appendFile(logPath, JSON.stringify(leadData) + '\n');
 
         res.json({
             success: true,
             message: 'Quote request submitted successfully',
+            leadId: leadData.id,
             estimatedCallTime: '30-60 minutes',
             nextSteps: [
                 'We will call you within 30-60 minutes',
@@ -512,6 +559,87 @@ app.post('/api/quote', async (req, res) => {
 app.post('/api/submit', async (req, res) => {
     // Redirect to the main quote endpoint
     return app._router.handle(Object.assign(req, { url: '/api/quote' }), res);
+});
+
+// Get all leads (admin endpoint)
+app.get('/api/leads', authenticateToken, async (req, res) => {
+    try {
+        const leadsFilePath = path.join(SITE_ROOT, 'admin', 'data', 'leads.json');
+        
+        if (await fs.pathExists(leadsFilePath)) {
+            const fileContent = await fs.readFile(leadsFilePath, 'utf8');
+            const leads = JSON.parse(fileContent);
+            
+            // Calculate stats
+            const stats = {
+                total_leads: leads.length,
+                new_leads: leads.filter(l => l.status === 'new').length,
+                today_leads: leads.filter(l => {
+                    const leadDate = new Date(l.timestamp);
+                    const today = new Date();
+                    return leadDate.toDateString() === today.toDateString();
+                }).length,
+                high_priority_leads: leads.filter(l => l.priority === 'high').length
+            };
+            
+            res.json({
+                success: true,
+                leads: leads,
+                stats: stats
+            });
+        } else {
+            res.json({
+                success: true,
+                leads: [],
+                stats: {
+                    total_leads: 0,
+                    new_leads: 0,
+                    today_leads: 0,
+                    high_priority_leads: 0
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Get leads error:', error);
+        res.status(500).json({ error: 'Failed to get leads' });
+    }
+});
+
+// Update lead status (admin endpoint)
+app.put('/api/leads/:leadId', authenticateToken, async (req, res) => {
+    try {
+        const leadId = req.params.leadId;
+        const updates = req.body;
+        
+        const leadsFilePath = path.join(SITE_ROOT, 'admin', 'data', 'leads.json');
+        
+        if (await fs.pathExists(leadsFilePath)) {
+            const fileContent = await fs.readFile(leadsFilePath, 'utf8');
+            let leads = JSON.parse(fileContent);
+            
+            // Find and update lead
+            const leadIndex = leads.findIndex(l => l.id === leadId);
+            if (leadIndex !== -1) {
+                leads[leadIndex] = { ...leads[leadIndex], ...updates };
+                
+                // Save back to file
+                await fs.writeFile(leadsFilePath, JSON.stringify(leads, null, 4));
+                
+                res.json({
+                    success: true,
+                    message: 'Lead updated successfully',
+                    lead: leads[leadIndex]
+                });
+            } else {
+                res.status(404).json({ error: 'Lead not found' });
+            }
+        } else {
+            res.status(404).json({ error: 'Leads file not found' });
+        }
+    } catch (error) {
+        console.error('Update lead error:', error);
+        res.status(500).json({ error: 'Failed to update lead' });
+    }
 });
 
 // Contact form endpoint

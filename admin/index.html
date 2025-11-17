@@ -583,36 +583,66 @@
         function loadOfflineLeads() {
             const offlineLeads = JSON.parse(localStorage.getItem('mjc_offline_leads')) || [];
             const adminData = JSON.parse(localStorage.getItem('mjc_admin_data')) || { leads: [] };
+            const websiteLeads = JSON.parse(localStorage.getItem('mjc_website_leads')) || [];
             
-            // Combine all leads
-            const allLeads = [...offlineLeads, ...adminData.leads].map((lead, index) => ({
+            // Combine all leads from different sources
+            const allLeads = [
+                ...websiteLeads,
+                ...offlineLeads,
+                ...(adminData.leads || [])
+            ].map((lead, index) => ({
                 id: lead.id || index + 1,
                 name: lead.name || 'Website Visitor',
                 phone: lead.phone || 'Not provided',
                 email: lead.email || 'Not provided',
                 vehicle: lead.vehicle || `${lead.year || ''} ${lead.make || ''} ${lead.model || ''}`.trim() || 'Not specified',
+                year: lead.year || '',
+                make: lead.make || '',
+                model: lead.model || '',
+                vin: lead.vin || '',
+                condition: lead.condition || '',
+                location: lead.location || '',
+                comments: lead.comments || '',
                 priority: lead.priority || 'medium',
                 status: lead.status || 'new',
+                source: lead.source || 'Unknown',
                 created_at: lead.created || lead.timestamp || new Date().toISOString()
             }));
+            
+            // Sort by date (newest first)
+            allLeads.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
             
             currentData.leads = allLeads;
             renderLeadsTable();
             
+            // Update stats
+            updateStatsFromLeads(allLeads);
+            
             if (allLeads.length === 0) {
-                // Add sample lead for demo
-                currentData.leads = [{
-                    id: 1,
-                    name: 'Sample Lead',
-                    phone: '(305) 555-0123',
-                    email: 'sample@example.com',
-                    vehicle: '2015 Honda Civic',
-                    priority: 'medium',
-                    status: 'new',
-                    created_at: new Date().toISOString()
-                }];
-                renderLeadsTable();
+                // Show empty state
+                document.getElementById('leadsTable').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox" style="font-size: 3rem; color: #cbd5e0; margin-bottom: 1rem;"></i>
+                        <h3>No Leads Yet</h3>
+                        <p>Leads from your website forms will appear here automatically.</p>
+                        <p style="margin-top: 1rem; color: #718096;">
+                            <small>Make sure your website forms are submitting correctly.</small>
+                        </p>
+                    </div>
+                `;
             }
+        }
+        
+        function updateStatsFromLeads(leads) {
+            const today = new Date().toDateString();
+            
+            document.getElementById('totalLeads').textContent = leads.length;
+            document.getElementById('newLeads').textContent = leads.filter(l => l.status === 'new').length;
+            document.getElementById('todayLeads').textContent = leads.filter(l => {
+                const leadDate = new Date(l.created_at);
+                return leadDate.toDateString() === today;
+            }).length;
+            document.getElementById('highPriorityLeads').textContent = leads.filter(l => l.priority === 'high').length;
         }
 
         function renderLeadsTable() {
@@ -630,6 +660,8 @@
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Vehicle</th>
+                            <th>Location</th>
+                            <th>Source</th>
                             <th>Priority</th>
                             <th>Status</th>
                             <th>Date</th>
@@ -640,21 +672,32 @@
             `;
 
             currentData.leads.forEach(lead => {
+                const leadDate = new Date(lead.created_at);
+                const formattedDate = leadDate.toLocaleDateString() + ' ' + leadDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                
                 html += `
                     <tr>
                         <td>
                             <strong>${lead.name}</strong><br>
-                            <small>${lead.email || 'No email'}</small>
+                            <small style="color: #6b7280;">${lead.email || 'No email'}</small>
                         </td>
-                        <td>${lead.phone}</td>
-                        <td>${lead.vehicle || lead.year + ' ' + lead.make + ' ' + lead.model || 'Not specified'}</td>
+                        <td><a href="tel:${lead.phone}" style="color: #10b981; text-decoration: none;">${lead.phone}</a></td>
+                        <td>
+                            <strong>${lead.vehicle || 'Not specified'}</strong><br>
+                            ${lead.vin ? `<small style="color: #6b7280;">VIN: ${lead.vin}</small>` : ''}
+                        </td>
+                        <td>${lead.location || 'Miami'}</td>
+                        <td><span style="font-size: 0.75rem; padding: 0.25rem 0.5rem; background: #e5e7eb; border-radius: 4px;">${lead.source || 'Unknown'}</span></td>
                         <td><span class="priority-${lead.priority}">${lead.priority.toUpperCase()}</span></td>
                         <td><span class="status-${lead.status}">${lead.status.toUpperCase()}</span></td>
-                        <td>${new Date(lead.created_at).toLocaleDateString()}</td>
+                        <td><small>${formattedDate}</small></td>
                         <td>
-                            <button class="btn btn-secondary btn-sm" onclick="viewLead(${lead.id})">
+                            <button class="btn btn-secondary btn-sm" onclick="viewLead('${lead.id}')" title="View Details">
                                 <i class="fas fa-eye"></i>
                             </button>
+                            <a href="tel:${lead.phone}" class="btn btn-primary btn-sm" title="Call" style="margin-left: 0.25rem;">
+                                <i class="fas fa-phone"></i>
+                            </a>
                         </td>
                     </tr>
                 `;
@@ -940,6 +983,96 @@
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
         }
+        
+        // View lead details
+        window.viewLead = function(leadId) {
+            const lead = currentData.leads.find(l => l.id == leadId);
+            if (!lead) {
+                alert('Lead not found');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.id = 'viewLeadModal';
+            modal.style.display = 'block';
+            
+            const leadDate = new Date(lead.created_at);
+            const formattedDate = leadDate.toLocaleDateString() + ' at ' + leadDate.toLocaleTimeString();
+            
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 700px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Lead Details</h3>
+                        <button onclick="closeModal('viewLeadModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6b7280;">&times;</button>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <h4 style="color: #6b7280; font-size: 0.875rem; margin-bottom: 0.5rem;">CONTACT INFORMATION</h4>
+                            <p><strong>Name:</strong> ${lead.name}</p>
+                            <p><strong>Phone:</strong> <a href="tel:${lead.phone}" style="color: #10b981;">${lead.phone}</a></p>
+                            <p><strong>Email:</strong> ${lead.email || 'Not provided'}</p>
+                            <p><strong>Location:</strong> ${lead.location || 'Miami'}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: #6b7280; font-size: 0.875rem; margin-bottom: 0.5rem;">VEHICLE INFORMATION</h4>
+                            <p><strong>Vehicle:</strong> ${lead.vehicle}</p>
+                            ${lead.year ? `<p><strong>Year:</strong> ${lead.year}</p>` : ''}
+                            ${lead.make ? `<p><strong>Make:</strong> ${lead.make}</p>` : ''}
+                            ${lead.model ? `<p><strong>Model:</strong> ${lead.model}</p>` : ''}
+                            ${lead.vin ? `<p><strong>VIN:</strong> ${lead.vin}</p>` : ''}
+                            ${lead.condition ? `<p><strong>Condition:</strong> ${lead.condition}</p>` : ''}
+                        </div>
+                    </div>
+                    
+                    ${lead.comments ? `
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #6b7280; font-size: 0.875rem; margin-bottom: 0.5rem;">COMMENTS</h4>
+                            <p style="background: #f9fafb; padding: 1rem; border-radius: 6px;">${lead.comments}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <p style="color: #6b7280; font-size: 0.875rem;">Status</p>
+                                <span class="status-${lead.status}">${lead.status.toUpperCase()}</span>
+                            </div>
+                            <div>
+                                <p style="color: #6b7280; font-size: 0.875rem;">Priority</p>
+                                <span class="priority-${lead.priority}">${lead.priority.toUpperCase()}</span>
+                            </div>
+                            <div>
+                                <p style="color: #6b7280; font-size: 0.875rem;">Source</p>
+                                <p><strong>${lead.source || 'Unknown'}</strong></p>
+                            </div>
+                        </div>
+                        <p style="color: #6b7280; font-size: 0.875rem; margin-top: 1rem;">Submitted: ${formattedDate}</p>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; text-align: right; display: flex; gap: 0.5rem; justify-content: flex-end;">
+                        <a href="tel:${lead.phone}" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Call Customer
+                        </a>
+                        ${lead.email ? `<a href="mailto:${lead.email}" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Send Email
+                        </a>` : ''}
+                        <button onclick="closeModal('viewLeadModal')" class="btn btn-secondary">Close</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Close on background click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal('viewLeadModal');
+                }
+            });
+        };
 
         // Lead form submission
         document.getElementById('leadForm').addEventListener('submit', async (e) => {
