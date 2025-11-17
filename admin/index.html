@@ -291,11 +291,104 @@
             padding: 0.5rem 1rem;
             font-size: 0.875rem;
         }
+        
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: #1f2937;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mobile-menu-toggle i {
+            font-size: 1.5rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                padding-top: 4rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            table {
+                font-size: 0.875rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 2rem auto;
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 0.5rem;
+                padding-top: 4rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    
     <div class="admin-container">
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="logo">
                 <h1><i class="fas fa-car"></i> Admin Panel</h1>
             </div>
@@ -594,6 +687,36 @@
         console.log('✅ Supabase client loaded');
     </script>
     <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('mobile-open');
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('mobile-open') &&
+                !sidebar.contains(e.target) && 
+                !toggle.contains(e.target)) {
+                sidebar.classList.remove('mobile-open');
+            }
+        });
+        
+        // Close mobile menu when clicking a nav item
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        document.getElementById('sidebar').classList.remove('mobile-open');
+                    }
+                });
+            });
+        });
+        
         let currentData = {
             leads: [],
             content: {},
