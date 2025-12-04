@@ -116,6 +116,67 @@ if (!$isDuplicate) {
         'message' => 'Lead saved successfully',
         'leadId' => $lead['id']
     ]);
+
+    // Send email notification
+    $to = 'Buyjunkcarmiami@gmail.com';
+    $subject = "New Lead: {$lead['name']} - {$lead['year']} {$lead['make']} {$lead['model']}";
+    
+    $message = "
+    <html>
+    <head>
+        <title>New Lead Received</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; }
+            .container { padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+            .header { background: #10b981; color: white; padding: 10px; border-radius: 5px 5px 0 0; }
+            .row { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+            .label { font-weight: bold; color: #555; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h2>New Lead Received</h2>
+            </div>
+            <div class='row'>
+                <span class='label'>Name:</span> {$lead['name']}
+            </div>
+            <div class='row'>
+                <span class='label'>Phone:</span> <a href='tel:{$lead['phone']}'>{$lead['phone']}</a>
+            </div>
+            <div class='row'>
+                <span class='label'>Email:</span> {$lead['email']}
+            </div>
+            <div class='row'>
+                <span class='label'>Vehicle:</span> {$lead['year']} {$lead['make']} {$lead['model']}
+            </div>
+            <div class='row'>
+                <span class='label'>VIN:</span> {$lead['vin']}
+            </div>
+            <div class='row'>
+                <span class='label'>Condition:</span> {$lead['condition']}
+            </div>
+            <div class='row'>
+                <span class='label'>Location:</span> {$lead['location']} {$lead['zip']}
+            </div>
+            <div class='row'>
+                <span class='label'>Comments:</span> {$lead['comments']}
+            </div>
+            <div class='row'>
+                <span class='label'>Source:</span> {$lead['source']}
+            </div>
+            <p><a href='https://buyjunkcarmiami.com/admin/'>View in Admin Panel</a></p>
+        </div>
+    </body>
+    </html>
+    ";
+
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    $headers .= 'From: leads@buyjunkcarmiami.com' . "\r\n";
+    
+    // Send email
+    mail($to, $subject, $message, $headers);
 } else {
     echo json_encode([
         'success' => true,

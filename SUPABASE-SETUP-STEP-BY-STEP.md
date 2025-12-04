@@ -1,6 +1,7 @@
 # 🎯 SUPABASE SETUP - SUPER DETAILED STEP-BY-STEP
 
 ## What This Does
+
 Connects your website to a real PostgreSQL database so leads work on ALL devices (phone, tablet, computer).
 
 ---
@@ -118,12 +119,14 @@ VALUES (
 2. Click **"Run"**
 3. Wait 2-3 seconds
 
-**What you'll see:** 
+**What you'll see:**
+
 - A green success message appears
 - It might say "Success. No rows returned" or "Success"
 - This is GOOD! ✅
 
 **If you see an error:**
+
 - Red text appears
 - Copy the error message
 - Send it to me and I'll help fix it
@@ -138,6 +141,7 @@ VALUES (
 4. Click on **"leads"**
 
 **What you'll see:**
+
 - A table with columns: id, name, phone, email, vehicle, etc.
 - One row with "Test Customer" data
 - This means it WORKED! ✅
@@ -212,6 +216,7 @@ Check off each item:
 ### Problem: "Permission denied" error
 
 **Solution:**
+
 1. Go to Supabase dashboard
 2. Click **"Settings"** → **"API"**
 3. Make sure you see your **Project URL** and **anon key**
@@ -222,6 +227,7 @@ Check off each item:
 ### Problem: Can't find SQL Editor
 
 **Solution:**
+
 1. Make sure you're logged into Supabase
 2. Make sure you clicked on your project name
 3. Look for the **</>** icon on the left sidebar
@@ -232,6 +238,7 @@ Check off each item:
 ### Problem: Form submits but lead doesn't appear in Supabase
 
 **Solution:**
+
 1. Open browser console (F12)
 2. Submit the form
 3. Look for errors in console
@@ -242,6 +249,7 @@ Check off each item:
 ### Problem: Admin panel shows "Loading..." forever
 
 **Solution:**
+
 1. Open browser console (F12)
 2. Look for red error messages
 3. Check if you see "Supabase error"
@@ -252,6 +260,7 @@ Check off each item:
 ### Problem: "supabase-client.js 404 error"
 
 **Solution:**
+
 1. Make sure you pushed the latest code to GitHub
 2. Wait 2 minutes for deployment
 3. Hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
@@ -283,11 +292,13 @@ Check off each item:
 ## 🔐 YOUR CREDENTIALS
 
 **Project URL:**
+
 ```
 https://ccukjascbxmfbfalprib.supabase.co
 ```
 
 **Anon Key:**
+
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXNjYnhtZmJmYWxwcmliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODM2NzYsImV4cCI6MjA3ODk1OTY3Nn0.m4mQNDbSSRJYbKEDTIXWSAjW6K2ReUJQbA4q3xyxu0E
 ```
@@ -299,10 +310,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXN
 ## 📊 VIEW YOUR LEADS
 
 ### In Supabase:
+
 1. Dashboard → Table Editor → leads
 2. See all leads in database
 
 ### In Admin Panel:
+
 1. Go to: https://buyjunkcarmiami.com/admin/
 2. Click "Leads Management"
 3. See all leads
@@ -314,6 +327,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXN
 ## 💾 BACKUP YOUR LEADS
 
 ### Export to CSV:
+
 1. Supabase → Table Editor → leads
 2. Click **"..."** (three dots)
 3. Click **"Export to CSV"**
@@ -326,14 +340,17 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXN
 ## 🚀 NEXT STEPS (OPTIONAL)
 
 ### Add Email Notifications:
+
 - Get notified when new lead arrives
 - I can help set this up later
 
 ### Add SMS Notifications:
+
 - Get text message for urgent leads
 - I can help set this up later
 
 ### Add Team Access:
+
 - Multiple people can view leads
 - Already works! Just share admin URL
 
@@ -342,6 +359,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdWtqYXN
 ## ❓ STILL STUCK?
 
 ### Send me:
+
 1. Screenshot of Supabase dashboard
 2. Screenshot of any error messages
 3. Browser console errors (F12)
@@ -356,10 +374,12 @@ I'll help you fix it immediately!
 **Open these 3 things:**
 
 1. **Supabase Table Editor**
+
    - URL: https://supabase.com/dashboard
    - Should see: leads table with data
 
 2. **Your Website**
+
    - URL: https://buyjunkcarmiami.com
    - Should: Form submits successfully
 

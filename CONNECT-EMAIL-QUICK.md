@@ -76,6 +76,7 @@ Every lead will send you an email like this:
 **Subject:** 🚗 New Lead: John Smith - 2015 Honda Civic
 
 **Email Contains:**
+
 - ✅ Customer name
 - ✅ Phone number (click to call)
 - ✅ Email address
@@ -96,7 +97,7 @@ Every lead will send you an email like this:
 3. **Check Vercel logs:**
    - Go to Vercel → Deployments → Click latest
    - Click "Functions" tab
-   - Look for `/api/send-email` 
+   - Look for `/api/send-email`
    - Should show "✅ Email sent"
 
 ### Still not working?
