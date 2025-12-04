@@ -234,6 +234,50 @@ View in admin panel: https://buyjunkcarmiami.com/admin/
       }
     }
 
+    // SMS Notification via Twilio
+    const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+    const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+    const TWILIO_FROM_NUMBER = process.env.TWILIO_FROM_NUMBER;
+    const COMPANY_PHONE = "3055345991"; // Target phone number for notifications
+
+    if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN && TWILIO_FROM_NUMBER) {
+      try {
+        const smsBody = `🚗 New Lead!\nName: ${lead.name || "N/A"}\nPhone: ${
+          lead.phone || "N/A"
+        }\nCar: ${lead.year || ""} ${lead.make || ""} ${
+          lead.model || ""
+        }\nLoc: ${lead.location || "Miami"}`;
+
+        const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`;
+        const auth = Buffer.from(
+          `${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`
+        ).toString("base64");
+
+        const formData = new URLSearchParams();
+        formData.append("To", `+1${COMPANY_PHONE}`);
+        formData.append("From", TWILIO_FROM_NUMBER);
+        formData.append("Body", smsBody);
+
+        const twilioResponse = await fetch(twilioUrl, {
+          method: "POST",
+          headers: {
+            Authorization: `Basic ${auth}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: formData,
+        });
+
+        if (twilioResponse.ok) {
+          console.log("✅ SMS notification sent via Twilio");
+        } else {
+          const twilioError = await twilioResponse.text();
+          console.error("⚠️ Twilio SMS failed:", twilioError);
+        }
+      } catch (error) {
+        console.error("Twilio API error:", error);
+      }
+    }
+
     // If no email service is configured, return success but log warning
     console.warn(
       "⚠️ No email service configured. Set RESEND_API_KEY in Vercel environment variables."
