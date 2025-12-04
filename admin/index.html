@@ -1420,15 +1420,41 @@
         }
 
         // Load content
+        // Load content
         async function loadContent() {
-            const result = await apiCall('action=content');
-            if (result.success) {
-                currentData.content = result.content;
-                renderContentEditor();
-            } else {
-                // Fallback: Parse actual website content
-                await loadWebsiteContent();
+            // Try Supabase first
+            if (window.SupabaseClient) {
+                try {
+                    const response = await fetch(`${SUPABASE_URL}/rest/v1/website_content?select=*`, {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        // Transform array to object keyed by section
+                        currentData.content = {};
+                        data.forEach(item => {
+                            currentData.content[item.section] = item;
+                        });
+
+                        // If empty, try fallback
+                        if (Object.keys(currentData.content).length === 0) {
+                            await loadWebsiteContent();
+                        } else {
+                            renderContentEditor();
+                        }
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Supabase content load failed:', error);
+                }
             }
+
+            // Fallback: Parse actual website content
+            await loadWebsiteContent();
         }
 
         async function loadWebsiteContent() {
@@ -1625,23 +1651,41 @@
         }
 
         // Load business info
+        // Load business info
         async function loadBusiness() {
-            const result = await apiCall('action=business');
-            if (result.success) {
-                currentData.business = result.business;
-                renderBusinessForm();
-            } else {
-                // Fallback to default business info
-                currentData.business = {
-                    name: 'Buy Junk Car Miami',
-                    phone: '(305) 534-5991',
-                    email: 'buyjunkcarmiami@gmail.com',
-                    address: '122 South Miami Avenue, Miami, FL 33130',
-                    license: 'TI0105',
-                    hours: 'Monday - Sunday: 8:00 AM - 6:00 PM'
-                };
-                renderBusinessForm();
+            // Try Supabase first
+            if (window.SupabaseClient) {
+                try {
+                    const response = await fetch(`${SUPABASE_URL}/rest/v1/business_info?select=*&limit=1`, {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.length > 0) {
+                            currentData.business = data[0];
+                            renderBusinessForm();
+                            return;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Supabase business load failed:', error);
+                }
             }
+
+            // Fallback to default business info
+            currentData.business = {
+                name: 'Buy Junk Car Miami',
+                phone: '(305) 534-5991',
+                email: 'buyjunkcarmiami@gmail.com',
+                address: '122 South Miami Avenue, Miami, FL 33130',
+                license: 'TI0105',
+                hours: 'Monday - Sunday: 8:00 AM - 6:00 PM'
+            };
+            renderBusinessForm();
         }
 
         function renderBusinessForm() {
@@ -1674,6 +1718,46 @@
                     <textarea id="businessHours" class="form-control" rows="3">${business.hours || ''}</textarea>
                 </div>
             `;
+        }
+
+        // Create new page
+        async function saveBusinessInfo() {
+            const businessInfo = {
+                name: document.getElementById('businessName').value,
+                phone: document.getElementById('businessPhone').value,
+                email: document.getElementById('businessEmail').value,
+                address: document.getElementById('businessAddress').value,
+                license: document.getElementById('businessLicense').value,
+                hours: document.getElementById('businessHours').value,
+                updated_at: new Date().toISOString()
+            };
+
+            try {
+                // Save to Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/business_info`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'resolution=merge-duplicates'
+                    },
+                    body: JSON.stringify(businessInfo)
+                });
+
+                if (response.ok) {
+                    currentData.business = businessInfo;
+                    alert('✅ Business info saved successfully!');
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error saving business info:', error);
+                // Fallback to localStorage
+                localStorage.setItem('mjc_business_info', JSON.stringify(businessInfo));
+                currentData.business = businessInfo;
+                alert('⚠️ Saved to browser storage (database unavailable).');
+            }
         }
 
         // Create new page
