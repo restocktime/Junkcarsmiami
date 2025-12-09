@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+    <!-- Homepage Spanish -->
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://buyjunkcarmiami.com/" />
+    </url>
+    
+    <!-- Services Spanish -->
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/servicios/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/services/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/servicios/" />
+    </url>
+    
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/servicios/carros-sin-titulo/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/services/no-title-cars/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/servicios/carros-sin-titulo/" />
+    </url>
+    
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/servicios/carros-danados-inundacion/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>seasonal</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/services/flood-damaged-cars/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/servicios/carros-danados-inundacion/" />
+    </url>
+    
+    <!-- Locations Spanish -->
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/ubicaciones/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/locations/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/ubicaciones/" />
+    </url>
+    
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/ubicaciones/miami/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/locations/miami/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/ubicaciones/miami/" />
+    </url>
+    
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/ubicaciones/hialeah/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/locations/hialeah/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/ubicaciones/hialeah/" />
+    </url>
+    
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/ubicaciones/coral-gables/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/locations/coral-gables/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/ubicaciones/coral-gables/" />
+    </url>
+    
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/ubicaciones/homestead/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/locations/homestead/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/ubicaciones/homestead/" />
+    </url>
+    
+    <!-- Car Brands Spanish -->
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/marcas/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/brands/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/marcas/" />
+    </url>
+    
+    <!-- Blog Spanish -->
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/blog/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/blog/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/blog/" />
+    </url>
+    
+    <!-- Contact Spanish -->
+    <url>
+        <loc>https://buyjunkcarmiami.com/es/contacto/</loc>
+        <lastmod>2024-12-08</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://buyjunkcarmiami.com/contact/" />
+        <xhtml:link rel="alternate" hreflang="es-us" href="https://buyjunkcarmiami.com/es/contacto/" />
+    </url>
+    
+</urlset>

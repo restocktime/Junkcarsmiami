@@ -8,66 +8,83 @@
     
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": ["LocalBusiness", "AutoDealer"],
-        "name": "Buy Junk Car Miami - Aventura Service",
-        "description": "Premium junk car removal in Aventura, FL. Cash for luxury vehicles, mall area service, waterfront community specialists.",
-        "url": "https://buyjunkcarmiami.com/locations/aventura/",
-        "telephone": "(305) 534-5991",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "122 South Miami Avenue",
-            "addressLocality": "Miami",
-            "addressRegion": "FL",
-            "postalCode": "33130",
-            "addressCountry": "US"
-        },
-        "openingHours": "Mo-Su 08:00-22:00",
-        "areaServed": {
-            "@type": "City",
-            "name": "Aventura",
+{
+    "@context": "https://schema.org",
+    "@type": [
+        "LocalBusiness",
+        "AutoDealer"
+    ],
+    "name": "Buy Junk Car Miami - Aventura Service",
+    "description": "Premium junk car removal in Aventura, FL. Cash for luxury vehicles, mall area service, waterfront community specialists.",
+    "url": "https://buyjunkcarmiami.com/locations/aventura/",
+    "telephone": "(305) 534-5991",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "122 South Miami Avenue",
+        "addressLocality": "Miami",
+        "addressRegion": "FL",
+        "postalCode": "33130",
+        "addressCountry": "US"
+    },
+    "openingHours": "Mo-Su 08:00-22:00",
+    "areaServed": {
+        "@type": "City",
+        "name": "Aventura",
+        "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": "Miami-Dade County",
             "containedInPlace": {
-                "@type": "AdministrativeArea",
-                "name": "Miami-Dade County",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Florida"
+                "@type": "State",
+                "name": "Florida"
+            }
+        }
+    },
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Aventura Luxury Car Services",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Luxury Vehicle Removal",
+                    "description": "Specialized service for luxury and high-end vehicles"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Mall Area Service",
+                    "description": "Vehicle pickup near Aventura Mall"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Waterfront Community Service",
+                    "description": "Discrete service for upscale waterfront properties"
                 }
             }
+        ]
+    },
+    "identifier": [
+        {
+            "@type": "PropertyValue",
+            "propertyID": "FL_Salvage_Dealer_License",
+            "value": "TI0105",
+            "name": "Florida Salvage Dealer License"
         },
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Aventura Luxury Car Services",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Luxury Vehicle Removal",
-                        "description": "Specialized service for luxury and high-end vehicles"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Mall Area Service",
-                        "description": "Vehicle pickup near Aventura Mall"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Waterfront Community Service",
-                        "description": "Discrete service for upscale waterfront properties"
-                    }
-                }
-            ]
+        {
+            "@type": "PropertyValue",
+            "propertyID": "Miami_Dade_Towing_License",
+            "value": "T98765",
+            "name": "Miami-Dade Towing License"
         }
-    }
-    </script>
+    ]
+}
+</script>
     <link rel="canonical" href="https://buyjunkcarmiami.com/locations/aventura/" />
     <meta property="og:url" content="https://buyjunkcarmiami.com/locations/aventura/" />
     <link rel="stylesheet" href="../../css/styles.css">
